@@ -267,6 +267,10 @@ app.put('/api/admin/orders/:id', authenticateAdmin, (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`RVN Backend API Server running at http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`RVN Backend API Server running at http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
