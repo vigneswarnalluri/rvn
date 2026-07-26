@@ -1,0 +1,63 @@
+<div data-drawer="form-guide" class="fixed inset-0 z-50 hidden justify-end" role="dialog" aria-modal="true">
+  <div data-drawer-backdrop class="absolute inset-0 bg-ink-900/45 opacity-0 transition-opacity duration-200"></div>
+  <aside
+    data-drawer-panel
+    class="relative ml-auto flex h-full w-full max-w-md translate-x-full flex-col bg-surface-card shadow-lift transition-transform duration-200"
+  >
+    <div class="flex items-start justify-between gap-4 border-b border-surface-line px-5 py-4">
+      <div>
+        <p class="text-[12px] font-semibold uppercase tracking-wide text-brand-600">Form Guide</p>
+        <h2 class="mt-1 text-[18px] font-semibold text-ink-900">Compact editing checklist</h2>
+        <p class="mt-1 text-[13px] text-ink-500">Use the tabs to finish only the section you are working on.</p>
+      </div>
+      <button
+        type="button"
+        data-drawer-close
+        class="grid h-9 w-9 shrink-0 place-items-center rounded-base border border-surface-line text-ink-500 hover:bg-surface-muted hover:text-ink-900"
+        aria-label="Close form guide"
+      >
+        <i data-lucide="x" class="h-4 w-4"></i>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto px-5 py-5">
+      <div class="space-y-4">
+        <section class="rounded-base border border-surface-line p-4">
+          <h3 class="text-[14px] font-semibold text-ink-900">Before publishing</h3>
+          <ul class="mt-3 space-y-2 text-[13px] text-ink-500">
+            <li class="flex gap-2">
+              <i data-lucide="check" class="mt-0.5 h-4 w-4 text-success-500"></i>Required name, code, price, or status
+              fields are filled.
+            </li>
+            <li class="flex gap-2">
+              <i data-lucide="check" class="mt-0.5 h-4 w-4 text-success-500"></i>Images and preview cards match the
+              final storefront content.
+            </li>
+            <li class="flex gap-2">
+              <i data-lucide="check" class="mt-0.5 h-4 w-4 text-success-500"></i>SEO, rules, and schedule tabs are
+              reviewed before saving.
+            </li>
+          </ul>
+        </section>
+
+        <section class="rounded-base border border-surface-line p-4">
+          <h3 class="text-[14px] font-semibold text-ink-900">Fast layout tips</h3>
+          <p class="mt-2 text-[13px] leading-6 text-ink-500">
+            The main form now groups related fields into tabs and tighter two-column rows. Sidebar cards keep live
+            preview, status, schedule, and template controls close without taking over the page.
+          </p>
+        </section>
+
+        <section class="rounded-base border border-surface-line p-4">
+          <h3 class="text-[14px] font-semibold text-ink-900">Common saves</h3>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-[12px] font-semibold text-ink-600">
+            <span class="rounded-base bg-surface-muted px-3 py-2">Draft first</span>
+            <span class="rounded-base bg-surface-muted px-3 py-2">Check preview</span>
+            <span class="rounded-base bg-surface-muted px-3 py-2">Review rules</span>
+            <span class="rounded-base bg-surface-muted px-3 py-2">Save changes</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </aside>
+</div>

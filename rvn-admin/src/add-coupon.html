@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Add Coupon"}}
+  <body data-page="add-coupon" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-5 lg:px-6">
+        <div class="add-coupon-page-header mb-5 flex flex-wrap items-center justify-between gap-3">
+          <div class="min-w-0 max-w-full">
+            <nav class="mb-1 flex items-center gap-1.5 text-[13px] text-ink-400">
+              <a href="/index.html" class="hover:text-brand-600">Home</a>
+              <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+              <a href="/coupons.html" class="hover:text-brand-600">Marketing</a>
+              <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+              <span class="text-ink-700">Add Coupon</span>
+            </nav>
+            <h1 class="text-[22px] font-semibold text-ink-900">Add Coupon</h1>
+            <p class="mt-1 break-words text-[14px] text-ink-500">
+              Create a coupon code with discount rules, usage limits, and campaign scheduling.
+            </p>
+          </div>
+          <button
+            type="button"
+            data-drawer-open="form-guide"
+            class="inline-flex h-10 items-center gap-2 rounded-base border border-surface-line px-4 text-[13px] font-semibold text-ink-700 hover:bg-surface-muted"
+          >
+            <i data-lucide="panel-left" class="h-4 w-4"></i>
+            Form Guide
+          </button>
+        </div>
+
+        <form id="add-coupon-form" class="grid min-w-0 max-w-full gap-4 xl:grid-cols-[280px_minmax(0,1fr)]">
+          <div class="min-w-0 space-y-4 xl:order-1">
+            <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+              <h2 class="mb-3 text-[15px] font-semibold text-ink-900">Coupon Preview</h2>
+              <div class="rounded-card border border-dashed border-brand-200 bg-brand-50 p-4">
+                <div class="flex items-start justify-between gap-3">
+                  <span
+                    class="grid h-10 w-10 place-items-center rounded-base bg-surface-card text-brand-600 shadow-card"
+                  >
+                    <i data-lucide="badge-percent" class="h-5 w-5"></i>
+                  </span>
+                  <span class="badge bg-success-50 text-success-600">Active</span>
+                </div>
+                <p class="mt-4 text-[12px] font-semibold uppercase text-brand-600">Coupon Code</p>
+                <p id="coupon-code-preview" class="mt-1 break-all text-[22px] font-semibold text-ink-900">NEWCODE</p>
+                <p id="coupon-discount-preview" class="mt-2 text-[13px] text-ink-500">10% off selected products</p>
+              </div>
+              <p class="mt-3 text-[12px] text-ink-400">Preview updates from coupon code and discount fields.</p>
+            </article>
+
+            <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+              <div class="mb-3 flex items-center justify-between">
+                <h2 class="text-[15px] font-semibold text-ink-900">Status</h2>
+                <span id="status-dot" class="h-2.5 w-2.5 rounded-full bg-success-500"></span>
+              </div>
+              <select
+                name="status"
+                id="status-select"
+                class="h-10 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+              >
+                <option value="active">Active</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="draft">Draft</option>
+                <option value="expired">Expired</option>
+              </select>
+              <p class="mt-2 text-[12px] text-ink-400">Set the coupon availability state.</p>
+            </article>
+
+            <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+              <h2 class="mb-3 text-[15px] font-semibold text-ink-900">Schedule</h2>
+              <label class="block">
+                <span class="text-[13px] font-semibold text-ink-700">Start Date</span>
+                <input
+                  type="date"
+                  name="start_date"
+                  class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                />
+              </label>
+              <label class="mt-4 block">
+                <span class="text-[13px] font-semibold text-ink-700">End Date</span>
+                <input
+                  type="date"
+                  name="end_date"
+                  class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                />
+              </label>
+              <label class="mt-4 flex items-center gap-2 text-[13px] font-semibold text-ink-700">
+                <input
+                  type="checkbox"
+                  name="no_end_date"
+                  class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+                />
+                No end date
+              </label>
+            </article>
+          </div>
+
+          <div data-form-tabs class="min-w-0 space-y-4 xl:order-2">
+            <div class="flex flex-wrap gap-2" role="tablist" aria-label="Coupon form sections">
+              <button
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-form-tab="general"
+                class="inline-flex h-9 items-center rounded-base border px-4 text-[13px] font-semibold"
+              >
+                General
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-form-tab="discount"
+                class="inline-flex h-9 items-center rounded-base border px-4 text-[13px] font-semibold"
+              >
+                Discount
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-form-tab="eligibility"
+                class="inline-flex h-9 items-center rounded-base border px-4 text-[13px] font-semibold"
+              >
+                Eligibility
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-form-tab="usage"
+                class="inline-flex h-9 items-center rounded-base border px-4 text-[13px] font-semibold"
+              >
+                Usage
+              </button>
+            </div>
+
+            <article
+              data-form-panel="general"
+              class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card"
+            >
+              <h2 class="mb-4 text-[16px] font-semibold text-ink-900">General</h2>
+              <div class="grid gap-4 md:grid-cols-2">
+                <label class="block md:col-span-2">
+                  <span class="text-[13px] font-semibold text-ink-700"
+                    >Coupon Name <span class="text-danger-500">*</span></span
+                  >
+                  <input
+                    required
+                    name="name"
+                    placeholder="Coupon name"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] placeholder:text-ink-400 focus:border-brand-600"
+                  />
+                  <p class="mt-1 text-[12px] text-ink-400">Use a clear campaign name for internal reporting.</p>
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700"
+                    >Coupon Code <span class="text-danger-500">*</span></span
+                  >
+                  <input
+                    required
+                    name="code"
+                    id="coupon-code-input"
+                    placeholder="NEWCODE"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 font-semibold uppercase text-ink-900 placeholder:text-ink-400 focus:border-brand-600"
+                  />
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Campaign Channel</span>
+                  <select
+                    name="channel"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+                  >
+                    <option>Storefront</option>
+                    <option>Email campaign</option>
+                    <option>Affiliate</option>
+                    <option>Social campaign</option>
+                  </select>
+                </label>
+                <label class="block md:col-span-2">
+                  <span class="text-[13px] font-semibold text-ink-700">Description</span>
+                  <textarea
+                    name="description"
+                    rows="3"
+                    placeholder="Short internal note about this coupon"
+                    class="mt-1.5 min-h-[92px] w-full resize-y rounded-base border border-surface-line bg-surface-body px-3 py-3 text-[14px] text-ink-700 placeholder:text-ink-400 focus:border-brand-600"
+                  ></textarea>
+                </label>
+              </div>
+            </article>
+
+            <article
+              data-form-panel="discount"
+              class="hidden rounded-card border border-surface-line bg-surface-card p-5 shadow-card"
+            >
+              <h2 class="mb-4 text-[16px] font-semibold text-ink-900">Discount</h2>
+              <div class="grid gap-4 md:grid-cols-2">
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Discount Type</span>
+                  <select
+                    name="discount_type"
+                    id="discount-type"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+                  >
+                    <option value="percentage">Percentage discount</option>
+                    <option value="fixed">Fixed amount</option>
+                    <option value="shipping">Free shipping</option>
+                  </select>
+                </label>
+                <label class="block" id="discount-value-wrap">
+                  <span class="text-[13px] font-semibold text-ink-700">Discount Value</span>
+                  <input
+                    type="number"
+                    name="discount_value"
+                    id="discount-value"
+                    min="0"
+                    placeholder="10"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Minimum Order Amount</span>
+                  <input
+                    type="number"
+                    name="minimum_order"
+                    min="0"
+                    placeholder="0"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Maximum Discount</span>
+                  <input
+                    type="number"
+                    name="maximum_discount"
+                    min="0"
+                    placeholder="No limit"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+              </div>
+            </article>
+
+            <article
+              data-form-panel="eligibility"
+              class="hidden rounded-card border border-surface-line bg-surface-card p-5 shadow-card"
+            >
+              <h2 class="mb-4 text-[16px] font-semibold text-ink-900">Eligibility</h2>
+              <div class="grid gap-4 md:grid-cols-2">
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Applies To</span>
+                  <select
+                    name="applies_to"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+                  >
+                    <option>Entire order</option>
+                    <option>Specific products</option>
+                    <option>Specific categories</option>
+                    <option>Specific brands</option>
+                  </select>
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Customer Segment</span>
+                  <select
+                    name="customer_segment"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+                  >
+                    <option>All customers</option>
+                    <option>New customers</option>
+                    <option>Returning customers</option>
+                    <option>VIP customers</option>
+                  </select>
+                </label>
+                <label class="block md:col-span-2">
+                  <span class="text-[13px] font-semibold text-ink-700">Eligibility Notes</span>
+                  <input
+                    name="eligibility_notes"
+                    placeholder="e.g. Products tagged summer, categories bakery, or brand Acme Audio"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+              </div>
+            </article>
+
+            <article
+              data-form-panel="usage"
+              class="hidden rounded-card border border-surface-line bg-surface-card p-5 shadow-card"
+            >
+              <h2 class="mb-4 text-[16px] font-semibold text-ink-900">Usage Limits</h2>
+              <div class="grid gap-4 md:grid-cols-2">
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Total Usage Limit</span>
+                  <input
+                    type="number"
+                    name="usage_limit"
+                    min="0"
+                    placeholder="500"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Limit Per Customer</span>
+                  <input
+                    type="number"
+                    name="per_customer_limit"
+                    min="0"
+                    placeholder="1"
+                    class="mt-1.5 h-10 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+                <label class="flex items-center gap-2 text-[13px] font-semibold text-ink-700 md:col-span-2">
+                  <input
+                    type="checkbox"
+                    name="combine_with_other_discounts"
+                    class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+                  />
+                  Allow this coupon with other discounts
+                </label>
+              </div>
+            </article>
+          </div>
+        </form>
+
+        <div class="mt-6 flex items-center justify-end gap-3 border-t border-surface-line pt-5">
+          <a
+            href="/coupons.html"
+            class="inline-flex h-10 items-center gap-2 rounded-base border border-surface-line px-5 text-[14px] font-semibold text-ink-700 hover:bg-surface-muted"
+            >Cancel</a
+          >
+          <button
+            type="submit"
+            form="add-coupon-form"
+            class="inline-flex h-10 items-center gap-2 rounded-base bg-brand-600 px-5 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="save" class="h-4 w-4"></i>
+            Save Changes
+          </button>
+        </div>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    {{> components/form-guide-drawer}}
+
+    <script type="module" src="/scripts/main.js"></script>
+    <script type="module">
+      (function () {
+        'use strict';
+
+        const couponFormJs = {
+          _statusSel: null,
+          _statusDot: null,
+          _typeSel: null,
+          _valueInput: null,
+          _valueWrap: null,
+          _codeInput: null,
+          _codePreview: null,
+          _discountPreview: null,
+
+          i: function () {
+            couponFormJs.d();
+            couponFormJs.methods();
+          },
+
+          d: function () {
+            this._statusSel = document.getElementById('status-select');
+            this._statusDot = document.getElementById('status-dot');
+            this._typeSel = document.getElementById('discount-type');
+            this._valueInput = document.getElementById('discount-value');
+            this._valueWrap = document.getElementById('discount-value-wrap');
+            this._codeInput = document.getElementById('coupon-code-input');
+            this._codePreview = document.getElementById('coupon-code-preview');
+            this._discountPreview = document.getElementById('coupon-discount-preview');
+          },
+
+          methods: function () {
+            couponFormJs.statusDot();
+            couponFormJs.discountPreview();
+            couponFormJs.codePreview();
+          },
+
+          statusDot: function () {
+            const statusSel = couponFormJs._statusSel;
+            const statusDot = couponFormJs._statusDot;
+            statusSel?.addEventListener('change', () => {
+              statusDot.className =
+                'h-2.5 w-2.5 rounded-full ' +
+                (statusSel.value === 'active'
+                  ? 'bg-success-500'
+                  : statusSel.value === 'scheduled'
+                    ? 'bg-brand-600'
+                    : statusSel.value === 'draft'
+                      ? 'bg-warning-500'
+                      : 'bg-ink-300');
+            });
+          },
+
+          discountPreview: function () {
+            function sync() {
+              const type = couponFormJs._typeSel?.value || 'percentage';
+              const value = couponFormJs._valueInput?.value || '10';
+              const isShipping = type === 'shipping';
+              couponFormJs._valueWrap?.classList.toggle('opacity-50', isShipping);
+              couponFormJs._valueInput?.toggleAttribute('disabled', isShipping);
+              if (couponFormJs._discountPreview) {
+                couponFormJs._discountPreview.textContent = isShipping
+                  ? 'Free shipping for eligible orders'
+                  : type === 'fixed'
+                    ? `$${value} off selected products`
+                    : `${value}% off selected products`;
+              }
+            }
+            couponFormJs._typeSel?.addEventListener('change', sync);
+            couponFormJs._valueInput?.addEventListener('input', sync);
+            sync();
+          },
+
+          codePreview: function () {
+            couponFormJs._codeInput?.addEventListener('input', () => {
+              const code = couponFormJs._codeInput.value.trim().toUpperCase();
+              if (couponFormJs._codePreview) couponFormJs._codePreview.textContent = code || 'NEWCODE';
+            });
+          },
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', couponFormJs.i);
+        } else {
+          couponFormJs.i();
+        }
+      })();
+    </script>
+  </body>
+</html>

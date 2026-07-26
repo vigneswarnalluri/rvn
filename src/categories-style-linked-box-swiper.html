@@ -1,0 +1,42 @@
+@@include('styles.html',{
+    "title": "Categories Style Linked Box Swiper"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Categories Style Linked Box Swiper</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-default.html', {
+        "text": "Categories Style",
+        "title": "Categories Style Linked Box Swiper",
+        "sectionType": "Categories",
+        "title2": "Linked Box Swiper"
+    })
+    
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-catagories-styles-area rbt-section-gap rbt-bg-color-white">
+        <div class="ml-container">
+
+            @@include('common/catagories-styles/catagories-style-six-swiper.html')
+            
+        </div>
+    </div>
+    <!-- End Component Area -->
+    
+
+    
+    @@include('modals/quickviewEditCartModal.html')
+    @@include('modals/socialShareModal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+
+</html>

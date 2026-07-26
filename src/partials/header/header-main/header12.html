@@ -1,0 +1,81 @@
+<div
+    class="rbt-header-wrapper @@stickyActivation rbt-header-wrapper-one rbt-header-wrapper-transparent @@gapSpaceBetween @@transparent plr--0">
+
+    <div class="rbt-wrapper-middle rbt-header-middle-one">
+        <div class="@@container">
+            <div class="mainbar-row @@navigationEnd align-items-center mainbar-row-var-one">
+                <div class="header-left">
+                    <div class="rbt-header-content rbt-gap--32">
+                        <!-- Start Mobile-Menu-Bar -->
+                        <div class="mobile-menu-bar d-block d-xl-none">
+                            <div class="hamberger">
+                                <button class="hamberger-button rbt-round-btn">
+                                    <i class="fa-solid fa-bars"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="header-info">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="assets/images/logo/@@logo" alt="Ecommerce Logo Images">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rbt-header-content d-none d-xl-block">
+                    <div class="header-info">
+                        @@include('header/navStyles/nav-style-four.html')
+                    </div>
+                </div>
+
+                <div class="header-right rbt-gap--32">
+
+
+
+                    <!-- Navbar Icons -->
+                    <ul class="rbt-quick-access">
+                        <li class="rbt-access-box">
+                            <a href="#!" class="rbt-round-btn rbt-bg-static-gray d-none d-lg-block"
+                                data-bs-toggle="modal" data-bs-target="#compareviewModal">
+                                <i class="fa-regular fa-code-compare"></i>
+                                <div class="access-box-count">5</div>
+                            </a>
+                        </li>
+
+                        <li
+                            class="rbt-access-box rbt-scroll-trigger fade_in animation-order-1 rbt-wishlist d-none d-lg-flex">
+                            <a class="rbt-round-btn rbt-bg-static-gray" href="wishlist.html">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="access-box-count">5</span>
+                            </a>
+                        </li>
+
+                        <li class="rbt-access-box rbt-scroll-trigger fade_in animation-order-3 rbt-mini-cart">
+                            <a class="rbt-cart-sidenav-activation rbt-round-btn rbt-bg-static-gray" href="#">
+                                <i class="fa-regular fa-bag-shopping"></i>
+                                <span class="access-box-count rbt-shiny">4</span>
+                            </a>
+                        </li>
+
+                        <li
+                            class="rbt-access-box rbt-scroll-trigger fade_in animation-order-3 rbt-access-box-has-bg-hover">
+                            <a href="#!" class="rbt-access-box-wrapper" data-bs-toggle="modal"
+                                data-bs-target="#signinModal">
+                                <div class="rbt-round-btn rbt-bg-static-gray">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                                <div class="content">
+                                    <p>Log in/Sign Up</p>
+                                    <span>Access Account</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

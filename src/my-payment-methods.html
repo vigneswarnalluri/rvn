@@ -1,0 +1,90 @@
+@@include('styles.html',{
+"title": "My Payment Methods"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">My Payment Methods</h1>
+    @@include('header/package/header-style-9.html')
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-gray-100",
+    "justify-content": "justify-content-start",
+    "sectionType": "Profile",
+    "title": "Payment Methods"
+    })
+
+    <div class="rbt-component-area rbt-section-gap rbt-bg-color-gray-light">
+        <div class="container">
+            <div class="row row--12 mt_dec--24">
+                <div class="col-12 col-md-12 col-lg-4 col-xl-3 mt--24">
+                    @@include('common/dashboard/common-sidebar.html')
+                </div>
+                <div class="col-12 col-md-12 col-lg-8 col-xl-9 mt--24">
+                    <div class="rbt-profile-content-area rbt-scrollable-content">
+                        <div class="rbt-component-section-title rbt-gap--4 mb--32 p-0 border-0 text-center">
+                            <h2 class="rbt-title mb--8"><span class="rbt-text-bold">Payment Methods</span></h2>
+                            <p class="description mx-auto">
+                                Manage your saved payment methods for a faster checkout experience. Add, edit, or remove
+                                your credit cards and other payment options.
+                            </p>
+                        </div>
+                        <div class="row row--12 mt_dec--24">
+                            <div class="col-12 col-md-6 col-xxl-4 mt--24">
+                                <div class="rbt-card rbt-payment-method-card pt--0">
+                                    <div class="rbt-card-body">
+                                        <div class="d-flex align-items-start justify-content-between mb-4">
+                                            <img class="rbt-payment-method-img" src="assets/images/dashboard/mastercard.svg" alt="Mastercard">
+                                            <div class="rbt-badge rbt-badge-md">Primary</div>
+                                        </div>
+                                        <p class="b1 mb--4">**** **** **** 8843</p>
+                                        <p class="rbt-text-color-gray-400">Expiration 07/26</p>
+                                    </div>
+                                    <div class="rbt-card-footer d-flex rbt-gap--8">
+                                        <button class="rbt-btn rbt-btn-xs radius-round-6">Edit</button>
+                                        <button class="rbt-btn rbt-btn-xs radius-round-6">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-xxl-4 mt--24">
+                                <div class="rbt-card rbt-payment-method-card pt--0">
+                                    <div class="rbt-card-body">
+                                        <div class="d-flex align-items-start justify-content-between mb-4">
+                                            <img class="rbt-payment-method-img" src="assets/images/dashboard/visa-card.svg" alt="Visa Card">
+                                            <button class="rbt-set-card-primary-btn">Set as primary</button>
+                                        </div>
+                                        <p class="b1 mb--4">**** **** **** 2547</p>
+                                        <p class="rbt-text-color-danger">Expired 08/23</p>
+                                    </div>
+                                    <div class="rbt-card-footer d-flex rbt-gap--8">
+                                        <button class="rbt-btn rbt-btn-xs radius-round-6">Edit</button>
+                                        <button class="rbt-btn rbt-btn-xs radius-round-6">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-xxl-4 mt--24">
+                                <div class="rbt-card rbt-payment-method-card rbt-add-payment-method-card h-100  pt--0">
+                                    <div class="rbt-card-footer h-100 d-flex rbt-gap--8 align-items-center justify-content-center position-relative">
+                                        <a href="#!" class="rbt-btn rbt-btn-xs radius-round-6 stretched-link d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#addPaymentMethodModal"><i class="fa-regular fa-plus mr--4"></i>Add New Method</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @@include('common/dashboard/addPaymentMethodModal.html')
+    @@include('modals/added-comparison-popup.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/quickviewRestockModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('common/dashboard/order-history-offcanvas.html')
+    @@include('footer/footerSeven.html')
+    @@include('scripts.html')
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Categories"}}
+  <body data-page="categories" data-sidebar-open="false">
+    {{> preloader}}
+    {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="px-4 py-6 lg:px-6 min-h-[calc(100vh-140px)]">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Catalog</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Categories</h1>
+            <p class="mt-1 text-[14px] text-ink-500">Organize storefront navigation and merchandising groups.</p>
+          </div>
+          <a
+            href="/add-category.html"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="plus" class="h-4 w-4"></i>
+            Add Category
+          </a>
+        </div>
+
+        <!-- Visual category strip (mirrors dashboard category section) -->
+        <section class="mb-6 rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+          <div class="flex items-center justify-between gap-3">
+            <h2 class="text-[20px] font-medium text-ink-900">Category</h2>
+            <div class="flex items-center gap-1.5">
+              <button
+                type="button"
+                data-cat-prev
+                aria-label="Previous categories"
+                class="grid h-8 w-8 place-items-center rounded-full border border-surface-line text-ink-500 transition-colors hover:bg-surface-muted hover:text-ink-900 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-ink-500"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button
+                type="button"
+                data-cat-next
+                aria-label="Next categories"
+                class="grid h-8 w-8 place-items-center rounded-full border border-surface-line text-ink-500 transition-colors hover:bg-surface-muted hover:text-ink-900 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-ink-500"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div data-cat-scroll class="no-scrollbar mt-5 flex flex-nowrap gap-5 overflow-x-auto pb-2">
+            {{> components/category-tile image="/assets/images/catagory-img/cat-bg-headphones-01.webp" label="Headphones" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-01.webp" label="Charging Cable" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-02.webp" label="Power Adapter" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-03.webp" label="Power Bank" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-bg-headphones-02.webp" label="Bluetooth Speaker" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-bg-headphones-03.webp" label="Mini Speaker" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-08.webp" label="Smart Watch" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-09.webp" label="Smart TV" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-10.webp" label="Wireless Headphones" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-bg-headphones-04.webp" label="Portable Speaker" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-bg-headphones-05.webp" label="Microphone" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-06.webp" label="Over-Ear Headphones" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-07.webp" label="Camera" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-11.webp" label="Tablet" href="/edit-category.html"}}
+            {{> components/category-tile image="/assets/images/catagory-img/cat-transp-img-12.webp" label="Gaming Mouse" href="/edit-category.html"}}
+          </div>
+        </section>
+
+        <!-- Category list table -->
+        <section
+          data-list-table
+          data-list-noun="categories"
+          class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card"
+        >
+          <div class="mb-5 flex flex-wrap items-center gap-3">
+            <label class="relative block min-w-[200px] flex-1">
+              <span class="sr-only">Search categories</span>
+              <i
+                data-lucide="search"
+                class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+              ></i>
+              <input
+                data-list-search
+                class="h-11 w-full rounded-base border border-surface-line bg-surface-body pl-11 pr-4 text-[14px] focus:border-brand-600"
+                type="search"
+                placeholder="Search categories"
+              />
+            </label>
+            <select
+              data-list-filter
+              class="h-11 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option value="all">All status</option>
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+            </select>
+            <div class="relative">
+              <button
+                type="button"
+                data-menu-toggle="cols-categories"
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="inline-flex h-11 items-center gap-2 rounded-base border border-surface-line bg-surface-card px-4 text-[14px] font-semibold text-ink-700 transition-colors hover:bg-surface-muted"
+              >
+                <i data-lucide="sliders-horizontal" class="h-4 w-4"></i>
+                Columns
+              </button>
+              <div
+                data-menu="cols-categories"
+                class="absolute right-0 z-20 mt-2 hidden w-48 rounded-base border border-surface-line bg-surface-card p-2 shadow-card"
+              >
+                <p class="px-2 py-1 text-[12px] font-semibold uppercase text-ink-400">Toggle columns</p>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="3" checked aria-label="Toggle Slug column" /> Slug
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="4" checked aria-label="Toggle Products column" /> Products
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="5" checked aria-label="Toggle Status column" /> Status
+                </label>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-bulk-delete
+              disabled
+              class="inline-flex h-11 items-center justify-center gap-2 rounded-base bg-danger-500 px-4 text-[14px] font-semibold text-white transition-colors hover:bg-danger-600 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <i data-lucide="trash-2" class="h-4 w-4"></i>
+              Delete Selected (<span data-bulk-count>0</span>)
+            </button>
+          </div>
+
+          <div class="dashboard-scrollbar overflow-x-auto">
+            <table class="w-full min-w-[820px] text-left">
+              <thead>
+                <tr class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                  <th class="w-10 pb-3 pr-3">
+                    <input data-select-all type="checkbox" aria-label="Select all categories" class="h-4 w-4" />
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="name" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Category <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">Slug</th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="count" data-sort-type="num" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Products <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">Status</th>
+                  <th class="pb-3 text-right font-semibold">Action</th>
+                </tr>
+              </thead>
+              <tbody data-cat-tbody class="text-[14px]">
+                {{> components/category-row image="/assets/images/catagory-img/cat-bg-headphones-01.webp" name="Headphones" slug="headphones" count="42" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-01.webp" name="Charging Cable" slug="charging-cable" count="28" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-02.webp" name="Power Adapter" slug="power-adapter" count="19" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-03.webp" name="Power Bank" slug="power-bank" count="31" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-bg-headphones-02.webp" name="Bluetooth Speaker" slug="bluetooth-speaker" count="24" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-bg-headphones-03.webp" name="Mini Speaker" slug="mini-speaker" count="12" status="draft" statusLabel="Draft" statusClass="bg-surface-muted text-ink-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-08.webp" name="Smart Watch" slug="smart-watch" count="37" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-09.webp" name="Smart TV" slug="smart-tv" count="9" status="draft" statusLabel="Draft" statusClass="bg-surface-muted text-ink-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-10.webp" name="Wireless Headphones" slug="wireless-headphones" count="44" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-bg-headphones-04.webp" name="Portable Speaker" slug="portable-speaker" count="18" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-bg-headphones-05.webp" name="Microphone" slug="microphone" count="15" status="draft" statusLabel="Draft" statusClass="bg-surface-muted text-ink-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-06.webp" name="Over-Ear Headphones" slug="over-ear-headphones" count="26" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-07.webp" name="Camera" slug="camera" count="33" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-11.webp" name="Tablet" slug="tablet" count="21" status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"}}
+                {{> components/category-row image="/assets/images/catagory-img/cat-transp-img-12.webp" name="Gaming Mouse" slug="gaming-mouse" count="17" status="draft" statusLabel="Draft" statusClass="bg-surface-muted text-ink-600"}}
+              </tbody>
+            </table>
+          </div>
+
+          <p data-list-empty class="hidden py-10 text-center text-[14px] text-ink-400">No categories match your search.</p>
+
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-surface-line pt-4">
+            <p class="text-[13px] text-ink-500" data-list-info>Showing 15 of 15 categories</p>
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    {{> components/confirm-modal}}
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

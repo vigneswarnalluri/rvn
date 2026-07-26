@@ -1,0 +1,49 @@
+<tr
+  data-cat-row
+  data-name="{{name}}"
+  data-status="{{status}}"
+  data-count="{{count}}"
+  class="border-b border-surface-line hover:bg-surface-body/70"
+>
+  <td class="py-4 pr-3">
+    <input data-row-select type="checkbox" aria-label="Select {{name}}" class="h-4 w-4" />
+  </td>
+  <td class="py-4 pr-4">
+    <div class="flex items-center gap-3">
+      <img
+        src="{{image}}"
+        alt=""
+        width="48"
+        height="48"
+        loading="lazy"
+        decoding="async"
+        class="h-12 w-12 rounded-base bg-surface-body object-cover"
+      />
+      <a href="/edit-category.html" class="font-semibold text-ink-900 hover:text-brand-600">{{name}}</a>
+    </div>
+  </td>
+  <td class="py-4 pr-4 text-ink-500">{{slug}}</td>
+  <td class="py-4 pr-4 text-ink-700">{{count}} products</td>
+  <td class="py-4 pr-4">
+    <span class="badge {{statusClass}}">{{statusLabel}}</span>
+  </td>
+  <td class="py-4 text-right">
+    <div class="inline-flex items-center gap-1">
+      <a
+        href="/edit-category.html"
+        class="icon-button hover:bg-brand-50 hover:text-brand-600"
+        aria-label="Edit category"
+      >
+        <i data-lucide="pencil" class="h-4 w-4"></i>
+      </a>
+      <button type="button"
+        class="icon-button hover:bg-danger-50 hover:text-danger-500"
+        aria-label="Delete category"
+        data-modal-open="confirm-delete"
+        data-modal-message="This will permanently remove the “{{name}}” category. Products assigned to it will not be deleted."
+      >
+        <i data-lucide="trash-2" class="h-4 w-4"></i>
+      </button>
+    </div>
+  </td>
+</tr>

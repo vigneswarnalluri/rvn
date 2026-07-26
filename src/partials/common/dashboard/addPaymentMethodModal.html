@@ -1,0 +1,111 @@
+<!-- Start Modal Area  -->
+<div class="rbt-default-modal modal fade has-rbt-top-folder-shape" id="addPaymentMethodModal" tabindex="-1"
+    role="dialog" aria-modal="true" aria-labelledby="addPaymentMethodModalLabel" aria-hidden="true">
+    <div class="modal-dialog rbt-register-form-modal modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="rbt-folder-shape-right-portion">
+                <svg xmlns="http://www.w3.org/2000/svg" width="85" height="90" viewBox="0 0 85 90" fill="none">
+                    <path
+                        d="M0 0H11.1844C14.5695 0 17.7971 1.42971 20.0716 3.93671L82.1927 72.4059C83.9992 74.397 84.9999 76.9893 84.9999 79.6778C84.9999 85.6547 85.0001 90 85.0001 90H0V0Z"
+                        fill="white" />
+                </svg>
+            </div>
+
+            <div class="modal-header">
+                <button type="button" class="rbt-round-btn rbt-modal-dis-btn" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="rbt-top-folder-shape-wrapper">
+                <div class="rbt-login-form rbt-bg-color-white rbt-content-trs-portion">
+                    <div class="rbt-login-form-inner">
+                        <div class="rbt-login-form-top">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="assets/images/logo/logo.webp" alt="Ecommerce Logo Images">
+                                </a>
+                            </div>
+                            <h3 class="rbt-title rbt-text-bold mb--16 h6" id="addPaymentMethodModalLabel">Add new
+                                payment method</h3>
+                            <div class="rbt-tab rbt-round-shape-tab">
+
+                                <!-- Start tabs -->
+                                <ul class="nav nav-tabs" id="paymentMethodTab1" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="rbt-form-tab-id-5" data-bs-toggle="tab"
+                                            data-bs-target="#payment-form-tab-pane-1" type="button" role="tab"
+                                            aria-controls="payment-form-tab-pane-1" aria-selected="true">
+                                            <i class="fa-regular fa-credit-card-front"></i>
+                                            Card
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="rbt-form-tab-id-6" data-bs-toggle="tab"
+                                            data-bs-target="#payment-form-tab-pane-2" type="button" role="tab"
+                                            aria-controls="payment-form-tab-pane-2" aria-selected="false">
+                                            <i class="fa-brands fa-paypal"></i>
+                                            Paypal
+                                        </button>
+                                    </li>
+                                </ul>
+                                <!-- End tabs -->
+
+                                <form>
+                                    <!-- Start tabs content -->
+                                    <div class="tab-content" id="paymentMethodTab1Content">
+                                        <div class="tab-pane fade show active mt_dec--20" id="payment-form-tab-pane-1"
+                                            role="tabpanel" aria-labelledby="rbt-form-tab-id-5" tabindex="0">
+                                            <div class="rbt-input-field-grp mt--20">
+                                                <label class="rbt-field-label" for="card_number">Card Number</label>
+                                                <input class="rbt-input-field rbt-credit-card-input"
+                                                    placeholder="XXXX XXXX XXXX XXXX" type="text" id="card_number">
+                                            </div>
+                                            <div class="rbt-input-field-grp mt--20">
+                                                <label class="rbt-field-label" for="card_user_name">Name on card</label>
+                                                <input class="rbt-input-field" placeholder="Full name" type="text"
+                                                    id="card_user_name">
+                                            </div>
+                                            <div class="rbt-input-field-grp mt--20">
+                                                <label class="rbt-field-label" for="card_expiration_date">Expiration
+                                                    date</label>
+                                                <input class="rbt-input-field rbt-expiration-date" placeholder="MM/YY"
+                                                    type="text" id="card_expiration_date">
+                                            </div>
+                                            <div class="rbt-input-field-grp mt--20">
+                                                <label class="rbt-field-label" for="card_cvv">CVV</label>
+                                                <input class="rbt-input-field rbt-cvv-input" placeholder="XXXX"
+                                                    type="text" id="card_cvv">
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="payment-form-tab-pane-2" role="tabpanel"
+                                            aria-labelledby="rbt-form-tab-id-6" tabindex="0">
+                                            <div class="rbt-input-field-grp">
+                                                <label class="rbt-field-label" for="paypal_email_address">Your
+                                                    Email</label>
+                                                <input class="rbt-input-field" placeholder="Email" type="email"
+                                                    id="paypal_email_address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End tabs content -->
+                                    <div class="d-flex rbt-gap--24">
+                                        <button type="button" class="rbt-btn rbt-btn-gray d-block w-100 mt--24 mb--16"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="rbt-btn d-block w-100 mt--24 mb--16">
+                                            Continue
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Area  -->

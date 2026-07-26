@@ -1,0 +1,580 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens (replaces the old tailwind.config.cjs theme.extend)
+--------------------------------------------------------------------------- */
+@theme {
+  --font-sans: 'Cabin', ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dde8ff;
+  --color-brand-200: #bcd2f4;
+  --color-brand-300: #a4c2f1;
+  --color-brand-400: #7a9ce9;
+  --color-brand-500: #426de0;
+  --color-brand-600: #215ada;
+  --color-brand-700: #1d49b8;
+  --color-brand-800: #173b91;
+  --color-brand-900: #102b6b;
+
+  /* Accent */
+  --color-accent-50: #fff0ec;
+  --color-accent-100: #ffe1d6;
+  --color-accent-300: #ff9d7f;
+  --color-accent-500: #ff4c1a;
+  --color-accent-600: #e23c0f;
+  --color-accent-700: #b8320d;
+
+  /* Status */
+  --color-success-50: #e5fae5;
+  --color-success-100: #cff5d0;
+  --color-success-500: #24bd25;
+  --color-success-600: #157f16;
+  --color-success-700: #0e5f0f;
+
+  --color-warning-50: #fff5e1;
+  --color-warning-100: #fceac2;
+  --color-warning-500: #f5b24f;
+  --color-warning-600: #9a5b00;
+
+  --color-danger-50: #fdecec;
+  --color-danger-100: #fbd7d7;
+  --color-danger-500: #d12626;
+  --color-danger-600: #c02626;
+
+  /* Admin support colors */
+  --color-admin-sidebar: #0f9b86;
+  --color-admin-sidebar-dark: #087b70;
+  --color-admin-teal: #0da487;
+
+  /* Radius */
+  --radius-base: 6px;
+  --radius-card: 10px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+  --shadow-soft: 0 4px 30px 10px rgba(0, 0, 0, 0.05);
+  --shadow-lift: 0 10px 35px 0 rgba(0, 0, 0, 0.08);
+
+  /* Named spacing (sidebar width / topbar height) */
+  --spacing-sidebar: 278px;
+  --spacing-topbar: 72px;
+}
+
+@theme inline {
+  --color-ink-300: rgb(var(--ink-300));
+  --color-ink-400: rgb(var(--ink-400));
+  --color-ink-500: rgb(var(--ink-500));
+  --color-ink-600: rgb(var(--ink-600));
+  --color-ink-700: rgb(var(--ink-700));
+  --color-ink-800: rgb(var(--ink-800));
+  --color-ink-900: rgb(var(--ink-900));
+
+  --color-surface-body: rgb(var(--surface-body));
+  --color-surface-card: rgb(var(--surface-card));
+  --color-surface-muted: rgb(var(--surface-muted));
+  --color-surface-line: rgb(var(--surface-line));
+}
+
+:root {
+  --surface-body: 249 249 249;
+  --surface-card: 255 255 255;
+  --surface-muted: 243 243 243;
+  --surface-line: 230 230 230;
+  --ink-300: 193 193 193;
+  --ink-400: 110 110 110;
+  --ink-500: 85 85 85;
+  --ink-600: 68 68 68;
+  --ink-700: 51 51 51;
+  --ink-800: 17 17 17;
+  --ink-900: 5 5 31;
+}
+
+.dark {
+  --surface-body: 15 19 28;
+  --surface-card: 24 29 41;
+  --surface-muted: 35 42 58;
+  --surface-line: 47 55 74;
+  --ink-300: 90 102 122;
+  --ink-400: 124 136 156;
+  --ink-500: 148 163 184;
+  --ink-600: 174 185 204;
+  --ink-700: 203 213 225;
+  --ink-800: 230 234 240;
+  --ink-900: 245 247 250;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-body font-sans text-[15px] leading-[1.46] text-ink-500 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply m-0 break-words font-sans font-semibold leading-snug text-ink-900;
+  }
+
+  p {
+    @apply m-0;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply transition-colors duration-200;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  /* Native checkboxes/radios ignore Tailwind `text-*` utilities (no forms
+     plugin here) and render in the browser default (blackish fill). Reset their
+     appearance so the default state is transparent with only a border, and the
+     checked state fills with the brand color (or the element's accent/success
+     intent) plus a custom tick. */
+  input[type='checkbox'],
+  input[type='radio'] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    background-color: transparent;
+    border: 1.5px solid var(--color-surface-line);
+    cursor: pointer;
+  }
+
+  input[type='checkbox'] {
+    border-radius: 0.25rem;
+  }
+
+  input[type='radio'] {
+    border-radius: 9999px;
+  }
+
+  input[type='checkbox']:checked,
+  input[type='radio']:checked {
+    background-color: var(--color-brand-600);
+    border-color: var(--color-brand-600);
+  }
+
+  input[type='checkbox'].text-accent-500:checked,
+  input[type='checkbox'].text-accent-600:checked,
+  input[type='radio'].text-accent-500:checked,
+  input[type='radio'].text-accent-600:checked {
+    background-color: var(--color-accent-500);
+    border-color: var(--color-accent-500);
+  }
+
+  input[type='checkbox'].text-success-600:checked,
+  input[type='radio'].text-success-600:checked {
+    background-color: var(--color-success-600);
+    border-color: var(--color-success-600);
+  }
+
+  /* Tick mark for a checked checkbox. */
+  input[type='checkbox']:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    width: 0.3rem;
+    height: 0.55rem;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -55%) rotate(45deg);
+  }
+
+  /* Inner dot for a checked radio. */
+  input[type='radio']:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 9999px;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+  }
+
+  input[type='checkbox']:disabled,
+  input[type='radio']:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px rgb(var(--surface-card)),
+      0 0 0 4px #215ada;
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    border-color: #215ada;
+    outline: none;
+    box-shadow: none;
+  }
+
+  #admin-sidebar a:focus,
+  #admin-sidebar button:focus,
+  #admin-sidebar a:focus-visible,
+  #admin-sidebar button:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  #admin-sidebar a:focus-visible,
+  #admin-sidebar button:focus-visible {
+    @apply bg-surface-muted;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Components / utilities
+--------------------------------------------------------------------------- */
+.dashboard-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d6d3d1 #f5f5f4;
+}
+
+.dark .dashboard-scrollbar {
+  scrollbar-color: #737373 #404040; 
+}
+
+.dashboard-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dashboard-scrollbar::-webkit-scrollbar-track {
+  border-radius: 9999px;
+  background: #f5f5f4; /* stone-100 */
+}
+
+.dashboard-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: #d6d3d1; /* stone-300 */
+}
+
+.dark .dashboard-scrollbar::-webkit-scrollbar-track {
+  background: #404040; /* neutral-700 */
+}
+
+.dark .dashboard-scrollbar::-webkit-scrollbar-thumb {
+  background: #737373; /* neutral-500 */
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold;
+}
+
+.icon-button {
+  @apply inline-grid h-10 w-10 place-items-center rounded-base text-ink-600 hover:bg-surface-muted hover:text-ink-900;
+}
+
+/* Scrollable but with no visible scrollbar */
+.no-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+}
+
+/* Instant light/dark switch — no color fade while toggling the theme. */
+.no-theme-transition *,
+.no-theme-transition *::before,
+.no-theme-transition *::after {
+  transition: none !important;
+}
+
+/* Chart containers: allow them to shrink inside grid/flex parents. ECharts
+   injects a fixed-width child, which otherwise gives the grid item a large
+   min-content and stops the column from shrinking (chart overflows on small
+   screens). The grid item (the card wrapping the chart) needs min-width:0. */
+#revenueChart,
+#earningChart,
+#visitorsChart {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+article:has(#revenueChart),
+article:has(#earningChart),
+article:has(#visitorsChart) {
+  min-width: 0;
+  overflow: hidden;
+}
+
+body[data-page='add-product'] main,
+body[data-page='edit-product'] main {
+  overflow-x: hidden;
+}
+
+#add-product-form,
+#edit-product-form,
+#add-product-form > div,
+#edit-product-form > div,
+#add-product-form article,
+#edit-product-form article,
+#add-product-form label,
+#edit-product-form label,
+#add-product-form input,
+#edit-product-form input,
+#add-product-form textarea,
+#edit-product-form textarea,
+#add-product-form .modern-select,
+#edit-product-form .modern-select {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  body[data-page='add-product'] .add-product-page-header,
+  body[data-page='edit-product'] .edit-product-page-header,
+  body[data-page='add-product'] #add-product-form,
+  body[data-page='edit-product'] #edit-product-form {
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+  }
+
+  body[data-page='add-product'] #add-product-form article,
+  body[data-page='edit-product'] #edit-product-form article {
+    overflow: hidden;
+  }
+}
+
+/* ---------- Collapsible sidebar ---------- */
+/* Transitions are OFF by default so the layout doesn't animate on page load.
+   They're enabled once JS adds .sidebar-ready after the first paint. */
+.sidebar-ready #admin-sidebar {
+  transition:
+    width 0.3s ease,
+    transform 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  .sidebar-ready .lg\:pl-sidebar {
+    transition: padding-left 0.3s ease;
+  }
+
+  .sidebar-collapsed #admin-sidebar {
+    width: 80px;
+  }
+
+  .sidebar-collapsed .lg\:pl-sidebar {
+    padding-left: 80px;
+  }
+
+  /* Hide everything but the icons when collapsed */
+  .sidebar-collapsed #admin-sidebar .nav-text,
+  .sidebar-collapsed #admin-sidebar .ws-text,
+  .sidebar-collapsed #admin-sidebar .user-text,
+  .sidebar-collapsed #admin-sidebar .logo-full,
+  .sidebar-collapsed #admin-sidebar .nav-search,
+  .sidebar-collapsed #admin-sidebar [data-nav-submenu] {
+    display: none;
+  }
+
+
+  .sidebar-collapsed #admin-sidebar .logo-mark {
+    display: grid;
+  }
+
+  .sidebar-collapsed #admin-sidebar .sidebar-link,
+  .sidebar-collapsed #admin-sidebar .ws-switch,
+  .sidebar-collapsed #admin-sidebar .user-switch {
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  /* Stack the logo above the expand button when collapsed */
+  .sidebar-collapsed #admin-sidebar .sidebar-header {
+    flex-direction: column;
+  }
+}
+
+/* ---------- Preloader ---------- */
+.rbt-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background: rgb(var(--surface-card));
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.rbt-preloader.is-loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.rbt-preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rbt-preloader-cart {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25em auto;
+}
+
+.preloader-text {
+  position: relative;
+  height: 1.4em;
+  width: 280px;
+}
+
+.preloader-msg {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  color: rgb(var(--ink-500));
+  animation: ldr-msg 0.3s 13.7s linear forwards;
+}
+
+.preloader-msg--last {
+  visibility: hidden;
+  animation-direction: reverse;
+  animation-delay: 14s;
+}
+
+.rbt-preloader-cart-lines,
+.rbt-preloader-cart-top,
+.rbt-preloader-cart-wheel1,
+.rbt-preloader-cart-wheel2,
+.rbt-preloader-cart-wheel-stroke {
+  animation: ldr-cartLines 2s ease-in-out infinite;
+}
+
+.rbt-preloader-cart-lines {
+  stroke: #215ada;
+}
+
+.rbt-preloader-cart-top {
+  animation-name: ldr-cartTop;
+}
+
+.rbt-preloader-cart-wheel1 {
+  animation-name: ldr-cartWheel1;
+  transform: rotate(-0.25turn);
+  transform-origin: 43px 111px;
+}
+
+.rbt-preloader-cart-wheel2 {
+  animation-name: ldr-cartWheel2;
+  transform: rotate(0.25turn);
+  transform-origin: 102px 111px;
+}
+
+.rbt-preloader-cart-wheel-stroke {
+  animation-name: ldr-cartWheelStroke;
+}
+
+.rbt-preloader-cart-track {
+  stroke: rgb(var(--ink-400) / 0.2);
+}
+
+@keyframes ldr-msg {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  99.9% {
+    opacity: 0;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes ldr-cartLines {
+  from,
+  to {
+    opacity: 0;
+  }
+  8%,
+  92% {
+    opacity: 1;
+  }
+}
+
+@keyframes ldr-cartTop {
+  from {
+    stroke-dashoffset: -338;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 338;
+  }
+}
+
+@keyframes ldr-cartWheel1 {
+  from {
+    transform: rotate(-0.25turn);
+  }
+  to {
+    transform: rotate(2.75turn);
+  }
+}
+
+@keyframes ldr-cartWheel2 {
+  from {
+    transform: rotate(0.25turn);
+  }
+  to {
+    transform: rotate(3.25turn);
+  }
+}
+
+@keyframes ldr-cartWheelStroke {
+  from,
+  to {
+    stroke-dashoffset: 81.68;
+  }
+  50% {
+    stroke-dashoffset: 40.84;
+  }
+}

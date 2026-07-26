@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Tax"}}
+  <body data-page="tax" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Finance</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Tax</h1>
+            <p class="mt-1 text-[14px] text-ink-500">Configure tax classes, rates, and taxable regions.</p>
+          </div>
+          <button type="button"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="plus" class="h-4 w-4"></i>
+            Add Tax Rate
+          </button>
+        </div>
+
+        <section class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <h2 class="mb-5 text-[17px] font-semibold text-ink-900">Tax Rates</h2>
+            <div class="dashboard-scrollbar overflow-x-auto">
+              <table class="w-full min-w-[700px] text-left text-[14px]">
+                <thead class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                  <tr>
+                    <th class="pb-3 pr-4 font-semibold">Region</th>
+                    <th class="pb-3 pr-4 font-semibold">Class</th>
+                    <th class="pb-3 pr-4 font-semibold">Rate</th>
+                    <th class="pb-3 font-semibold">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-surface-line">
+                    <td class="py-4 pr-4 font-semibold text-ink-900">Bangladesh</td>
+                    <td class="py-4 pr-4 text-ink-700">Standard</td>
+                    <td class="py-4 pr-4 text-ink-700">15%</td>
+                    <td class="py-4"><span class="badge bg-success-50 text-success-600">Active</span></td>
+                  </tr>
+                  <tr class="border-b border-surface-line">
+                    <td class="py-4 pr-4 font-semibold text-ink-900">United States</td>
+                    <td class="py-4 pr-4 text-ink-700">State tax</td>
+                    <td class="py-4 pr-4 text-ink-700">8.25%</td>
+                    <td class="py-4"><span class="badge bg-success-50 text-success-600">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td class="py-4 pr-4 font-semibold text-ink-900">Digital Goods</td>
+                    <td class="py-4 pr-4 text-ink-700">Reduced</td>
+                    <td class="py-4 pr-4 text-ink-700">5%</td>
+                    <td class="py-4"><span class="badge bg-surface-muted text-ink-600">Draft</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+          <aside class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <h2 class="mb-4 text-[17px] font-semibold text-ink-900">Tax Settings</h2>
+            <label class="block">
+              <span class="text-[13px] font-semibold text-ink-700">Price Display</span>
+              <select
+                class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+              >
+                <option>Prices include tax</option>
+                <option>Prices exclude tax</option>
+              </select>
+            </label>
+            <label class="mt-4 flex items-center gap-2 text-[13px] font-semibold text-ink-700">
+              <input
+                type="checkbox"
+                checked
+                class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+              />
+              Calculate tax on shipping
+            </label>
+          </aside>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

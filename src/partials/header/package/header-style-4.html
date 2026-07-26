@@ -1,0 +1,32 @@
+<header class="rbt-header rbt-header-4">
+
+    @@include('header/header-main/header4.html', {
+        "stickyActivation": "rbt-header-sticky-activation",
+        "logo": "logo.webp",
+        "transparent": "rbt-bg-color-gray-light header-not-transparent header-sticky",
+        "gapSpaceBetween": "header-space-between",
+        "container": "container",
+    })
+    @@include('header/headerMid/headerMid-4.html', {
+        "bgColor": "rbt-bg-color-white",
+        "container": "container",
+    })
+    
+    @@include('header/sticky-header/commonSticky-header.html', {
+        "logo": "logo.webp",
+        "gapSpaceBetween": "justify-content-between",
+        "bgColor": "rbt-bg-color-white",
+        "container": "container",
+    })
+    <div class="rbt-catagories-area d-none d-xl-block">
+        <hr class="rbt-separator rbt-separator-gray50 mb--16">
+        <div class="container">
+            @@include('common/catagories-styles/catbox-style-one.html')
+        </div>
+    </div>
+</header>
+
+@@include('header/navStyles/mobilemenu.html')
+@@include('header/offcanvas/cart-offcanvas.html')
+@@include('header/offcanvas/category-offcanvas.html')
+

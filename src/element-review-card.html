@@ -1,0 +1,85 @@
+@@include('styles.html',{
+"title": "Review Card"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Element Review Card</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-default-bgImage.html', {
+    "bg-imagesrc": "rbt-breadcrumb-bg-1 mb--0",
+    "text": "Exclusive",
+    "justify-content": "justify-content-start",
+    "sectionType": "Elements",
+    "title": "Review Card",
+    "title2": "Review Card"
+    })
+
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-countdown-area rbt-section-gap rbt-bg-color-gray-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="rbt-component-section-title text-center">
+                        <h2 class="rbt-title">Review Card <span class="rbt-bold--text">One</span></h2>
+                    </div>
+                </div>
+            </div>
+            @@include('common/product-review-styles/product-review-style-one.html')
+
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-product-reviews-area rbt-section-gap">
+        <div class="rbt-wider-container rbt-bg-color-chocolate">
+            <div class="container">
+                <div class="row row--12">
+                    <div class="col-12">
+                        <div class="rbt-review-card-var-2">
+                            <div class="row">
+                                <div class="col-12 col-md-7 p-0">
+                                    <div class="rbt-review-card-content">
+                                        <div class="rbt-review-text">
+                                            Sometimes when feed my family RVN Bakery Buy it chokes me up. My Bobby
+                                            of blessed memory would serve it to us from the freezer with a cold glass of
+                                            milk. I always loved visiting. #rvnbakeryalways
+                                        </div>
+                                        <div class="rbt-rating">
+                                            <ul class="rbt-rating-icon-list">
+                                                <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="rbt-client">Andrew Semons Jhnos</h3>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-5 p-0">
+                                    <div class="rbt-review-card-media">
+                                        <figure>
+                                            <img src="assets/images/product-img/foods/bakery-product-img-01.webp"
+                                                alt="Product Image">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal-electronics.html')
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+
+</html>

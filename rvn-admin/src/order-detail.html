@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Order Details"}}
+  <body data-page="order-detail" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="px-4 py-6 lg:px-6 min-h-[calc(100vh-140px)]">
+        <!-- Header: tabs + actions -->
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <nav class="mb-2 flex items-center gap-1.5 text-[13px] text-ink-400">
+              <a href="/index.html" class="hover:text-brand-600">Home</a>
+              <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+              <a href="/orders.html" class="hover:text-brand-600">Orders</a>
+              <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+              <span class="text-ink-700">Order Details</span>
+            </nav>
+            <div class="flex items-center gap-6">
+              <button type="button" class="border-b-2 border-brand-600 pb-1 text-[15px] font-semibold text-brand-600">
+                Order Summary
+              </button>
+              <button type="button" class="pb-1 text-[15px] font-medium text-ink-500 hover:text-ink-900">
+                Order History
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <a
+              href="/orders.html"
+              class="grid h-11 w-11 place-items-center rounded-base border border-surface-line text-ink-700 hover:bg-surface-muted"
+              aria-label="Back to orders"
+            >
+              <i data-lucide="arrow-left" class="h-4 w-4"></i>
+            </a>
+            <a
+              href="/edit-order.html"
+              class="inline-flex h-11 items-center gap-2 rounded-base bg-success-600 px-4 text-[14px] font-semibold text-white hover:bg-success-700"
+            >
+              <i data-lucide="pencil" class="h-4 w-4"></i>
+              Edit Order
+            </a>
+            <a
+              href="/add-order.html"
+              class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+            >
+              <i data-lucide="plus" class="h-4 w-4"></i>
+              Add New Order
+            </a>
+          </div>
+        </div>
+
+        <!-- Summary cards -->
+        <section class="grid gap-6 lg:grid-cols-3">
+          <!-- Order Details -->
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <h2 class="mb-4 text-[18px] font-semibold text-ink-900">Order Details (#14534)</h2>
+            <dl class="space-y-3 text-[14px]">
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="calendar" class="h-4 w-4 text-ink-400"></i> Date Added
+                </dt>
+                <dd class="font-medium text-ink-900">17/06/2026</dd>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="credit-card" class="h-4 w-4 text-ink-400"></i> Payment Method
+                </dt>
+                <dd class="font-medium text-ink-900">Online · VISA</dd>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="truck" class="h-4 w-4 text-ink-400"></i> Shipping Method
+                </dt>
+                <dd class="font-medium text-ink-900">Flat Shipping Rate</dd>
+              </div>
+            </dl>
+          </article>
+
+          <!-- Customer Details -->
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <h2 class="mb-4 text-[18px] font-semibold text-ink-900">Customer Details</h2>
+            <dl class="space-y-3 text-[14px]">
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="user" class="h-4 w-4 text-ink-400"></i> Customer
+                </dt>
+                <dd class="flex items-center gap-2 font-medium text-ink-900">
+                  <img
+                    src="/assets/avatars/customer-3.svg"
+                    alt=""
+                    class="h-6 w-6 rounded-full object-cover"
+                  />
+                  Dan Wilson
+                </dd>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="mail" class="h-4 w-4 text-ink-400"></i> Email
+                </dt>
+                <dd class="font-medium text-ink-900">dam@consulting.com</dd>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="phone" class="h-4 w-4 text-ink-400"></i> Phone
+                </dt>
+                <dd class="font-medium text-ink-900">+6141 234 567</dd>
+              </div>
+            </dl>
+          </article>
+
+          <!-- Documents -->
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <h2 class="mb-4 text-[18px] font-semibold text-ink-900">Documents</h2>
+            <dl class="space-y-3 text-[14px]">
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="file-text" class="h-4 w-4 text-ink-400"></i> Invoice
+                </dt>
+                <dd><a href="/order-detail.html" class="font-medium text-brand-600 hover:underline">#INV-000414</a></dd>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="package" class="h-4 w-4 text-ink-400"></i> Shipping
+                </dt>
+                <dd>
+                  <a href="/order-detail.html" class="font-medium text-brand-600 hover:underline">#SHP-0025410</a>
+                </dd>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <dt class="flex items-center gap-2 text-ink-500">
+                  <i data-lucide="gift" class="h-4 w-4 text-ink-400"></i> Reward Points
+                </dt>
+                <dd class="font-medium text-ink-900">600</dd>
+              </div>
+            </dl>
+          </article>
+        </section>
+
+        <!-- Address cards -->
+        <section class="mt-6 grid gap-6 lg:grid-cols-2">
+          <article
+            class="relative overflow-hidden rounded-card border border-surface-line bg-surface-card p-6 shadow-card"
+          >
+            <i
+              data-lucide="credit-card"
+              class="pointer-events-none absolute right-2 bottom-2 h-28 w-28 text-surface-line/70"
+            ></i>
+            <h2 class="mb-3 text-[18px] font-semibold text-ink-900">Billing Address</h2>
+            <address class="text-[14px] not-italic leading-relaxed text-ink-600">
+              Unit 1/23 Hastings Road,<br />
+              Melbourne 3000,<br />
+              Victoria,<br />
+              Australia.
+            </address>
+          </article>
+
+          <article
+            class="relative overflow-hidden rounded-card border border-surface-line bg-surface-card p-6 shadow-card"
+          >
+            <i
+              data-lucide="truck"
+              class="pointer-events-none absolute right-2 bottom-2 h-28 w-28 text-surface-line/70"
+            ></i>
+            <h2 class="mb-3 text-[18px] font-semibold text-ink-900">Shipping Address</h2>
+            <address class="text-[14px] not-italic leading-relaxed text-ink-600">
+              Unit 1/23 Hastings Road,<br />
+              Melbourne 3000,<br />
+              Victoria,<br />
+              Australia.
+            </address>
+          </article>
+        </section>
+
+        <!-- Order items -->
+        <section class="mt-6 rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+          <h2 class="mb-5 text-[18px] font-semibold text-ink-900">Order #14534</h2>
+          <div class="dashboard-scrollbar overflow-x-auto">
+            <table class="w-full min-w-[680px] text-left">
+              <thead>
+                <tr class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                  <th class="pb-3 pr-4 font-semibold">Product</th>
+                  <th class="pb-3 pr-4 font-semibold">SKU</th>
+                  <th class="pb-3 pr-4 text-right font-semibold">Qty</th>
+                  <th class="pb-3 pr-4 text-right font-semibold">Unit Price</th>
+                  <th class="pb-3 text-right font-semibold">Total</th>
+                </tr>
+              </thead>
+              <tbody class="text-[14px]">
+                <tr class="border-b border-surface-line">
+                  <td class="py-4 pr-4">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="/assets/images/products/organic-food-a-01.webp"
+                        alt="Product 1"
+                        class="h-11 w-11 rounded-base bg-surface-body object-cover"
+                      />
+                      <div>
+                        <p class="font-semibold text-ink-900">Product 1</p>
+                        <p class="mt-0.5 text-[13px] text-ink-400">Delivery Date: 17/06/2026</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 pr-4 text-ink-700">02355002</td>
+                  <td class="py-4 pr-4 text-right text-ink-700">2</td>
+                  <td class="py-4 pr-4 text-right text-ink-700">$120.00</td>
+                  <td class="py-4 text-right font-semibold text-ink-900">$240.00</td>
+                </tr>
+                <tr class="border-b border-surface-line">
+                  <td class="py-4 pr-4">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="/assets/images/products/bakery-product-img-02.webp"
+                        alt="Footwear"
+                        class="h-11 w-11 rounded-base bg-surface-body object-cover"
+                      />
+                      <div>
+                        <p class="font-semibold text-ink-900">Footwear</p>
+                        <p class="mt-0.5 text-[13px] text-ink-400">Delivery Date: 17/06/2026</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 pr-4 text-ink-700">03884004</td>
+                  <td class="py-4 pr-4 text-right text-ink-700">1</td>
+                  <td class="py-4 pr-4 text-right text-ink-700">$24.00</td>
+                  <td class="py-4 text-right font-semibold text-ink-900">$24.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Totals -->
+          <div class="mt-5 flex justify-end">
+            <dl class="w-full max-w-xs space-y-3 text-[14px]">
+              <div class="flex items-center justify-between">
+                <dt class="text-ink-500">Subtotal</dt>
+                <dd class="font-medium text-ink-900">$264.00</dd>
+              </div>
+              <div class="flex items-center justify-between">
+                <dt class="text-ink-500">VAT (0%)</dt>
+                <dd class="font-medium text-ink-900">$0.00</dd>
+              </div>
+              <div class="flex items-center justify-between">
+                <dt class="text-ink-500">Shipping Rate</dt>
+                <dd class="font-medium text-ink-900">$5.00</dd>
+              </div>
+              <div class="flex items-center justify-between border-t border-surface-line pt-3">
+                <dt class="text-[15px] font-semibold text-ink-900">Grand Total</dt>
+                <dd class="text-[18px] font-semibold text-ink-900">$269.00</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

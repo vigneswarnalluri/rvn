@@ -1,0 +1,49 @@
+<div
+  data-modal="confirm-delete"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="confirm-delete-title"
+>
+  <div data-modal-backdrop class="absolute inset-0 bg-ink-900/50 opacity-0 transition-opacity duration-300"></div>
+
+  <div
+    data-modal-panel
+    class="relative w-full max-w-md scale-95 rounded-card bg-surface-card p-6 text-center opacity-0 shadow-lift transition-all duration-300"
+  >
+    <button
+      type="button"
+      data-modal-close
+      class="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-base text-ink-400 transition-colors hover:bg-surface-muted hover:text-ink-700"
+      aria-label="Close"
+    >
+      <i data-lucide="x" class="h-4 w-4"></i>
+    </button>
+
+    <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-danger-50 text-danger-500">
+      <i data-lucide="trash-2" class="h-6 w-6"></i>
+    </div>
+
+    <h3 id="confirm-delete-title" class="text-[20px] font-semibold text-ink-900">Are you sure?</h3>
+    <p class="mx-auto mt-2 max-w-xs text-[14px] text-ink-500" data-modal-message>
+      This item will be permanently removed. This action cannot be undone.
+    </p>
+
+    <div class="mt-6 flex items-center justify-center gap-3">
+      <button
+        type="button"
+        data-modal-close
+        class="h-11 min-w-[88px] rounded-base border border-surface-line px-5 text-[14px] font-semibold text-ink-700 transition-colors hover:bg-surface-muted"
+      >
+        No
+      </button>
+      <button
+        type="button"
+        data-modal-confirm
+        class="h-11 min-w-[88px] rounded-base bg-danger-500 px-5 text-[14px] font-semibold text-white transition-colors hover:bg-danger-600"
+      >
+        Yes, delete
+      </button>
+    </div>
+  </div>
+</div>

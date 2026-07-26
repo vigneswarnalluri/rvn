@@ -1,0 +1,35 @@
+<tr class="border-b border-surface-line last:border-0 hover:bg-surface-body/70">
+  <td class="py-4 pr-4">
+    <div class="flex min-w-[210px] items-center gap-3">
+      <img
+        src="{{image}}"
+        alt="{{name}}"
+        width="68"
+        height="68"
+        loading="lazy"
+        decoding="async"
+        class="h-[68px] w-[68px] rounded-base bg-surface-body object-cover"
+      />
+      <div>
+        <a href="/products.html" class="font-semibold text-ink-900 hover:text-brand-600">{{name}}</a>
+        <p class="mt-1 text-[13px] text-ink-500">{{date}}</p>
+      </div>
+    </div>
+  </td>
+  <td class="py-4 pr-4">
+    <span class="block text-[13px] font-semibold text-ink-900">Price</span>
+    <span class="text-ink-700">{{price}}</span>
+  </td>
+  <td class="py-4 pr-4">
+    <span class="block text-[13px] font-semibold text-ink-900">Orders</span>
+    <span class="text-ink-700">{{orders}}</span>
+  </td>
+  <td class="py-4 pr-4">
+    <span class="block text-[13px] font-semibold text-ink-900">Stock</span>
+    <span class="text-ink-700">{{stock}}</span>
+  </td>
+  <td class="py-4">
+    <span class="block text-[13px] font-semibold text-ink-900">Amount</span>
+    <span class="text-ink-700">{{amount}}</span>
+  </td>
+</tr>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Permission Settings"}}
+  <body data-page="permission-settings" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Settings</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Permissions</h1>
+            <p class="mt-1 text-[14px] text-ink-500">
+              Set default admin access, approval rules, and security controls.
+            </p>
+          </div>
+          <button type="button"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="save" class="h-4 w-4"></i>
+            Save Changes
+          </button>
+        </div>
+
+        <section class="space-y-6">
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <h2 class="mb-5 text-[20px] font-medium text-ink-900">Default Access</h2>
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="block">
+                <span class="text-[14px] font-semibold text-ink-700">New staff role</span>
+                <select
+                  class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+                >
+                  <option>Support Agent</option>
+                  <option>Store Manager</option>
+                  <option>Administrator</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="text-[14px] font-semibold text-ink-700">Session timeout</span>
+                <select
+                  class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+                >
+                  <option>30 minutes</option>
+                  <option>1 hour</option>
+                  <option>8 hours</option>
+                </select>
+              </label>
+            </div>
+          </article>
+
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <h2 class="mb-5 text-[20px] font-medium text-ink-900">Approval Rules</h2>
+            <div class="space-y-4">
+              <label class="flex items-start gap-3 rounded-card border border-surface-line bg-surface-body p-4">
+                <input
+                  type="checkbox"
+                  checked
+                  class="mt-1 h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+                />
+                <span
+                  ><span class="block text-[14px] font-semibold text-ink-900">Require approval for refunds</span
+                  ><span class="mt-1 block text-[13px] text-ink-500"
+                    >Staff refunds above the configured threshold require manager approval.</span
+                  ></span
+                >
+              </label>
+              <label class="flex items-start gap-3 rounded-card border border-surface-line bg-surface-body p-4">
+                <input
+                  type="checkbox"
+                  class="mt-1 h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+                />
+                <span
+                  ><span class="block text-[14px] font-semibold text-ink-900"
+                    >Require approval for product publishing</span
+                  ><span class="mt-1 block text-[13px] text-ink-500"
+                    >Draft products must be reviewed before going live.</span
+                  ></span
+                >
+              </label>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

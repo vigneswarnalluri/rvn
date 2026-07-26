@@ -1,0 +1,225 @@
+@@include('styles.html',{
+"title": "Sign In"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Signin</h1>
+    @@include('header/package/header-style-2.html')
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-section-gap2Bottom rbt-section-gap2Top">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5 mx-auto">
+                    <div class="rbt-login-form">
+                        <div class="rbt-login-form-inner">
+                            <div class="rbt-login-form-top">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="assets/images/logo/logo.webp" alt="Ecommerce Logo Images">
+                                    </a>
+                                </div>
+                                <h3 class="rbt-title rbt-text-bold mb--16 h6">Sign In To Proceed</h3>
+                                <div class="rbt-tab rbt-round-shape-tab">
+
+                                    <!-- Start tabs -->
+                                    <ul class="nav nav-tabs" id="signinTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="rbt-tab-id-1" data-bs-toggle="tab"
+                                                data-bs-target="#rbt-tab-pane-1" type="button" role="tab"
+                                                aria-controls="rbt-tab-pane-1" aria-selected="true">
+                                                <i class="fa-sharp fa-regular fa-phone"></i>
+                                                Phone Number
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="rbt-tab-id-2" data-bs-toggle="tab"
+                                                data-bs-target="#rbt-tab-pane-2" type="button" role="tab"
+                                                aria-controls="rbt-tab-pane-2" aria-selected="false">
+                                                <i class="fa-sharp fa-regular fa-envelope"></i>
+                                                Email
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <!-- End tabs -->
+
+                                    <!-- Start tabs content -->
+                                    <form>
+                                        <div class="tab-content" id="signinTabContent">
+                                            <div class="tab-pane fade show active" id="rbt-tab-pane-1" role="tabpanel"
+                                                aria-labelledby="rbt-tab-id-1" tabindex="0">
+                                                <div class="rbt-input-field-grp">
+                                                    <label class="rbt-field-label" for="signin_number">Your Number<span
+                                                            class="rbt-text-color-danger">*</span></label>
+                                                    <input class="rbt-input-field" type="text" id="signin_number">
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="rbt-tab-pane-2" role="tabpanel"
+                                                aria-labelledby="rbt-tab-id-2" tabindex="0">
+                                                <div class="rbt-input-field-grp">
+                                                    <label class="rbt-field-label" for="signin_email">Your Email<span
+                                                            class="rbt-text-color-danger">*</span></label>
+                                                    <input class="rbt-input-field" type="email" id="signin_email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="rbt-btn d-block w-100 mt--24 mb--16">
+                                            Continue
+                                        </button>
+                                        <div class="rbt-check-group">
+                                            <input id="login_checked1" type="checkbox" name="login">
+                                            <label for="login_checked1">Stay Logged In</label>
+                                        </div>
+                                    </form>
+                                    <!-- End tabs content -->
+
+                                </div>
+
+                                <!-- Separator -->
+                                <div class="d-flex align-items-center justify-content-center mb--24 mt--24">
+                                    <hr class="rbt-separator rbt-bg-color-gray-light mb--0">
+                                    <span class="pl--8 pr--8 b4 rbt-text-medium">OR</span>
+                                    <hr class="rbt-separator rbt-bg-color-gray-light mb--0">
+                                </div>
+
+                                <!-- Start social login button -->
+                                <button type="submit"
+                                    class="rbt-btn rbt-btn-border rbt-social-login-btn d-block w-100 mb--16 rbt-social-login-btn">
+                                    <img class="icon" src="assets/images/icons/fb-icon.webp" alt="Icon">
+                                    Continue with Facebook
+                                </button>
+                                <button type="submit"
+                                    class="rbt-btn rbt-btn-border rbt-social-login-btn d-block w-100 rbt-social-login-btn">
+                                    <img class="icon" src="assets/images/icons/google-icon.webp" alt="Icon">
+                                    Continue with Google
+                                </button>
+                                <!-- End social login button -->
+
+                                <div class="rbt-login-system-switch rbt-link-hover">
+                                    Don't have an account?
+                                    <a class="rbt-switch-btn" href="signup.html"><span>Create an account</span></a>
+                                </div>
+                            </div>
+
+                            <!-- Start slider -->
+                            <div class="rbt-login-form-bottom rbt-swiper-container-pagination position-relative">
+                                <div class="swiper rbt-log-slide-activation pb--40">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="rbt-client-review">
+                                                <ul class="rbt-rating-icon-list d-flex justify-content-center">
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                </ul>
+                                                <p class="rbt-review-text mt--8 mb--12">
+                                                    "The shirt fits great, very good quality of the material. Training
+                                                    in it is pure
+                                                    pleasure."
+                                                </p>
+                                                <div class="d-flex flex-wrap justify-content-center rbt-gap--8">
+                                                    <h3 class="mb--0 h6">Szilagyi Erik</h3>
+                                                    <div class="rbt-verified-badge badge-rounded">
+                                                        <i class="fa-sharp fa-solid fa-shield-check"></i>
+                                                        Verified Reviewer
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="rbt-client-review">
+                                                <ul class="rbt-rating-icon-list d-flex justify-content-center">
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                </ul>
+                                                <p class="rbt-review-text mt--8 mb--12">
+                                                    "The shirt fits great, very good quality of the material. Training
+                                                    in it is pure
+                                                    pleasure."
+                                                </p>
+                                                <div class="d-flex flex-wrap justify-content-center rbt-gap--8">
+                                                    <h3 class="mb--0 h6">Szilagyi Erik</h3>
+                                                    <div class="rbt-verified-badge badge-rounded">
+                                                        <i class="fa-sharp fa-solid fa-shield-check"></i>
+                                                        Verified Reviewer
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="rbt-client-review">
+                                                <ul class="rbt-rating-icon-list d-flex justify-content-center">
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                </ul>
+                                                <p class="rbt-review-text mt--8 mb--12">
+                                                    "The shirt fits great, very good quality of the material. Training
+                                                    in it is pure
+                                                    pleasure."
+                                                </p>
+                                                <div class="d-flex flex-wrap justify-content-center rbt-gap--8">
+                                                    <h3 class="mb--0 h6">Szilagyi Erik</h3>
+                                                    <div class="rbt-verified-badge badge-rounded">
+                                                        <i class="fa-sharp fa-solid fa-shield-check"></i>
+                                                        Verified Reviewer
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="rbt-client-review">
+                                                <ul class="rbt-rating-icon-list d-flex justify-content-center">
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                    <li><i class="fa-solid fa-star rbt-rated-icon"></i></li>
+                                                </ul>
+                                                <p class="rbt-review-text mt--8 mb--12">
+                                                    "The shirt fits great, very good quality of the material. Training
+                                                    in it is pure
+                                                    pleasure."
+                                                </p>
+                                                <div class="d-flex flex-wrap justify-content-center rbt-gap--8">
+                                                    <h3 class="mb--0 h6">Szilagyi Erik</h3>
+                                                    <div class="rbt-verified-badge badge-rounded">
+                                                        <i class="fa-sharp fa-solid fa-shield-check"></i>
+                                                        Verified Reviewer
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-pagination rbt-swiper-progress rbt-swiper-pagination-dot-extend">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End slider -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    @@include('modals/quickviewModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+</html>

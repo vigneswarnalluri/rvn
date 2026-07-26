@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Orders"}}
+  <body data-page="orders" data-sidebar-open="false">
+    {{> preloader}}
+    {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="px-4 py-6 lg:px-6 min-h-[calc(100vh-140px)]">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Operations</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Orders Listing</h1>
+            <p class="mt-1 text-[14px] text-ink-500">Review, filter, and manage every customer order in one place.</p>
+          </div>
+          <a
+            href="/add-order.html"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="plus" class="h-4 w-4"></i>
+            Add Order
+          </a>
+        </div>
+
+        <section
+          data-list-table
+          data-list-noun="orders"
+          class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card"
+        >
+          <!-- Toolbar -->
+          <div class="mb-5 flex flex-wrap items-center gap-3">
+            <label class="relative block min-w-[220px] flex-1">
+              <span class="sr-only">Search orders</span>
+              <i
+                data-lucide="search"
+                class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+              ></i>
+              <input
+                data-list-search
+                class="h-11 w-full rounded-base border border-surface-line bg-surface-body pl-11 pr-4 text-[14px] focus:border-brand-600"
+                type="search"
+                placeholder="Search Order"
+              />
+            </label>
+            <div class="relative">
+              <i
+                data-lucide="calendar"
+                class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+              ></i>
+              <input
+                data-orders-daterange
+                type="text"
+                placeholder="Pick date range"
+                class="h-11 w-[200px] rounded-base border border-surface-line bg-surface-card pl-9 pr-3 text-[14px] text-ink-700 focus:border-brand-600"
+              />
+            </div>
+            <select
+              data-list-filter
+              class="h-11 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option value="all">Status</option>
+              <option value="delivering">Delivering</option>
+              <option value="completed">Completed</option>
+              <option value="failed">Failed</option>
+            </select>
+            <div class="relative">
+              <button
+                type="button"
+                data-menu-toggle="cols-orders"
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="inline-flex h-11 items-center gap-2 rounded-base border border-surface-line bg-surface-card px-4 text-[14px] font-semibold text-ink-700 transition-colors hover:bg-surface-muted"
+              >
+                <i data-lucide="sliders-horizontal" class="h-4 w-4"></i>
+                Columns
+              </button>
+              <div
+                data-menu="cols-orders"
+                class="absolute right-0 z-20 mt-2 hidden w-52 rounded-base border border-surface-line bg-surface-card p-2 shadow-card"
+              >
+                <p class="px-2 py-1 text-[12px] font-semibold uppercase text-ink-400">Toggle columns</p>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="3" checked aria-label="Toggle Customer column" /> Customer
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="4" checked aria-label="Toggle Status column" /> Status
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="5" checked aria-label="Toggle Total column" /> Total
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="6" checked aria-label="Toggle Date Added column" /> Date Added
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="7" checked aria-label="Toggle Date Modified column" /> Date Modified
+                </label>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-bulk-delete
+              disabled
+              class="inline-flex h-11 items-center justify-center gap-2 rounded-base bg-danger-500 px-4 text-[14px] font-semibold text-white transition-colors hover:bg-danger-600 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <i data-lucide="trash-2" class="h-4 w-4"></i>
+              Delete Selected (<span data-bulk-count>0</span>)
+            </button>
+          </div>
+
+          <div class="dashboard-scrollbar overflow-x-auto">
+            <table class="w-full min-w-[920px] text-left">
+              <thead>
+                <tr class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                  <th class="w-10 pb-3 pr-3">
+                    <input
+                      data-select-all
+                      type="checkbox"
+                      aria-label="Select all"
+                      class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+                    />
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="id" data-sort-type="num" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Order ID <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="name" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Customer <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">Status</th>
+                  <th class="pb-3 pr-4 text-right font-semibold">Total</th>
+                  <th class="pb-3 pr-4 font-semibold">Date Added</th>
+                  <th class="pb-3 pr-4 font-semibold">Date Modified</th>
+                  <th class="pb-3 text-right font-semibold">Actions</th>
+                </tr>
+              </thead>
+              <tbody data-orders-tbody class="text-[14px]">
+                {{> components/order-row id="13290" name="Francis Mitcham" avatar="/assets/avatars/customer-1.svg" status="delivering" statusLabel="Delivering" statusClass="bg-brand-50 text-brand-600" total="$449.00" added="11/06/2026" modified="16/06/2026"}}
+                {{> components/order-row id="13291" name="Francis Mitcham" avatar="/assets/avatars/customer-1.svg" status="completed" statusLabel="Completed" statusClass="bg-success-50 text-success-600" total="$136.00" added="12/06/2026" modified="15/06/2026"}}
+                {{> components/order-row id="13292" name="Ana Crown" avatar="/assets/avatars/customer-2.svg" status="delivering" statusLabel="Delivering" statusClass="bg-brand-50 text-brand-600" total="$168.00" added="11/06/2026" modified="14/06/2026"}}
+                {{> components/order-row id="13293" name="Francis Mitcham" avatar="/assets/avatars/customer-1.svg" status="completed" statusLabel="Completed" statusClass="bg-success-50 text-success-600" total="$254.00" added="07/06/2026" modified="13/06/2026"}}
+                {{> components/order-row id="13294" name="Dan Wilson" avatar="/assets/avatars/customer-3.svg" status="delivering" statusLabel="Delivering" statusClass="bg-brand-50 text-brand-600" total="$342.00" added="11/06/2026" modified="12/06/2026"}}
+                {{> components/order-row id="13295" name="Brian Cox" avatar="/assets/avatars/admin-avatar.svg" status="completed" statusLabel="Completed" statusClass="bg-success-50 text-success-600" total="$486.00" added="08/06/2026" modified="11/06/2026"}}
+                {{> components/order-row id="13296" name="Ana Crown" avatar="/assets/avatars/customer-2.svg" status="completed" statusLabel="Completed" statusClass="bg-success-50 text-success-600" total="$176.00" added="04/06/2026" modified="10/06/2026"}}
+                {{> components/order-row id="13297" name="Robert Doe" initial="R" initialClass="bg-accent-50 text-accent-700" status="failed" statusLabel="Failed" statusClass="bg-danger-50 text-danger-500" total="$238.00" added="08/06/2026" modified="09/06/2026"}}
+                {{> components/order-row id="13298" name="Ana Crown" avatar="/assets/avatars/customer-2.svg" status="completed" statusLabel="Completed" statusClass="bg-success-50 text-success-600" total="$86.00" added="05/06/2026" modified="08/06/2026"}}
+                {{> components/order-row id="13299" name="Mikaela Collins" initial="C" initialClass="bg-warning-50 text-warning-600" status="completed" statusLabel="Completed" statusClass="bg-success-50 text-success-600" total="$233.00" added="06/06/2026" modified="07/06/2026"}}
+              </tbody>
+            </table>
+          </div>
+
+          <p data-list-empty class="hidden py-10 text-center text-[14px] text-ink-400">No orders match your search.</p>
+
+          <!-- Footer: page size + pagination -->
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-surface-line pt-4">
+            <select
+              class="h-9 rounded-base border border-surface-line bg-surface-card px-3 text-[13px] text-ink-700 focus:border-brand-600"
+              aria-label="Rows per page"
+            >
+              <option>10</option>
+              <option>25</option>
+              <option>50</option>
+            </select>
+            <div class="flex items-center gap-1">
+              <button type="button"
+                class="grid h-9 w-9 place-items-center rounded-base border border-surface-line text-ink-500 transition-colors hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Previous page"
+                disabled
+              >
+                <i data-lucide="chevron-left" class="h-4 w-4"></i>
+              </button>
+              <button type="button" class="grid h-9 min-w-9 place-items-center rounded-base bg-brand-600 px-2 text-[13px] font-semibold text-white">1</button>
+              <button type="button" class="grid h-9 min-w-9 place-items-center rounded-base border border-surface-line px-2 text-[13px] font-semibold text-ink-700 hover:bg-surface-muted">2</button>
+              <button type="button" class="grid h-9 min-w-9 place-items-center rounded-base border border-surface-line px-2 text-[13px] font-semibold text-ink-700 hover:bg-surface-muted">3</button>
+              <button type="button" class="grid h-9 min-w-9 place-items-center rounded-base border border-surface-line px-2 text-[13px] font-semibold text-ink-700 hover:bg-surface-muted">4</button>
+              <button type="button" class="grid h-9 min-w-9 place-items-center rounded-base border border-surface-line px-2 text-[13px] font-semibold text-ink-700 hover:bg-surface-muted">5</button>
+              <button type="button"
+                class="grid h-9 w-9 place-items-center rounded-base border border-surface-line text-ink-500 transition-colors hover:bg-surface-muted"
+                aria-label="Next page"
+              >
+                <i data-lucide="chevron-right" class="h-4 w-4"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    {{> components/confirm-modal}}
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Media"}}
+  <body data-page="media" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Assets</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Media</h1>
+            <p class="mt-1 text-[14px] text-ink-500">Upload and manage product, category, and campaign media assets.</p>
+          </div>
+          <button type="button"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="upload" class="h-4 w-4"></i>
+            Upload Asset
+          </button>
+        </div>
+
+        <section class="mb-6 rounded-card border border-dashed border-brand-200 bg-brand-50/60 p-8 text-center">
+          <span
+            class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-surface-card text-brand-600 shadow-card"
+          >
+            <i data-lucide="image" class="h-6 w-6"></i>
+          </span>
+          <h2 class="mt-4 text-[18px] font-semibold text-ink-900">Drop files to upload</h2>
+          <p class="mt-1 text-[14px] text-ink-500">
+            PNG, JPG, SVG, WEBP, and PDF files are supported for this template.
+          </p>
+          <button type="button"
+            class="mt-4 inline-flex h-10 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="folder-plus" class="h-4 w-4"></i>
+            Choose files
+          </button>
+        </section>
+
+        <section class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+          <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+            <h2 class="text-[17px] font-semibold text-ink-900">Recent Assets</h2>
+            <select
+              class="h-10 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option>All types</option>
+              <option>Images</option>
+              <option>Documents</option>
+            </select>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <article class="rounded-card border border-surface-line bg-surface-body p-3">
+              <img
+                src="/assets/images/products/organic-food-a-01.webp"
+                alt="Organic food product"
+                class="aspect-square w-full rounded-base object-cover"
+              />
+              <p class="mt-3 truncate text-[14px] font-semibold text-ink-900">organic-food-a-01.webp</p>
+              <p class="text-[12px] text-ink-400">Product image</p>
+            </article>
+            <article class="rounded-card border border-surface-line bg-surface-body p-3">
+              <img
+                src="/assets/images/products/coffee-b-01.webp"
+                alt="Coffee product"
+                class="aspect-square w-full rounded-base object-cover"
+              />
+              <p class="mt-3 truncate text-[14px] font-semibold text-ink-900">coffee-b-01.webp</p>
+              <p class="text-[12px] text-ink-400">Product image</p>
+            </article>
+            <article class="rounded-card border border-surface-line bg-surface-body p-3">
+              <img
+                src="/assets/images/banner/main-banner-01.webp"
+                alt="Store banner"
+                class="aspect-square w-full rounded-base object-cover"
+              />
+              <p class="mt-3 truncate text-[14px] font-semibold text-ink-900">main-banner-01.webp</p>
+              <p class="text-[12px] text-ink-400">Banner</p>
+            </article>
+            <article class="rounded-card border border-surface-line bg-surface-body p-3">
+              <img
+                src="/assets/images/logo/logo.webp"
+                alt="Logo asset"
+                class="aspect-square w-full rounded-base bg-surface-card object-contain p-6"
+              />
+              <p class="mt-3 truncate text-[14px] font-semibold text-ink-900">logo.webp</p>
+              <p class="text-[12px] text-ink-400">Brand asset</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+{
+	"name": "rainbow-themes",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"workspaces": [
+		"rvn-admin"
+	],
+	"scripts": {
+		"dev": "gulp",
+		"build": "gulp dist && npm run build --workspace=rvn-admin",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"browser-sync": "^2.29.3",
+		"clean-css": "^5.3.2",
+		"del": "^4.1.1",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^8.0.0",
+		"gulp-beautify-code": "^2.0.4",
+		"gulp-cached": "^1.1.1",
+		"gulp-changed": "^3.0.0",
+		"gulp-clean": "^0.4.0",
+		"gulp-clean-css": "^4.3.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-file-include": "^2.3.0",
+		"gulp-htmlmin": "^5.0.1",
+		"gulp-notify": "^4.0.0",
+		"gulp-plumber": "^1.2.1",
+		"gulp-postcss": "^9.0.1",
+		"gulp-purgecss": "^7.0.2",
+		"gulp-rename": "^2.0.0",
+		"gulp-sass": "^5.1.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-terser": "^2.1.0",
+		"gulp-uglify": "^3.0.2",
+		"sass": "^1.49.7"
+	},
+	"browserslist": [
+		"> 2%",
+		"ie >= 8",
+		"edge >= 15",
+		"ie_mob >= 10",
+		"ff >= 45",
+		"chrome >= 45",
+		"safari >= 7",
+		"opera >= 23",
+		"ios >= 7",
+		"android >= 4",
+		"bb >= 10"
+	]
+}

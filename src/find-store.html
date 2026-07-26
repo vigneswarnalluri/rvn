@@ -1,0 +1,157 @@
+@@include('styles.html',{
+"title": "Find A Store"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Find Store</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-two-variationOne.html', {
+    "bg-color": "",
+    "justify-content": "justify-content-start",
+    "title": "Find A Store"
+    })
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-are">
+        <div class="container">
+
+            <!-- Start section title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="rbt-component-section-title rbt-gap--4 mb--32 p-0 border-0 text-center">
+                        <h2 class="rbt-title mb--8"><span class="rbt-text-bold">Find A Store Near You</span></h2>
+                    </div>
+                </div>
+            </div>
+            <!-- End section title -->
+
+            <!-- Start seach area -->
+            <div class="row row--12 mt_dec--24 d-flex justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt--24">
+                    <div class="rbt-find-locate-input-area">
+                        <form class="text-md-center">
+                            <div class="rbt-input-field-grp">
+                                <span class="rbt-location-search-title">Enter Zip code Or City</span>
+                                <input type="text" placeholder="State / County">
+                            </div>
+                        </form>
+                        <button class="rbt-btn rbt-btn-black d-block" data-bs-toggle="modal"
+                            data-bs-target="#findstoreModal">
+                            <i class="fa-sharp fa-regular fa-location-dot"></i>
+                            Use Curent Location
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt--24">
+                    <div class="rbt-find-locate-input-area">
+                        <form class="text-md-center">
+                            <div class="rbt-input-field-grp">
+                                <span class="rbt-location-search-title">Filter By Region/District</span>
+                                <div
+                                    class="rbt-dropdown-select filter-select rbt-modern-select search-by-category w-100">
+                                    <select class="rbt-select-activation w-100" data-live-search="true"
+                                        data-live-search-placeholder="Search City">
+                                        <option>New York</option>
+                                        <option>London</option>
+                                        <option>Paris</option>
+                                        <option>Tokyo</option>
+                                        <option>Dubai</option>
+                                        <option>Singapore</option>
+                                        <option>Sydney</option>
+                                        <option>Berlin</option>
+                                        <option>Toronto</option>
+                                        <option>Los Angeles</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <button class="rbt-btn">
+                            Search Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- End seach area -->
+
+            <!-- Start separator -->
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto">
+                    <hr class="rbt-separator rbt-separator-gray200 mt--40 mb--32">
+                </div>
+            </div>
+            <!-- End separator -->
+
+            <!-- Start section title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="rbt-component-section-title rbt-gap--4 mb--16 p-0 border-0 text-center">
+                        <h2 class="rbt-title mb--8 h4"><span class="rbt-text-bold">2 Location Found</span></h2>
+                    </div>
+                </div>
+            </div>
+            <!-- End section title -->
+
+            <!-- Start found card area -->
+            <div class="row row--12 mt_dec--24 d-flex justify-content-center mb--32">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt--24">
+                    <div class="rbt-found-location-card">
+                        <span class="rbt-location-icon">
+                            <i class="fa-sharp fa-regular fa-location-dot"></i>
+                        </span>
+                        <p class="rbt-found-location-name">
+                            Public Command Center
+                        </p>
+                        <span class="rbt-found-location">
+                            Metrotech, Brooklyn, NY 11201, USA
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mt--24">
+                    <div class="rbt-found-location-card">
+                        <span class="rbt-location-icon">
+                            <i class="fa-sharp fa-regular fa-location-dot"></i>
+                        </span>
+                        <p class="rbt-found-location-name">
+                            Langone Medical Center
+                        </p>
+                        <span class="rbt-found-location">
+                            239 Greene St, New York, NY, USA
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- End founded area -->
+
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-section-gap2Bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-10 mx-auto">
+                    <div class="rbt-google-map bg-color-white">
+                        <iframe class="w-100"
+                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2965.0824050173574!2d-93.63905729999999!3d41.998507000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWebFilings%2C+University+Boulevard%2C+Ames%2C+IA!5e0!3m2!1sen!2sus!4v1390839289319"
+                            height="600" style="border:0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    @@include('modals/quickviewModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('modals/find-store-modal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+</html>

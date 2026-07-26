@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Edit Order"}}
+  <body data-page="edit-order" data-sidebar-open="false">
+    {{> preloader}}
+    {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="px-4 py-6 lg:px-6 min-h-[calc(100vh-140px)]">
+        <!-- Page header -->
+        <div class="mb-6">
+          <nav class="mb-1 flex items-center gap-1.5 text-[13px] text-ink-400">
+            <a href="/index.html" class="hover:text-brand-600">Home</a>
+            <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+            <a href="/orders.html" class="hover:text-brand-600">Orders</a>
+            <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+            <span class="text-ink-700">Edit Order</span>
+          </nav>
+          <h1 class="text-[24px] font-semibold text-ink-900">Edit Order</h1>
+        </div>
+
+        <form id="edit-order-form" class="grid gap-6 xl:grid-cols-[300px_minmax(0,1fr)]">
+          <!-- Order Details -->
+          <aside class="min-w-0">
+            <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+              <h2 class="mb-5 text-[18px] font-semibold text-ink-900">Order Details</h2>
+
+              <div class="mb-5">
+                <p class="text-[13px] font-semibold text-ink-700">Order ID</p>
+                <p class="mt-1 text-[15px] font-semibold text-ink-900">#12632</p>
+              </div>
+
+              <div class="space-y-5">
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Payment Method <span class="text-danger-500">*</span></span>
+                  <select
+                    required
+                    name="payment_method"
+                    class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+                  >
+                    <option selected>Credit Card (Visa)</option>
+                    <option>PayPal</option>
+                    <option>Cash on Delivery</option>
+                    <option>Bank Transfer</option>
+                  </select>
+                  <p class="mt-1 text-[12px] text-ink-400">Set the payment method for the order.</p>
+                </label>
+
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Shipping Method <span class="text-danger-500">*</span></span>
+                  <select
+                    required
+                    name="shipping_method"
+                    class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+                  >
+                    <option selected>Standard Rate</option>
+                    <option>Flat Shipping Rate</option>
+                    <option>Express Rate</option>
+                  </select>
+                  <p class="mt-1 text-[12px] text-ink-400">Set the shipping method for the order.</p>
+                </label>
+
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Order Date <span class="text-danger-500">*</span></span>
+                  <input
+                    required
+                    type="date"
+                    name="order_date"
+                    value="2021-12-22"
+                    class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] text-ink-700 focus:border-brand-600"
+                  />
+                  <p class="mt-1 text-[12px] text-ink-400">Set the date of the order to process.</p>
+                </label>
+              </div>
+            </article>
+          </aside>
+
+          <!-- Right column -->
+          <div class="min-w-0 space-y-6">
+            <!-- Select Products -->
+            <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+              <h2 class="text-[18px] font-semibold text-ink-900">Select Products</h2>
+              <p class="mt-1 text-[14px] text-ink-700">Add products to this order</p>
+
+              <!-- Selected products preview -->
+              <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                <div class="flex items-center gap-3 rounded-base border border-surface-line bg-surface-body p-3">
+                  <img src="/assets/images/products/coffee-b-01.webp" alt="Product 25" class="h-11 w-11 shrink-0 rounded-base bg-surface-card object-cover" />
+                  <div class="min-w-0">
+                    <p class="font-semibold text-ink-900">Product 25</p>
+                    <p class="text-[13px] text-ink-400">Price: $189.00</p>
+                    <p class="text-[13px] text-ink-400">SKU: 04151005</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3 rounded-base border border-surface-line bg-surface-body p-3">
+                  <img src="/assets/images/products/bakery-product-img-02.webp" alt="Product 98" class="h-11 w-11 shrink-0 rounded-base bg-surface-card object-cover" />
+                  <div class="min-w-0">
+                    <p class="font-semibold text-ink-900">Product 98</p>
+                    <p class="text-[13px] text-ink-400">Price: $49.00</p>
+                    <p class="text-[13px] text-ink-400">SKU: 03723006</p>
+                  </div>
+                </div>
+              </div>
+
+              <p class="mt-4 text-[15px] font-semibold text-ink-900">Total Cost: $ <span data-total-cost>248.00</span></p>
+
+              <label class="relative mt-5 block">
+                <span class="sr-only">Search products</span>
+                <i data-lucide="search" class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"></i>
+                <input
+                  data-product-search
+                  type="search"
+                  placeholder="Search Products"
+                  class="h-11 w-full rounded-base border border-surface-line bg-surface-body pl-11 pr-4 text-[14px] focus:border-brand-600"
+                />
+              </label>
+
+              <div class="mt-4 dashboard-scrollbar max-h-[360px] overflow-y-auto pr-1" data-product-list>
+                <div class="sticky top-0 flex items-center justify-between border-b border-surface-line bg-surface-card pb-2 text-[13px] uppercase text-ink-400">
+                  <span class="font-semibold">Product</span>
+                  <span class="font-semibold">Qty Remaining</span>
+                </div>
+                {{> components/order-product-row name="Product 1" price="138.00" sku="02169004" qty="15" image="/assets/images/products/organic-food-a-01.webp"}}
+                {{> components/order-product-row name="Product 2" price="251.00" sku="04261005" qty="42" image="/assets/images/products/bakery-product-img-02.webp"}}
+                {{> components/order-product-row name="Product 3" price="159.00" sku="04816009" qty="25" image="/assets/images/products/coffee-b-01.webp"}}
+                {{> components/order-product-row name="Product 4" price="238.00" sku="02740001" qty="36" image="/assets/images/products/organic-food-a-01.webp"}}
+                {{> components/order-product-row name="Product 5" price="64.00" sku="03190008" qty="19" image="/assets/images/products/bakery-product-img-02.webp"}}
+                {{> components/order-product-row name="Product 6" price="92.00" sku="06120002" qty="7" image="/assets/images/products/coffee-b-01.webp"}}
+              </div>
+              <p data-product-empty class="hidden py-8 text-center text-[14px] text-ink-400">No products match your search.</p>
+            </article>
+
+            <!-- Delivery Details -->
+            <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+              <h2 class="text-[18px] font-semibold text-ink-900">Delivery Details</h2>
+
+              <h3 class="mb-4 mt-5 text-[15px] font-semibold text-ink-900">Billing Address</h3>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Address Line 1 <span class="text-danger-500">*</span></span>
+                  <input required name="billing_address1" value="1/23 Hastings Road" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600" />
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Address Line 2</span>
+                  <input name="billing_address2" placeholder="Address Line 2" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] placeholder:text-ink-400 focus:border-brand-600" />
+                </label>
+              </div>
+
+              <div class="mt-5 grid gap-5 sm:grid-cols-3">
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">City</span>
+                  <input name="billing_city" value="Melbourne" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600" />
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">Postcode <span class="text-danger-500">*</span></span>
+                  <input required name="billing_postcode" value="3000" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600" />
+                </label>
+                <label class="block">
+                  <span class="text-[13px] font-semibold text-ink-700">State <span class="text-danger-500">*</span></span>
+                  <input required name="billing_state" value="Victoria" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600" />
+                </label>
+              </div>
+
+              <label class="mt-5 block">
+                <span class="text-[13px] font-semibold text-ink-700">Country <span class="text-danger-500">*</span></span>
+                <select required name="billing_country" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600">
+                  <option selected>Australia</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                  <option>Bangladesh</option>
+                  <option>India</option>
+                </select>
+              </label>
+
+              <label class="mt-5 flex items-center gap-2.5">
+                <input data-same-address type="checkbox" class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600" />
+                <span class="text-[14px] text-ink-700">Shipping address is the same as billing address</span>
+              </label>
+
+              <!-- Shipping Address -->
+              <div data-shipping-section>
+                <h3 class="mb-4 mt-6 text-[15px] font-semibold text-ink-900">Shipping Address</h3>
+                <div class="grid gap-5 sm:grid-cols-2">
+                  <label class="block">
+                    <span class="text-[13px] font-semibold text-ink-700">Address Line 1</span>
+                    <input name="shipping_address1" value="20 Randy Road" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600" />
+                  </label>
+                  <label class="block">
+                    <span class="text-[13px] font-semibold text-ink-700">Address Line 2</span>
+                    <input name="shipping_address2" placeholder="Address Line 2" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] placeholder:text-ink-400 focus:border-brand-600" />
+                  </label>
+                </div>
+                <div class="mt-5 grid gap-5 sm:grid-cols-3">
+                  <label class="block">
+                    <span class="text-[13px] font-semibold text-ink-700">City</span>
+                    <input name="shipping_city" value="Melbourne" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600" />
+                  </label>
+                  <label class="block">
+                    <span class="text-[13px] font-semibold text-ink-700">Postcode</span>
+                    <input name="shipping_postcode" value="3000" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600" />
+                  </label>
+                  <label class="block">
+                    <span class="text-[13px] font-semibold text-ink-700">State</span>
+                    <input name="shipping_state" value="Victoria" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600" />
+                  </label>
+                </div>
+                <label class="mt-5 block">
+                  <span class="text-[13px] font-semibold text-ink-700">Country</span>
+                  <select name="shipping_country" class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600">
+                    <option selected>Australia</option>
+                    <option>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Bangladesh</option>
+                    <option>India</option>
+                  </select>
+                </label>
+              </div>
+            </article>
+          </div>
+        </form>
+
+        <!-- Bottom action bar -->
+        <div class="mt-8 flex items-center justify-end gap-3 border-t border-surface-line pt-5">
+          <a href="/orders.html" class="inline-flex h-11 items-center gap-2 rounded-base border border-surface-line px-5 text-[14px] font-semibold text-ink-700 hover:bg-surface-muted">Cancel</a>
+          <button type="submit" form="edit-order-form" class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-5 text-[14px] font-semibold text-white hover:bg-brand-700">
+            <i data-lucide="save" class="h-4 w-4"></i>
+            Save Changes
+          </button>
+        </div>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+    <script type="module">
+      /* Edit order page: product search + shipping toggle */
+      (function () {
+        'use strict';
+
+        const editOrderJs = {
+          _list: null,
+          _search: null,
+          _empty: null,
+          _same: null,
+          _shipping: null,
+          _form: null,
+          _rows: [],
+
+          i: function () {
+            editOrderJs.d();
+            editOrderJs.methods();
+          },
+
+          d: function () {
+            this._list = document.querySelector('[data-product-list]');
+            this._search = document.querySelector('[data-product-search]');
+            this._empty = document.querySelector('[data-product-empty]');
+            this._same = document.querySelector('[data-same-address]');
+            this._shipping = document.querySelector('[data-shipping-section]');
+            this._form = document.getElementById('edit-order-form');
+            this._rows = this._list ? [...this._list.querySelectorAll('[data-product-item]')] : [];
+          },
+
+          methods: function () {
+            editOrderJs.productSelect();
+            editOrderJs.productSearch();
+            editOrderJs.shippingToggle();
+            editOrderJs.formGuard();
+          },
+
+          productSelect: function () {
+            editOrderJs._rows.forEach((row) => {
+              const cb = row.querySelector('input[type=checkbox]');
+              cb?.addEventListener('change', () => {
+                row.classList.toggle('border-brand-600', cb.checked);
+                row.classList.toggle('bg-brand-50/40', cb.checked);
+              });
+            });
+          },
+
+          productSearch: function () {
+            editOrderJs._search?.addEventListener('input', () => {
+              const term = editOrderJs._search.value.trim().toLowerCase();
+              let visible = 0;
+              editOrderJs._rows.forEach((row) => {
+                const show = !term || (row.dataset.name || '').toLowerCase().includes(term);
+                row.classList.toggle('hidden', !show);
+                if (show) visible += 1;
+              });
+              editOrderJs._empty?.classList.toggle('hidden', visible !== 0);
+            });
+          },
+
+          shippingToggle: function () {
+            editOrderJs._same?.addEventListener('change', () => {
+              editOrderJs._shipping?.classList.toggle('hidden', editOrderJs._same.checked);
+            });
+          },
+
+          formGuard: function () {
+            editOrderJs._form?.addEventListener('submit', (e) => e.preventDefault());
+          },
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', editOrderJs.i);
+        } else {
+          editOrderJs.i();
+        }
+      })();
+    </script>
+  </body>
+</html>

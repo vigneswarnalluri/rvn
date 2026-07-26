@@ -1,0 +1,91 @@
+@@include('styles.html',{
+"title": "Shop With Filter"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Shop Right Sidebar</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-white",
+    "justify-content": "justify-content-start",
+    "sectionType": "Pages",
+    "title": "Shop"
+    })
+
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-page-banner-content">
+        <div class="container">
+
+            @@include('common/shop/shop-banner-row-one.html')
+
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-catagories-area pt--0 pt_sm--16 pt_md--16 rbt-bg-color-white">
+        <div class="container">
+
+            @@include('common/shop/shop-catagories-row.html')
+
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    <div class="rbt-component-area ptb--32 ptb_sm--12 ptb_md--20">
+        <div class="container">
+            <div class="rbt-separator rbt-separator-gray200"></div>
+        </div>
+    </div>
+
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-shop-filter-area rbt-bg-color-white rbt-section-gapBottom">
+        <div class="container">
+
+            <div class="row row--16 mt_dec--24">
+
+                <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12 mt--24 mt_sm--8 mt_md--8">
+                    @@include('common/shop/shop-tools-row-one.html')
+
+                    @@include('common/shop/shop-products-row-col-3.html')
+
+                    <div class="row mt--40 mt_sm--16">
+                        <div class="col-12">
+                            @@include('common/pagination-styles/pagination-02.html')
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 mt--24 d-none d-lg-block">
+                    @@include('sidebar/shop-sidebar-one.html')
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- End Component Area -->
+
+    @@include('modals/notifyModal.html')
+    @@include('header/offcanvas/comparison.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/quickviewModal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/addedcartModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+
+</html>

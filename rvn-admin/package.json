@@ -1,0 +1,28 @@
+{
+  "name": "RVN-admin-html",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Framework-free RVN-inspired admin dashboard HTML template built with Vite and Tailwind CSS.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@fontsource/cabin": "^5.2.8",
+    "echarts": "^6.1.0",
+    "echarts-gl": "^2.1.0",
+    "lucide": "^0.468.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "esbuild": "^0.28.1",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^4.3.1",
+    "vite": "^8.0.16",
+    "vite-plugin-handlebars": "^2.0.0"
+  }
+}

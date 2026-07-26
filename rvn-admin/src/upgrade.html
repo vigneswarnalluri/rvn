@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Upgrade"}}
+  <body data-page="upgrade" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <section class="rounded-card border border-surface-line bg-surface-card p-8 shadow-card">
+          <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Plan</p>
+          <h1 class="text-[28px] font-semibold text-ink-900">Upgrade to Pro</h1>
+          <p class="mt-2 max-w-2xl text-[14px] text-ink-500">
+            Unlock advanced analytics, team permissions, automation rules, and priority support for growing stores.
+          </p>
+          <div class="mt-6 grid gap-4 md:grid-cols-3">
+            <div class="rounded-card border border-surface-line p-5">
+              <h2 class="text-[16px] font-semibold text-ink-900">Advanced reports</h2>
+              <p class="mt-1 text-[13px] text-ink-500">Deeper sales and customer insights.</p>
+            </div>
+            <div class="rounded-card border border-surface-line p-5">
+              <h2 class="text-[16px] font-semibold text-ink-900">Team controls</h2>
+              <p class="mt-1 text-[13px] text-ink-500">Granular staff roles and approval flows.</p>
+            </div>
+            <div class="rounded-card border border-surface-line p-5">
+              <h2 class="text-[16px] font-semibold text-ink-900">Priority support</h2>
+              <p class="mt-1 text-[13px] text-ink-500">Faster help for operational issues.</p>
+            </div>
+          </div>
+          <button type="button"
+            class="mt-6 inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-5 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="star" class="h-4 w-4"></i>
+            Choose Pro
+          </button>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

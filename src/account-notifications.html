@@ -1,0 +1,101 @@
+@@include('styles.html',{
+"title": "Account Notifications"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Account Notifications</h1>
+    @@include('header/package/header-style-9.html')
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-gray-100",
+    "justify-content": "justify-content-start",
+    "sectionType": "Profile",
+    "title": "Notifications"
+    })
+
+    <div class="rbt-component-area rbt-section-gap rbt-bg-color-gray-light">
+        <div class="container">
+            <div class="row row--12 mt_dec--24">
+                <div class="col-12 col-md-12 col-lg-4 col-xl-3 mt--24">
+                    @@include('common/dashboard/common-sidebar.html')
+                </div>
+                <div class="col-12 col-md-12 col-lg-8 col-xl-9 mt--24">
+                    <div class="rbt-profile-content-area">
+                        <div class="row row--12 mt_dec--24">
+                            <div class="col-12 mt--24">
+                                <div class="rbt-component-section-title rbt-gap--4 mb--0 p-0 border-0">
+                                    <h2 class="rbt-title mb--0"><span class="rbt-text-bold">Set Notifications</span>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mt--20 mb--16">
+                        <div class="rbt-scrollable-content hide-scrollbar mt_dec--24">
+                            <div class="form-check mt--24">
+                                <input type="checkbox" class="form-check-input rbt-check-btn-top" id="rbt-check-1">
+                                <label for="rbt-check-1" class="form-check-label">
+                                    <span class="d-block rbt-text-bold rbt-text-color-black">Billing Alerts</span>
+                                    <span class="rbt-text-regular rbt-text-color-body">Get notified about upcoming payments, failed transactions, or changes in your subscription.</span>
+                                </label>
+                            </div>
+                            <div class="form-check mt--24">
+                                <input type="checkbox" class="form-check-input rbt-check-btn-top" id="rbt-check-2" checked>
+                                <label for="rbt-check-2" class="form-check-label">
+                                    <span class="d-block rbt-text-bold rbt-text-color-black">Login Activity</span>
+                                    <span class="rbt-text-regular rbt-text-color-body">Receive alerts when a new device or location accesses your account.</span>
+                                </label>
+                            </div>
+                            <div class="form-check mt--24">
+                                <input type="checkbox" class="form-check-input rbt-check-btn-top" id="rbt-check-3">
+                                <label for="rbt-check-3" class="form-check-label">
+                                    <span class="d-block rbt-text-bold rbt-text-color-black">Promotional Offers</span>
+                                    <span class="rbt-text-regular rbt-text-color-body">Get exclusive discounts, coupons, and limited-time deals.</span>
+                                </label>
+                            </div>
+                            <div class="form-check mt--24">
+                                <input type="checkbox" class="form-check-input rbt-check-btn-top" id="rbt-check-4">
+                                <label for="rbt-check-4" class="form-check-label">
+                                    <span class="d-block rbt-text-bold rbt-text-color-black">Social Mentions & Tags</span>
+                                    <span class="rbt-text-regular rbt-text-color-body">Stay updated when someone mentions or tags you in a comment or post.</span>
+                                </label>
+                            </div>
+                            <div class="form-check mt--24">
+                                <input type="checkbox" class="form-check-input rbt-check-btn-top" id="rbt-check-5">
+                                <label for="rbt-check-5" class="form-check-label">
+                                    <span class="d-block rbt-text-bold rbt-text-color-black">Privacy & Security Updates</span>
+                                    <span class="rbt-text-regular rbt-text-color-body">Receive alerts about policy changes or new security features.</span>
+                                </label>
+                            </div>
+                            <div class="form-check mt--24">
+                                <input type="checkbox" class="form-check-input rbt-check-btn-top" id="rbt-check-6" checked>
+                                <label for="rbt-check-6" class="form-check-label">
+                                    <span class="d-block rbt-text-bold rbt-text-color-black">App Feature Updates</span>
+                                    <span class="rbt-text-regular rbt-text-color-body">Stay informed about new features and improvements in the app.</span>
+                                </label>
+                            </div>
+                            <div class="form-check mt--24">
+                                <input type="checkbox" class="form-check-input rbt-check-btn-top" id="rbt-check-7" checked>
+                                <label for="rbt-check-7" class="form-check-label">
+                                    <span class="d-block rbt-text-bold rbt-text-color-black">Review Reminders</span>
+                                    <span class="rbt-text-regular rbt-text-color-body">Get a reminder to leave a review after purchasing a product.</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @@include('modals/added-comparison-popup.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/quickviewRestockModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('common/dashboard/review-offcanvas.html')
+    @@include('footer/footerSeven.html')
+    @@include('scripts.html')
+</body>
+
+</html>

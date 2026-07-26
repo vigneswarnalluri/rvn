@@ -1,0 +1,55 @@
+@use "../default/variables" as *; // Importing all the variables
+@use "../default/extend" as *; // Importing all the extend
+
+
+@mixin clearfix() {
+	&::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+}
+
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+
+	&:-moz-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&:-ms-input-placeholder {
+		@content;
+	}
+}
+
+
+
+// Container Right expand
+@mixin ml-container-width($container_width) {
+	max-width: calc($container_width + calc(calc((100% - $container_width))/2));
+}
+
+
+
+/* Theme-specific classes */
+body {
+	&.theme-yellow {
+		--color-primary: var(--color-yellow);
+	}
+
+	&.theme-blue {
+		--color-primary: #2196F3;
+		/* Assuming this is the blue color */
+	}
+
+	&.theme-red {
+		--color-primary: #F44336;
+		/* Assuming this is the red color */
+	}
+}

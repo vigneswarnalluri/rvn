@@ -1,0 +1,194 @@
+@@include('styles.html',{
+"title": "Shipping Address"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Checkout Shipping</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-white",
+    "justify-content": "justify-content-start",
+    "sectionType": "Checkout",
+    "title": "Shipping Address"
+    })
+
+
+    <div class="rbt-component-area rbt-cart-page rbt-section-gapBottom rbt-bg-color-white">
+        <div class="container">
+            <div class="row row--12 mt_dec--24">
+                <div class="col-12 col-md-12 col-lg-8 mt--24">
+                    <div class="rbt-transparent-table-one-wrapper rbt-has-bg-gray">
+                        <div class="rbt-checkout-wrapper-box">
+                            <div class="rbt-checkout-single-content">
+                                <span class="rbt-checkout-step"><i class="fa-regular fa-check"></i></span>
+                                <div class="inner w-100">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h3 class="title h5">Delivery Details</h3>
+                                        <div class="rbt-link-hover"><a href="checkout-delivery-step-two.html">Edit</a>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <h3 class="h6 mb-0">Postcode</h3>
+                                        <p class="desc mt--12">15006</p>
+                                        <h3 class="h6 mb-0 mt--12">Estimated delivery date</h3>
+                                        <p class="desc mt--12">Monday, 13 | 12:00 - 16:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rbt-checkout-single-content active">
+                                <span class="rbt-checkout-step">2</span>
+                                <div class="inners">
+                                    <h3 class="title h5">Shipping Options</h3>
+                                    <form class="needs-validation d-block mt--12">
+                                        <div class="row row-cols-1 row-cols-sm-2 g-3 g-sm-4 mb-4">
+                                            <div class="col">
+                                                <label for="shipping-fn" class="form-label">First name <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control form-control-lg" id="shipping-fn"
+                                                    required="">
+                                            </div>
+                                            <div class="col">
+                                                <label for="shipping-ln" class="form-label">Last name <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control form-control-lg" id="shipping-ln"
+                                                    required="">
+                                            </div>
+                                            <div class="col">
+                                                <label for="shipping-email" class="form-label">Email address <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="email" class="form-control form-control-lg"
+                                                    id="shipping-email" required="">
+                                            </div>
+                                            <div class="col">
+                                                <label for="shipping-mobile" class="form-label">Mobile number</label>
+                                                <input type="text" class="form-control form-control-lg"
+                                                    id="shipping-mobile">
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label">City <span
+                                                        class="text-danger">*</span></label>
+
+                                                <div
+                                                    class="filter-select rbt-modern-select rbt-modern-select-btn search-by-category">
+                                                    <select class="rbt-select-activation" data-live-search="true"
+                                                        data-live-search-placeholder="Search City">
+                                                        <option>Select your City</option>
+                                                        <option>New York</option>
+                                                        <option>London</option>
+                                                        <option>Paris</option>
+                                                        <option>Tokyo</option>
+                                                        <option>Dubai</option>
+                                                        <option>Singapore</option>
+                                                        <option>Sydney</option>
+                                                        <option>Berlin</option>
+                                                        <option>Toronto</option>
+                                                        <option>Los Angeles</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <label for="shipping-postcode" class="form-label">Postcode <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control form-control-lg"
+                                                    id="shipping-postcode" required="">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="shipping-address" class="form-label">House / apartment number
+                                                and street address <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control form-control-lg"
+                                                id="shipping-address" required="">
+                                        </div>
+                                        <h3 class="h6 mb--8">
+                                            Billing address
+                                            <i class="fa-regular fa-circle-info align-middle ms-2 tooltips"
+                                                data-tooltip="Uncheck the checkbox below if your Billing address should be different from your Shipping address."
+                                                data-tooltip-position="right"></i>
+                                        </h3>
+                                        <div class="form-check mb-lg-4">
+                                            <input type="checkbox" class="form-check-input" id="same-address"
+                                                checked="">
+                                            <label for="same-address" class="form-check-label">Same as delivery
+                                                address</label>
+                                        </div>
+                                        <div class="text-center mt--12 text-center rbt-btn-area">
+                                            <a href="checkout-payment.html"
+                                                class="rbt-btn splash-btn icon-reverse-left rbt-scroll-trigger fade_in animation-order-5 d-block rbt-rounded--4"
+                                                target="_blank">
+                                                <span class="icon-left"><i
+                                                        class="fa-sharp fa-regular fa-arrow-right mr--4"></i></span>
+                                                <span>Continue Order Process</span>
+                                                <span class="icon-right"><i
+                                                        class="fa-regular fa-arrow-right ml--4"></i></span>
+                                            </a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="rbt-checkout-single-content">
+                                <span class="rbt-checkout-step">3</span>
+                                <h3 class="title h5">Secure Payment</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-4 mt--24">
+                    @@include('sidebar/order-cart-sidebar.html')
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-countdown-area rbt-section-gap rbt-bg-color-gray-light">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="rbt-component-section-title text-center">
+                        <h2 class="rbt-title h4"><span class="rbt-bold--text">Customers Reviews</span></h2>
+                    </div>
+                </div>
+            </div>
+
+
+            @@include('common/product-review-styles/product-review-style-one.html')
+
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-section-gap rbt-bg-color-gray-white">
+        <div class="container">
+
+            @@include('product-single/product-single-similar-item-fshape-style.html')
+
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    @@include('header/offcanvas/order-offcanvas.html')
+
+    @@include('modals/notifyModal.html')
+    @@include('header/offcanvas/comparison.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/quickviewModal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/addedcartModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+
+</html>

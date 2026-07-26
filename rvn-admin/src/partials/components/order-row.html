@@ -1,0 +1,70 @@
+<tr
+  data-order-row
+  data-id="{{id}}"
+  data-name="{{name}}"
+  data-status="{{status}}"
+  class="border-b border-surface-line hover:bg-surface-body/70"
+>
+  <td class="py-4 pr-3">
+    <input
+      data-row-select
+      type="checkbox"
+      aria-label="Select order {{id}}"
+      class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+    />
+  </td>
+  <td class="py-4 pr-4">
+    <a href="/order-detail.html" class="font-semibold text-ink-900 hover:text-brand-600">{{id}}</a>
+  </td>
+  <td class="py-4 pr-4">
+    <div class="flex items-center gap-3">
+      {{#if avatar}}
+      <img src="{{avatar}}" alt="" class="h-9 w-9 rounded-full bg-surface-body object-cover" />
+      {{else}}
+      <span class="grid h-9 w-9 place-items-center rounded-full text-[13px] font-semibold {{initialClass}}">{{initial}}</span>
+      {{/if}}
+      <span class="font-medium text-ink-700">{{name}}</span>
+    </div>
+  </td>
+  <td class="py-4 pr-4">
+    <span class="badge {{statusClass}}">{{statusLabel}}</span>
+  </td>
+  <td class="py-4 pr-4 text-right font-semibold text-ink-900">{{total}}</td>
+  <td class="py-4 pr-4 text-ink-700">{{added}}</td>
+  <td class="py-4 pr-4 text-ink-700">{{modified}}</td>
+  <td class="py-4 text-right">
+    <div class="relative inline-block text-left">
+      <button
+        type="button"
+        data-menu-toggle="order-actions-{{id}}"
+        class="inline-flex h-9 items-center gap-1.5 rounded-base border border-surface-line px-3 text-[13px] font-semibold text-ink-700 hover:bg-surface-muted"
+      >
+        Actions
+        <i data-lucide="chevron-down" class="h-3.5 w-3.5"></i>
+      </button>
+      <div
+        data-menu="order-actions-{{id}}"
+        class="absolute right-0 z-30 mt-1 hidden w-40 rounded-card border border-surface-line bg-surface-card p-1.5 shadow-lift"
+      >
+        <a
+          href="/order-detail.html"
+          class="flex items-center gap-2.5 rounded-base px-2 py-2 text-[13px] text-ink-700 transition-colors hover:bg-surface-muted"
+          ><i data-lucide="eye" class="h-4 w-4 text-ink-500"></i> View</a
+        >
+        <a
+          href="/edit-order.html"
+          class="flex items-center gap-2.5 rounded-base px-2 py-2 text-[13px] text-ink-700 transition-colors hover:bg-surface-muted"
+          ><i data-lucide="pencil" class="h-4 w-4 text-ink-500"></i> Edit</a
+        >
+        <button
+          type="button"
+          data-modal-open="confirm-delete"
+          data-modal-message="Order {{id}} will be permanently removed. This action cannot be undone."
+          class="flex w-full items-center gap-2.5 rounded-base px-2 py-2 text-[13px] text-danger-500 transition-colors hover:bg-danger-50"
+        >
+          <i data-lucide="trash-2" class="h-4 w-4"></i> Delete
+        </button>
+      </div>
+    </div>
+  </td>
+</tr>

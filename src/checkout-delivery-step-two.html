@@ -1,0 +1,403 @@
+@@include('styles.html',{
+"title": "Delivery Details Step Two"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Checkout Delivery Step Two</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-white",
+    "justify-content": "justify-content-start",
+    "sectionType": "Pages",
+    "title": "Delivery Details Step Two"
+    })
+
+
+    <div class="rbt-component-area rbt-cart-page rbt-section-gapBottom rbt-bg-color-white">
+        <div class="container">
+            <div class="row row--12 mt_dec--24">
+                <div class="col-12 col-md-12 col-lg-8 mt--24">
+                    <div class="rbt-transparent-table-one-wrapper rbt-has-bg-gray">
+                        <div class="rbt-checkout-wrapper-box">
+                            <div class="rbt-checkout-single-content active">
+                                <span class="rbt-checkout-step">1</span>
+                                <div class="inner w-100">
+                                    <h3 class="title h5">Delivery Details</h3>
+                                    <div class="content">
+                                        <p class="desc">Provide your shipping address to ensure a smooth and timely
+                                            arrival. 🚚</p>
+
+                                        <h3 class="h6 border-bottom pb-4 mb-0 mt--12">Choose shipping method</h3>
+
+                                        <div class="rbt-shipping-method mb-lg-4" id="shippingMethod" role="list">
+
+                                            <!-- Courier delivery option -->
+                                            <div class="rbt-single-shipping-method rbt-radio-accordion border-bottom">
+                                                <div class="form-check mb-0 collapsed" role="listitem"
+                                                    data-bs-toggle="collapse" data-bs-target="#courier"
+                                                    aria-expanded="true" aria-controls="courier">
+                                                    <label class="form-check-label d-flex align-items-center py-3">
+                                                        <input type="radio" class="rbt-form-check-input me-2 me-sm-3"
+                                                            name="payment-method" checked>
+                                                        Courier delivery
+                                                        <span class="b1 ms-auto">$16.50</span>
+                                                    </label>
+                                                </div>
+                                                <div class="collapse show" id="courier"
+                                                    data-bs-parent="#shippingMethod">
+                                                    <div class="rbt-courier-shipping-area pb-4 ps-3 ms-2 ms-sm-3">
+                                                        <p class="fs-sm mb--0">Choose a courier delivery time convenient
+                                                            for you:</p>
+                                                        <div class="rbt-delivary-input-wrapper mt--12">
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">Monday,
+                                                                    13</div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-mon-1" checked="">
+                                                                    <label for="p-mon-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">12:00
+                                                                        -
+                                                                        15:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-mon-2">
+                                                                    <label for="p-mon-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">17:00
+                                                                        -
+                                                                        20:00</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">
+                                                                    Tuesday, 14
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-tue-1">
+                                                                    <label for="p-tue-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">09:00
+                                                                        -
+                                                                        12:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-tue-2">
+                                                                    <label for="p-tue-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">14:00
+                                                                        -
+                                                                        19:00</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">
+                                                                    Wednesday, 15
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-wed-1">
+                                                                    <label for="p-wed-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">09:00
+                                                                        -
+                                                                        12:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-wed-2">
+                                                                    <label for="p-wed-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">14:00
+                                                                        -
+                                                                        19:00</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">
+                                                                    Thursday, 16
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-thu-1">
+                                                                    <label for="p-thu-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">12:00
+                                                                        -
+                                                                        15:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-thu-2">
+                                                                    <label for="p-thu-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">17:00
+                                                                        -
+                                                                        20:00</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">Friday,
+                                                                    17
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-fri-1">
+                                                                    <label for="p-fri-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">12:00
+                                                                        -
+                                                                        15:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="p-fri-2">
+                                                                    <label for="p-fri-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">17:00
+                                                                        -
+                                                                        20:00</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Pickup from store option -->
+                                            <div class="rbt-single-shipping-method rbt-radio-accordion border-bottom">
+                                                <div class="form-check mb-0 collapsed" role="listitem"
+                                                    data-bs-toggle="collapse" data-bs-target="#pickup"
+                                                    aria-expanded="false" aria-controls="pickup">
+                                                    <label class="form-check-label d-flex align-items-center py-3">
+                                                        <input type="radio" class="rbt-form-check-input me-2 me-sm-3"
+                                                            name="payment-method">
+                                                        Pickup from store
+                                                        <span class="fw-normal ms-auto">Free</span>
+                                                    </label>
+                                                </div>
+                                                <div class="collapse" id="pickup" data-bs-parent="#shippingMethod">
+                                                    <div class="rbt-pickup-shipping-area pb-4 ps-3 ms-2 ms-sm-3">
+                                                        <p class="fs-sm mb-2">Choose a store nearby:</p>
+
+                                                        <p class="fs-sm">Choose a pickup time convenient for you:</p>
+
+                                                        <div class="rbt-delivary-input-wrapper mt--12">
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">Monday,
+                                                                    13</div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-mon-1" checked>
+                                                                    <label for="q-mon-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">12:00
+                                                                        -
+                                                                        15:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-mon-2">
+                                                                    <label for="q-mon-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">17:00
+                                                                        -
+                                                                        20:00</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">
+                                                                    Tuesday, 14
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-tue-1">
+                                                                    <label for="q-tue-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">09:00
+                                                                        -
+                                                                        12:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-tue-2">
+                                                                    <label for="q-tue-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">14:00
+                                                                        -
+                                                                        19:00</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">
+                                                                    Wednesday, 15
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-wed-1">
+                                                                    <label for="q-wed-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">09:00
+                                                                        -
+                                                                        12:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-wed-2">
+                                                                    <label for="q-wed-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">14:00
+                                                                        -
+                                                                        19:00</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">
+                                                                    Thursday, 16
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-thu-1">
+                                                                    <label for="q-thu-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">12:00
+                                                                        -
+                                                                        15:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-thu-2">
+                                                                    <label for="q-thu-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">17:00
+                                                                        -
+                                                                        20:00</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="rbt-single-input-box text-center">
+                                                                <div class="h6 fs-sm pb-2 mb-0 rbt-text-regular">Friday,
+                                                                    17
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-fri-1">
+                                                                    <label for="q-fri-1"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">12:00
+                                                                        -
+                                                                        15:00</label>
+                                                                </div>
+                                                                <div class="py-1 my-1 rbt-single-order-checkbox">
+                                                                    <input type="radio" class="btn-check"
+                                                                        name="pickup-time" id="q-fri-2">
+                                                                    <label for="q-fri-2"
+                                                                        class="rbt-btn rbt-btn-border rbt-btn-xs rbt-btn-gray-light">17:00
+                                                                        -
+                                                                        20:00</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Local shipping option -->
+                                            <div class="rbt-single-shipping-method rbt-radio-accordion border-bottom">
+                                                <div class="form-check mb-0" role="listitem" data-bs-toggle="collapse"
+                                                    data-bs-target="#shipping" aria-expanded="false"
+                                                    aria-controls="shipping">
+                                                    <label class="form-check-label d-flex align-items-center py-3">
+                                                        <input type="radio" class="rbt-form-check-input me-2 me-sm-3"
+                                                            name="payment-method">
+                                                        Local shipping
+                                                        <span class="fw-normal ms-auto">$23.40</span>
+                                                    </label>
+                                                </div>
+                                                <div class="collapse" id="shipping" data-bs-parent="#shippingMethod">
+                                                    <div class="rbt-local-shipping-area pb-4 ps-3 ms-2 ms-sm-3">
+                                                        <div class="alert rbt-alert-brand d-flex align-items-center alert-info mb-3"
+                                                            role="alert">
+                                                            <i class="fa-regular fa-circle-info mr--4"></i>
+                                                            <div class="fs-sm">Local shipping can take up to <span
+                                                                    class="text-info-emphasis fw-semibold">5</span>
+                                                                business days.</div>
+                                                        </div>
+                                                        <p class="fs-sm mb-0">Estimated date of delivery - <span
+                                                                class="text-body-emphasis fw-medium">March 31,
+                                                                2025</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center mt--12 text-center rbt-btn-area">
+                                                <a href="checkout-shipping.html"
+                                                    class="rbt-btn splash-btn icon-reverse-left rbt-scroll-trigger fade_in animation-order-5 d-block rbt-rounded--4"
+                                                    target="_blank">
+                                                    <span class="icon-left"><i
+                                                            class="fa-sharp fa-regular fa-arrow-right mr--4"></i></span>
+                                                    <span>Continue Order Process</span>
+                                                    <span class="icon-right"><i
+                                                            class="fa-regular fa-arrow-right ml--4"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rbt-checkout-single-content">
+                                <span class="rbt-checkout-step">2</span>
+                                <h3 class="title h5">Shipping Options</h3>
+                            </div>
+                            <div class="rbt-checkout-single-content">
+                                <span class="rbt-checkout-step">3</span>
+                                <h3 class="title h5">Secure Payment</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-4 mt--24">
+                    @@include('sidebar/order-cart-sidebar.html')
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-countdown-area rbt-section-gap rbt-bg-color-gray-light">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="rbt-component-section-title text-center">
+                        <h2 class="rbt-title h4"><span class="rbt-bold--text">Customers Reviews</span></h2>
+                    </div>
+                </div>
+            </div>
+
+
+            @@include('common/product-review-styles/product-review-style-one.html')
+
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-section-gap rbt-bg-color-gray-white">
+        <div class="container">
+
+            @@include('product-single/product-single-similar-item-fshape-style.html')
+
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    @@include('header/offcanvas/order-offcanvas.html')
+
+    @@include('modals/notifyModal.html')
+    @@include('header/offcanvas/comparison.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/quickviewModal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/addedcartModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+
+</html>

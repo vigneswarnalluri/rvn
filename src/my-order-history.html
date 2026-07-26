@@ -1,0 +1,300 @@
+@@include('styles.html',{
+"title": "My Order History"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">My Order History</h1>
+    @@include('header/package/header-style-9.html')
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-gray-100",
+    "justify-content": "justify-content-start",
+    "sectionType": "Profile",
+    "title": "Order History"
+    })
+
+    <div class="rbt-component-area rbt-section-gap rbt-bg-color-gray-light">
+        <div class="container">
+            <div class="row row--12 mt_dec--24">
+                <div class="col-12 col-md-12 col-lg-4 col-xl-3 mt--24">
+                    @@include('common/dashboard/common-sidebar.html')
+                </div>
+                <div class="col-12 col-md-12 col-lg-8 col-xl-9 mt--24">
+                    <div class="rbt-profile-content-area rbt-scrollable-content">
+                        <div class="row row--12 mt_dec--24">
+                            <div class="col-12 col-md-7 col-xl-8 mt--24">
+                                <div class="rbt-component-section-title rbt-gap--4 mb--0 p-0 border-0">
+                                    <h2 class="rbt-title mb--0"><span class="rbt-text-bold">My orders</span></h2>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-5 col-xl-4 mt--24">
+                                <form>
+                                    <div class="rbt-input-field-grp mb--0">
+                                        <div
+                                            class="rbt-dropdown-select filter-select rbt-modern-select w-100 rbt-bordered-style search-by-category">
+                                            <select class="w-100 rbt-select-activation">
+                                                <option disabled selected>Select Status</option>
+                                                <option>In Progress</option>
+                                                <option>Delivered</option>
+                                                <option>Cancelled</option>
+                                                <option>Delayed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr class="mt--24">
+                        <div class="rbt-transparent-table-one-wrapper">
+                            <table class="rbt-transparent-table-one table-variation-one m--0 mb--0">
+                                <thead>
+                                    <tr>
+                                        <th class="pt--0" scope="col"><i class="fa-regular fa-hashtag mr--4"></i>Order
+                                            ID</th>
+                                        <th class="pt--0" scope="col"><i class="fa-regular fa-calendars mr--4"></i>Date
+                                        </th>
+                                        <th class="pt--0" scope="col"><i
+                                                class="fa-regular fa-truck-fast mr--4"></i>Status</th>
+                                        <th class="pt--0" scope="col"><i
+                                                class="fa-regular fa-sack-dollar mr--4"></i>Total Price</th>
+                                        <th class="pt--0" scope="col"><i
+                                                class="fa-regular fa-bag-shopping mr--4"></i>Products</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Start single cart product row -->
+                                    <tr>
+                                        <td>
+                                            <div class="cart-product-card">
+                                                <div class="d-flex flex-column">
+                                                    <span
+                                                        class="rbt-product-id rbt-ordered-products-sidenav-activation rbt-cursor-pointer">
+                                                        <span class="rbt-text-semi-bold">SKU:</span>
+                                                        #180036565
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span>Feb 1, 2025</span>
+                                        </td>
+                                        <td>
+                                            <div
+                                                class="rbt-badge rbt-badge-bg-green rbt-badge-border rbt-badge-md rbt-badge-rounded">
+                                                Delivered</div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <p class="price-text h6"><span class="rbt-bold--text">$954.00</span></p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="rbt-order-sum-area rbt-order-sum-area-xm d-flex">
+                                                <a href="#!"
+                                                    class="ordered-items-wrapper rbt-ordered-products-sidenav-activation d-flex rbt-gap--4 align-items-center ms-auto">
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-07.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-08.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item more-icon ms-auto"><i
+                                                            class="fa-solid fa-chevron-right"></i></div>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- End single cart product row -->
+
+                                    <!-- Start single cart product row -->
+                                    <tr>
+                                        <td>
+                                            <div class="cart-product-card">
+                                                <div class="d-flex flex-column">
+                                                    <span
+                                                        class="rbt-product-id rbt-ordered-products-sidenav-activation rbt-cursor-pointer"><span
+                                                            class="rbt-text-semi-bold">SKU:</span>
+                                                        #180036233</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span>Jan 4, 2025</span>
+                                        </td>
+                                        <td>
+                                            <div
+                                                class="rbt-badge rbt-badge-bg-warning rbt-badge-border rbt-badge-md rbt-badge-rounded">
+                                                In Progress</div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <p class="price-text h6"><span class="rbt-bold--text">$356.00</span></p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="rbt-order-sum-area rbt-order-sum-area-xm d-flex">
+                                                <a href="#!"
+                                                    class="ordered-items-wrapper rbt-ordered-products-sidenav-activation d-flex rbt-gap--4 align-items-center ms-auto">
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-10.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item more-icon ms-auto"><i
+                                                            class="fa-solid fa-chevron-right"></i></div>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- End single cart product row -->
+
+                                    <!-- Start single cart product row -->
+                                    <tr>
+                                        <td>
+                                            <div class="cart-product-card">
+                                                <div class="d-flex flex-column">
+                                                    <span
+                                                        class="rbt-product-id rbt-ordered-products-sidenav-activation rbt-cursor-pointer"><span
+                                                            class="rbt-text-semi-bold">SKU:</span>
+                                                        #180036434</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span>Dec 4, 2024</span>
+                                        </td>
+                                        <td>
+                                            <div
+                                                class="rbt-badge rbt-badge-bg-danger rbt-badge-border rbt-badge-md rbt-badge-rounded">
+                                                Cancelled</div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <p class="price-text h6"><span class="rbt-bold--text">$432.00</span></p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="rbt-order-sum-area rbt-order-sum-area-xm d-flex">
+                                                <a href="#!"
+                                                    class="ordered-items-wrapper rbt-ordered-products-sidenav-activation d-flex rbt-gap--4 align-items-center ms-auto">
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-02.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-09.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-01.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item more-icon ms-auto"><i
+                                                            class="fa-solid fa-chevron-right"></i></div>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- End single cart product row -->
+
+                                    <!-- Start single cart product row -->
+                                    <tr>
+                                        <td>
+                                            <div class="cart-product-card">
+                                                <div class="d-flex flex-column">
+                                                    <span
+                                                        class="rbt-product-id rbt-ordered-products-sidenav-activation rbt-cursor-pointer"><span
+                                                            class="rbt-text-semi-bold">SKU:</span>
+                                                        #180036342</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span>Dec 24, 2024</span>
+                                        </td>
+                                        <td>
+                                            <div
+                                                class="rbt-badge rbt-badge-bg-green rbt-badge-border rbt-badge-md rbt-badge-rounded">
+                                                Delivered</div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <p class="price-text h6"><span class="rbt-bold--text">$353.00</span></p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="rbt-order-sum-area rbt-order-sum-area-xm d-flex">
+                                                <a href="#!"
+                                                    class="ordered-items-wrapper rbt-ordered-products-sidenav-activation d-flex rbt-gap--4 align-items-center ms-auto">
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-11.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item more-icon ms-auto"><i
+                                                            class="fa-solid fa-chevron-right"></i></div>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- End single cart product row -->
+
+                                    <!-- Start single cart product row -->
+                                    <tr>
+                                        <td class="pb--0">
+                                            <div class="cart-product-card">
+                                                <div class="d-flex flex-column">
+                                                    <span
+                                                        class="rbt-product-id rbt-ordered-products-sidenav-activation rbt-cursor-pointer"><span
+                                                            class="rbt-text-semi-bold">SKU:</span>
+                                                        #180036567</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="pb--0">
+                                            <span>Jan 31, 2025</span>
+                                        </td>
+                                        <td class="pb--0">
+                                            <div
+                                                class="rbt-badge rbt-badge-bg-green rbt-badge-border rbt-badge-md rbt-badge-rounded">
+                                                Delivered</div>
+                                        </td>
+                                        <td class="pb--0">
+                                            <div>
+                                                <p class="price-text h6"><span class="rbt-bold--text">$559.00</span></p>
+                                            </div>
+                                        </td>
+                                        <td class="pb--0">
+                                            <div class="rbt-order-sum-area rbt-order-sum-area-xm d-flex">
+                                                <a href="#!"
+                                                    class="ordered-items-wrapper rbt-ordered-products-sidenav-activation d-flex rbt-gap--4 align-items-center ms-auto">
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-05.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-06.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item ordered-item-01"><img
+                                                            src="assets/images/catagory-img/cat-transp-img-12.webp"
+                                                            alt="eCommerce Product"></div>
+                                                    <div class="ordered-item more-icon ms-auto"><i
+                                                            class="fa-solid fa-chevron-right"></i></div>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- End single cart product row -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @@include('modals/added-comparison-popup.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/quickviewRestockModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('common/dashboard/order-history-offcanvas.html')
+    @@include('footer/footerSeven.html')
+    @@include('scripts.html')
+</body>
+
+</html>

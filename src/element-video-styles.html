@@ -1,0 +1,116 @@
+@@include('styles.html',{
+"title": "Video Styles"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Element Video Styles</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-default.html', {
+    "text": "Awesome",
+    "title": "Video Styles",
+    "sectionType": "Elements",
+    "bg-color": "rbt-bg-color-white",
+    "title2": "Video Styles"
+    })
+
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-video-area rbt-section-gap rbt-bg-color-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="rbt-component-section-title text-center">
+                        <h2 class="rbt-title">Video Style <span class="rbt-bold--text">One</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper plr--80 plr_sm--16">
+            <div class="video-popup-wrapper video-popup-style-one has-bottom-overlay">
+                <img class="w-100 radius-24" src="assets/images/others/video-01.webp" alt="Video Images">
+                <a class="rbt-btn rounded-player popup-video position-to-top rbtplayer"
+                    href="https://www.youtube.com/watch?v=abFXQQzFVDc" data-fancybox="">
+                    <span><i class="fa-solid fa-play"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-banner-area rbt-section-gap rbt-bg-color-white rbt-rounded--0">
+        <div class="wrapper plr--80 plr_lg--20 plr_md--20 plr_sm--20">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="rbt-component-section-title text-center">
+                        <h2 class="rbt-title">Video Style <span class="rbt-bold--text">Two</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="rbt-products-area-box rbt-bg-color-brand-50 rbt-rounded--16 overflow-hidden">
+                <div
+                    class="rbt-product-banner rbt-product-banner-style-four rbt-product-banner-style-four-hv-one rbt-hero-banner rbt-banner-four-var-two rbt-banner-four-var-two-smaller rbt-bg-color-brand-100 rbt-scroll-trigger fade_in animation-order-3 rbt-rounded--0">
+                    <div class="rbt-banner-inner rbt-rounded--0">
+                        <div class="rbt-product-banner-content text-left d-flex justify-content-start align-items-end">
+                            <div class="rbt-content-section rbt-slideshow-content-inner effect_fadeindown">
+                                <p class="rbt-banner-subtitle-two h4 mb-0 rbt-text-color-white">Embrace comfy wear</p>
+                                <h2 class="rbt-title mb-0 h1 rbt-text-color-white">
+                                    ready to fall in love with Autumn collection!
+                                </h2>
+                                <div class="rbt-banner-btn-grp d-flex rbt-gap--1 6 mt--32 mt_sm--16">
+                                    <a class="rbt-btn" href="shop-by-categories.html">Shop Collection</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rbt-product-img rbt-scroll-trigger zoom_in animation-order-3">
+                            <img src="assets/images/product-banner/product-banner-img-shoe-a-03.webp"
+                                alt="eCommerce Product Banner Background">
+                        </div>
+                        <a class="rbt-btn rounded-player popup-video position-absolute z-5 rbtplayer rbt-magnetic-button xs-size"
+                            href="https://www.youtube.com/watch?v=abFXQQzFVDc" data-rbt-position-vertical="12"
+                            data-rbt-position-horigental="90" data-fancybox="video">
+                            <span><i class="fa-solid fa-play"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-video-area">
+        <div class="wrapper plr--56 plr_lg--60 plr_md--20 plr_sm--20">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="rbt-component-section-title text-center">
+                        <h2 class="rbt-title">Video Style <span class="rbt-bold--text">Three</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="video-container video-popup-style-two h-auto rbt-rounded--16">
+                <div class="row">
+                    <div class="col-12 col-sm-6 p-0">
+                        <video class="video" autoplay muted loop>
+                            <source src="assets/videos/glass-video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-12 col-sm-6 p-0">
+                        <video class="video" autoplay muted loop>
+                            <source src="assets/videos/beauty-women-01.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <button class="rbt-btn rbt-btn-round rbt-bg-color-secondary pause-btn">Pause <br> Button</button>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal-electronics.html')
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<header class="rbt-header rbt-header-13">
+    @@include('header/header-main/header5.html', {
+    "stickyActivation": "rbt-header-sticky-activation",
+    "logo": "logo.webp",
+    "transparent": "rbt-bg-color-gray-100 header-not-transparent header-sticky",
+    "gapSpaceBetween": "header-space-between",
+    "container": "container",
+    })
+
+    <div class="rbt-wrapper-middle rbt-header-middle-one rbt-bg-color-white">
+        <div class="container">
+            <div class="row row--12 rbt-container-extended-wider">
+                <div class="col-md-12">
+                    <div class="mainbar-row align-items-center rbt-header-13-mainbar position-relative">
+                        <div class="header-left">
+                            <div class="rbt-header-content rbt-gap--24">
+                                <div class="header-info p--0 plr_lg--48  plr_md--24">
+                                    <div class="logo variation-one">
+                                        <a href="index.html">
+                                            <img src="assets/images/logo/logo.webp" alt="Ecommerce Logo Images">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="header-info p-0 d-none d-xl-block">
+                                    <a class="rbt-offcanvas-trigger-btn rbt-cat-offcanvas-activation rbt-burger-menu-bar"
+                                        href="#!">
+                                        <div class="rbt-burger-menu-bar-wrapper">
+                                            <i class="rbt-line-btn">
+                                                <span class="rbt-lines"></span>
+                                            </i>
+                                            <i class="rbt-line-btn rbt-hover-effect">
+                                                <span class="rbt-lines"></span>
+                                            </i>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="rbt-header-content d-none d-lg-block">
+                            <div class="header-info">
+                                <div class="rbt-search-with-category uni-header-swc-one uni-header-swc-md">
+                                    <form>
+                                        <div class="rbt-inner-search-field border-0">
+                                            <div
+                                                class="rbt-search-input-section has-left-catagory-section rbt-inner-search-label-animate-activation">
+                                                <div class="filter-select rbt-modern-select search-by-category">
+                                                    <select class="rbt-select-activation" data-live-search="true"
+                                                        data-live-search-placeholder="Search Catagories">
+                                                        <option>All Categories</option>
+                                                        <option>Fashion</option>
+                                                        <option>Furniture</option>
+                                                        <option>Electronics</option>
+                                                        <option>Beauty</option>
+                                                    </select>
+                                                </div>
+
+                                                <input type="text">
+                                                <span class="cd-headline clip is-full-width">
+                                                    <span class="cd-words-wrapper">
+                                                        <b class="is-visible">Search for something...</b>
+                                                        <b class="is-hidden">Looking for something specific?</b>
+                                                        <b class="is-hidden">Explore what you need...</b>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <button class="rbt-round-btn search-btn" type="submit"
+                                                aria-label="Search"><i
+                                                    class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="header-right">
+                            <!-- Navbar Icons -->
+                            <ul class="rbt-quick-access d-none d-xl-flex">
+                                <li class="rbt-access-box rbt-scroll-trigger fade_in animation-order-1 rbt-wishlist tooltips tooltip-distance-lg"
+                                    data-tooltip="Wishlist" data-tooltip-position="bottom">
+                                    <a class="rbt-round-btn rbt-round-btn rbt-bg-static-gray" href="wishlist.html">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <div class="access-box-count">6</div>
+                                    </a>
+                                </li>
+                                <li
+                                    class="rbt-access-box rbt-scroll-trigger fade_in animation-order-3 rbt-access-box-has-bg-hover d-none d-lg-flex">
+                                    <a href="#!" class="rbt-access-box-wrapper" data-bs-toggle="modal"
+                                        data-bs-target="#signinModal">
+                                        <div class="rbt-round-btn rbt-bg-static-gray">
+                                            <i class="fa-regular fa-user"></i>
+                                        </div>
+                                        <div class="content">
+                                            <p>Log in/Sign Up</p>
+                                            <span>Access Account</span>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li
+                                    class="rbt-access-box rbt-scroll-trigger fade_in animation-order-3 rbt-access-box-has-bg-hover rbt-mini-cart">
+                                    <a href="#" class="rbt-access-box-wrapper rbt-cart-sidenav-activation">
+                                        <div class="rbt-round-btn rbt-bg-static-gray">
+                                            <i class="fa-regular fa-bag-shopping"></i>
+                                            <span class="access-box-count rbt-shiny">12</span>
+                                        </div>
+                                        <div class="content p-0">
+                                            <p>Total Cart</p>
+                                            <span>Total $90</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- Start Mobile-Menu-Bar -->
+                            <div class="mobile-menu-bar d-block d-xl-none">
+                                <div class="hamberger">
+                                    <button class="hamberger-button rbt-round-btn">
+                                        <i class="fa-solid fa-bars"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Start Mobile-Menu-Bar -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    @@include('header/sticky-header/commonSticky-header.html', {
+    "logo": "logo.webp",
+    "gapSpaceBetween": "justify-content-between",
+    "bgColor": "rbt-bg-color-white",
+    "container": "container",
+    })
+</header>
+
+@@include('header/navStyles/mobilemenu.html')
+@@include('header/offcanvas/cart-offcanvas.html')
+@@include('header/offcanvas/category-offcanvas.html')

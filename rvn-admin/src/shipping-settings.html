@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Shipping Settings"}}
+  <body data-page="shipping-settings" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Settings</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Shipping</h1>
+            <p class="mt-1 text-[14px] text-ink-500">
+              Configure delivery methods, free shipping, and fulfillment defaults.
+            </p>
+          </div>
+          <button type="button"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="save" class="h-4 w-4"></i>
+            Save Changes
+          </button>
+        </div>
+
+        <form class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+          <section class="space-y-6">
+            <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+              <h2 class="mb-5 text-[20px] font-medium text-ink-900">Delivery Methods</h2>
+              <div class="grid gap-5 md:grid-cols-2">
+                <label class="block">
+                  <span class="text-[14px] font-semibold text-ink-700">Default method</span>
+                  <select
+                    class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+                  >
+                    <option>Standard delivery</option>
+                    <option>Express delivery</option>
+                    <option>Pickup from store</option>
+                  </select>
+                </label>
+                <label class="block">
+                  <span class="text-[14px] font-semibold text-ink-700">Processing time</span>
+                  <select
+                    class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+                  >
+                    <option>1 business day</option>
+                    <option>2 business days</option>
+                    <option>3 business days</option>
+                  </select>
+                </label>
+                <label class="block">
+                  <span class="text-[14px] font-semibold text-ink-700">Standard rate</span>
+                  <input
+                    type="number"
+                    value="5"
+                    class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+                <label class="block">
+                  <span class="text-[14px] font-semibold text-ink-700">Express rate</span>
+                  <input
+                    type="number"
+                    value="12"
+                    class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+              </div>
+            </article>
+
+            <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+              <h2 class="mb-5 text-[20px] font-medium text-ink-900">Shipping Rules</h2>
+              <div class="space-y-4">
+                <label class="flex items-start gap-3 rounded-card border border-surface-line bg-surface-body p-4">
+                  <input
+                    type="checkbox"
+                    checked
+                    class="mt-1 h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+                  />
+                  <span>
+                    <span class="block text-[14px] font-semibold text-ink-900">Enable free shipping threshold</span>
+                    <span class="mt-1 block text-[13px] text-ink-500"
+                      >Offer free delivery when customers meet the minimum cart amount.</span
+                    >
+                  </span>
+                </label>
+                <label class="block">
+                  <span class="text-[14px] font-semibold text-ink-700">Minimum cart amount</span>
+                  <input
+                    type="number"
+                    value="49"
+                    class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+                  />
+                </label>
+              </div>
+            </article>
+          </section>
+
+          <aside class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <span class="grid h-11 w-11 place-items-center rounded-base bg-brand-50 text-brand-600">
+              <i data-lucide="truck" class="h-5 w-5"></i>
+            </span>
+            <h2 class="mt-4 text-[17px] font-semibold text-ink-900">Fulfillment Summary</h2>
+            <p class="mt-1 text-[13px] text-ink-500">
+              Standard and express delivery are enabled for all active regions.
+            </p>
+            <div class="mt-5 space-y-3 text-[14px]">
+              <div class="flex items-center justify-between">
+                <span class="text-ink-500">Active zones</span><span class="font-semibold text-ink-900">4</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-ink-500">Pickup locations</span><span class="font-semibold text-ink-900">2</span>
+              </div>
+            </div>
+          </aside>
+        </form>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

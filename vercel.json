@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "builds": [
+    {
+      "src": "dest/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "rvn-admin/dist/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "server/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server/index.js"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "rvn-admin/dist/$1"
+    },
+    {
+      "src": "/admin",
+      "status": 308,
+      "headers": {
+        "Location": "/admin/"
+      }
+    },
+    {
+      "src": "/((?!api|admin|rvn-admin).*)",
+      "dest": "dest/$1"
+    }
+  ]
+}

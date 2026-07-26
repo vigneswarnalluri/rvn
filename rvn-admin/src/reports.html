@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Reports"}}
+  <body data-page="reports" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Analytics</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Reports</h1>
+            <p class="mt-1 text-[14px] text-ink-500">
+              Review sales, orders, inventory, and customer performance summaries.
+            </p>
+          </div>
+          <button
+            type="button"
+            class="inline-flex h-11 items-center gap-2 rounded-base border border-surface-line px-4 text-[14px] font-semibold text-ink-700 hover:bg-surface-muted"
+          >
+            <i data-lucide="download" class="h-4 w-4"></i>
+            Export
+          </button>
+        </div>
+
+        <section class="mb-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <p class="text-[13px] text-ink-500">Net sales</p>
+            <h2 class="mt-1 text-[24px] font-semibold text-ink-900">$128.4k</h2>
+            <p class="mt-2 text-[13px] text-success-600">+12.8% from last month</p>
+          </article>
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <p class="text-[13px] text-ink-500">Orders</p>
+            <h2 class="mt-1 text-[24px] font-semibold text-ink-900">3,284</h2>
+            <p class="mt-2 text-[13px] text-success-600">+7.2% from last month</p>
+          </article>
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <p class="text-[13px] text-ink-500">Returns</p>
+            <h2 class="mt-1 text-[24px] font-semibold text-ink-900">84</h2>
+            <p class="mt-2 text-[13px] text-warning-600">2.5% return rate</p>
+          </article>
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <p class="text-[13px] text-ink-500">New customers</p>
+            <h2 class="mt-1 text-[24px] font-semibold text-ink-900">642</h2>
+            <p class="mt-2 text-[13px] text-success-600">+18.4% from last month</p>
+          </article>
+        </section>
+
+        <section class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+          <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+            <h2 class="text-[17px] font-semibold text-ink-900">Report Library</h2>
+            <select
+              class="h-10 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option>Last 30 days</option>
+              <option>Last quarter</option>
+              <option>This year</option>
+            </select>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <a
+              href="/reports.html"
+              class="rounded-card border border-surface-line p-5 transition-colors hover:bg-surface-body"
+              aria-label="Open sales report"
+              ><i data-lucide="bar-chart-3" class="h-5 w-5 text-brand-600"></i>
+              <h3 class="mt-3 text-[15px] font-semibold text-ink-900">Sales Report</h3>
+              <p class="mt-1 text-[13px] text-ink-500">Revenue, discounts, taxes, and refunds.</p></a
+            >
+            <a
+              href="/reports.html"
+              class="rounded-card border border-surface-line p-5 transition-colors hover:bg-surface-body"
+              aria-label="Open order report"
+              ><i data-lucide="shopping-bag" class="h-5 w-5 text-brand-600"></i>
+              <h3 class="mt-3 text-[15px] font-semibold text-ink-900">Order Report</h3>
+              <p class="mt-1 text-[13px] text-ink-500">Order volume by status and channel.</p></a
+            >
+            <a
+              href="/reports.html"
+              class="rounded-card border border-surface-line p-5 transition-colors hover:bg-surface-body"
+              aria-label="Open customer report"
+              ><i data-lucide="users" class="h-5 w-5 text-brand-600"></i>
+              <h3 class="mt-3 text-[15px] font-semibold text-ink-900">Customer Report</h3>
+              <p class="mt-1 text-[13px] text-ink-500">Acquisition, repeat purchase, and segments.</p></a
+            >
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

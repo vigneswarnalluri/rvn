@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Coupons"}}
+  <body data-page="coupons" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Marketing</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Coupons</h1>
+            <p class="mt-1 text-[14px] text-ink-500">
+              Manage discount codes, usage limits, validity windows, and campaign status.
+            </p>
+          </div>
+          <a
+            href="/add-coupon.html"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="plus" class="h-4 w-4"></i>
+            Add Coupon
+          </a>
+        </div>
+
+        <section class="mb-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <div class="flex items-center justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-base bg-brand-50 text-brand-600">
+                <i data-lucide="badge-percent" class="h-5 w-5"></i>
+              </span>
+              <span class="badge bg-success-50 text-success-600">+8%</span>
+            </div>
+            <p class="mt-4 text-[13px] text-ink-500">Active coupons</p>
+            <h2 class="mt-1 text-[24px] font-semibold text-ink-900">18</h2>
+          </article>
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <div class="flex items-center justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-base bg-success-50 text-success-600">
+                <i data-lucide="dollar-sign" class="h-5 w-5"></i>
+              </span>
+              <span class="badge bg-brand-50 text-brand-600">June</span>
+            </div>
+            <p class="mt-4 text-[13px] text-ink-500">Discount redeemed</p>
+            <h2 class="mt-1 text-[24px] font-semibold text-ink-900">$12.4k</h2>
+          </article>
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <div class="flex items-center justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-base bg-warning-50 text-warning-600">
+                <i data-lucide="calendar" class="h-5 w-5"></i>
+              </span>
+              <span class="badge bg-warning-50 text-warning-600">Soon</span>
+            </div>
+            <p class="mt-4 text-[13px] text-ink-500">Expiring this week</p>
+            <h2 class="mt-1 text-[24px] font-semibold text-ink-900">5</h2>
+          </article>
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <div class="flex items-center justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-base bg-danger-50 text-danger-500">
+                <i data-lucide="gift" class="h-5 w-5"></i>
+              </span>
+              <span class="badge bg-surface-muted text-ink-600">Draft</span>
+            </div>
+            <p class="mt-4 text-[13px] text-ink-500">Pending campaigns</p>
+            <h2 class="mt-1 text-[24px] font-semibold text-ink-900">7</h2>
+          </article>
+        </section>
+
+        <section
+          data-list-table
+          data-list-noun="coupons"
+          class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card"
+        >
+          <div class="mb-5 flex flex-wrap items-center gap-3">
+            <label class="relative block min-w-[200px] flex-1">
+              <span class="sr-only">Search coupons</span>
+              <i
+                data-lucide="search"
+                class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+              ></i>
+              <input
+                data-list-search
+                class="h-11 w-full rounded-base border border-surface-line bg-surface-body pl-11 pr-4 text-[14px] focus:border-brand-600"
+                type="search"
+                placeholder="Search coupon name or code"
+              />
+            </label>
+            <select
+              data-list-filter
+              data-filter-key="status"
+              class="h-11 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option value="all">All status</option>
+              <option value="active">Active</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="draft">Draft</option>
+              <option value="expired">Expired</option>
+            </select>
+            <select
+              data-list-filter
+              data-filter-key="type"
+              class="h-11 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option value="all">All types</option>
+              <option value="percentage">Percentage</option>
+              <option value="fixed">Fixed amount</option>
+              <option value="shipping">Free shipping</option>
+            </select>
+            <div class="relative">
+              <button
+                type="button"
+                data-menu-toggle="cols-coupons"
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="inline-flex h-11 items-center gap-2 rounded-base border border-surface-line bg-surface-card px-4 text-[14px] font-semibold text-ink-700 transition-colors hover:bg-surface-muted"
+              >
+                <i data-lucide="sliders-horizontal" class="h-4 w-4"></i>
+                Columns
+              </button>
+              <div
+                data-menu="cols-coupons"
+                class="absolute right-0 z-20 mt-2 hidden w-48 rounded-base border border-surface-line bg-surface-card p-2 shadow-card"
+              >
+                <p class="px-2 py-1 text-[12px] font-semibold uppercase text-ink-400">Toggle columns</p>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="3" checked aria-label="Toggle Code column" /> Code
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="4" checked aria-label="Toggle Discount column" /> Discount
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="5" checked aria-label="Toggle Validity column" /> Validity
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="6" checked aria-label="Toggle Used column" /> Used
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="7" checked aria-label="Toggle Status column" /> Status
+                </label>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-bulk-delete
+              disabled
+              class="inline-flex h-11 items-center justify-center gap-2 rounded-base bg-danger-500 px-4 text-[14px] font-semibold text-white transition-colors hover:bg-danger-600 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <i data-lucide="trash-2" class="h-4 w-4"></i>
+              Delete Selected (<span data-bulk-count>0</span>)
+            </button>
+          </div>
+
+          <div class="dashboard-scrollbar overflow-x-auto">
+            <table class="w-full min-w-[1040px] text-left">
+              <thead>
+                <tr class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                  <th class="w-10 pb-3 pr-3">
+                    <input data-select-all type="checkbox" aria-label="Select all coupons" class="h-4 w-4" />
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="name" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Coupon <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">Code</th>
+                  <th class="pb-3 pr-4 font-semibold">Discount</th>
+                  <th class="pb-3 pr-4 font-semibold">Validity</th>
+                  <th class="pb-3 pr-4 font-semibold">Used</th>
+                  <th class="pb-3 pr-4 font-semibold">Status</th>
+                  <th class="pb-3 text-right font-semibold">Action</th>
+                </tr>
+              </thead>
+              <tbody data-coupon-tbody class="text-[14px]">
+                {{> components/coupon-row name="Summer Essentials" code="SUMMER25" summary="Applies to selected seasonal
+                products" discount="25% off" validity="01 Jun - 30 Jun 2026" used="318 / 500" status="active"
+                type="percentage" statusLabel="Active" statusClass="bg-success-50 text-success-600"
+                iconClass="bg-brand-50 text-brand-600"}} {{> components/coupon-row name="First Order Bonus"
+                code="WELCOME10" summary="New customers only" discount="$10 off" validity="Always active" used="1,204 /
+                2,000" status="active" type="fixed" statusLabel="Active" statusClass="bg-success-50 text-success-600"
+                iconClass="bg-success-50 text-success-600"}} {{> components/coupon-row name="Free Delivery Weekend"
+                code="SHIPFREE" summary="Cart total over $49" discount="Free shipping" validity="22 Jun - 24 Jun 2026"
+                used="88 / 300" status="scheduled" type="shipping" statusLabel="Scheduled" statusClass="bg-brand-50
+                text-brand-600" iconClass="bg-warning-50 text-warning-600"}} {{> components/coupon-row name="Bakery
+                Flash Sale" code="BAKE15" summary="Bakery category only" discount="15% off" validity="10 Jun - 20 Jun
+                2026" used="142 / 250" status="active" type="percentage" statusLabel="Active" statusClass="bg-success-50
+                text-success-600" iconClass="bg-accent-50 text-accent-700"}} {{> components/coupon-row name="Bulk
+                Grocery Deal" code="GROCERY50" summary="Minimum cart $250" discount="$50 off" validity="05 Jun - 05 Jul
+                2026" used="67 / 120" status="active" type="fixed" statusLabel="Active" statusClass="bg-success-50
+                text-success-600" iconClass="bg-brand-100 text-brand-700"}} {{> components/coupon-row name="Beauty
+                Launch" code="GLOW20" summary="Beauty collection launch campaign" discount="20% off" validity="01 Jul -
+                15 Jul 2026" used="0 / 400" status="scheduled" type="percentage" statusLabel="Scheduled"
+                statusClass="bg-brand-50 text-brand-600" iconClass="bg-danger-50 text-danger-500"}} {{>
+                components/coupon-row name="Cart Recovery" code="COMEBACK" summary="Email campaign coupon" discount="$15
+                off" validity="No end date" used="93 / 1,000" status="draft" type="fixed" statusLabel="Draft"
+                statusClass="bg-surface-muted text-ink-600" iconClass="bg-surface-muted text-ink-600"}} {{>
+                components/coupon-row name="Holiday Shipping" code="HOLIDAYSHIP" summary="Holiday campaign shipping
+                offer" discount="Free shipping" validity="01 Dec - 31 Dec 2025" used="741 / 900" status="expired"
+                type="shipping" statusLabel="Expired" statusClass="bg-warning-50 text-warning-600"
+                iconClass="bg-warning-100 text-warning-600"}}
+              </tbody>
+            </table>
+          </div>
+
+          <p data-list-empty class="hidden py-10 text-center text-[14px] text-ink-400">
+            No coupons match your search.
+          </p>
+
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-surface-line pt-4">
+            <p class="text-[13px] text-ink-500" data-list-info>Showing 8 of 8 coupons</p>
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    {{> components/confirm-modal}}
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

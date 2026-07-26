@@ -1,0 +1,521 @@
+@@include('styles.html',{
+"title": "My Account"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Account Info</h1>
+    @@include('header/package/header-style-9.html')
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-gray-100",
+    "justify-content": "justify-content-start",
+    "sectionType": "Profile",
+    "title": "Account Information"
+    })
+
+    <div class="rbt-component-area rbt-section-gap rbt-bg-color-gray-light">
+        <div class="container">
+            <div class="row row--12 mt_dec--24">
+                <div class="col-12 col-md-12 col-lg-4 col-xl-3 mt--24">
+                    @@include('common/dashboard/common-sidebar.html')
+                </div>
+                <div class="col-12 col-md-12 col-lg-8 col-xl-9 mt--24">
+                    <div class="rbt-profile-content-area">
+                        <div class="row row--12 mt_dec--24">
+                            <div class="col-12 mt--24">
+                                <div class="rbt-component-section-title rbt-gap--4 mb--0 p-0 border-0">
+                                    <h2 class="rbt-title mb--0"><span class="rbt-text-bold">Personal Information</span>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mt--20 mb--16">
+                        <div class="rbt-scrollable-content hide-scrollbar">
+                            <div class="rbt-single-info mb--24">
+                                <div
+                                    class="rbt-single-info-header d-flex justify-content-between align-items-center mb--12 pt--4">
+                                    <h2 class="h6 mb--0">Basic Info</h2>
+                                    <button class="rbt-btn rbt-btn-sm rbt-btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#basicInfoEditModal"><i
+                                            class="fa-light fa-pen-to-square mr--4"></i>Edit</button>
+                                </div>
+                                <p class="b1 rbt-text-medium mb--8">Johnson Charle</p>
+                                <p class="b1 mb--8">July 05, 1994</p>
+                                <p class="b1 mb--0">English</p>
+                            </div>
+                            <hr>
+                            <div class="rbt-single-info mb--24">
+                                <div
+                                    class="rbt-single-info-header d-flex justify-content-between align-items-center mb--12 pt--4">
+                                    <h2 class="h6 mb--0">Contact Info</h2>
+                                    <button class="rbt-btn rbt-btn-sm rbt-btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#contactInfoEditModal"><i
+                                            class="fa-light fa-pen-to-square mr--4"></i>Edit</button>
+                                </div>
+                                <p class="b1 mb--8">johnson.charle99@gmail.com</p>
+                                <p class="b1 mb--0">+800300-353-569</p>
+                            </div>
+                            <hr>
+                            <div class="rbt-single-info mb--24">
+                                <div
+                                    class="rbt-single-info-header d-flex justify-content-between align-items-center mb--12 pt--4">
+                                    <h2 class="h6 mb--0">Password</h2>
+                                    <button class="rbt-btn rbt-btn-sm rbt-btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#passwordEditModal"><i
+                                            class="fa-light fa-pen-to-square mr--4"></i>Edit</button>
+                                </div>
+                                <p class="b1 mb--8">**********</p>
+                            </div>
+                            <hr>
+                            <div class="rbt-single-info mb--24">
+                                <div
+                                    class="rbt-single-info-header d-flex justify-content-between align-items-center mb--12 pt--4">
+                                    <h2 class="h6 mb--0">Delivery Address</h2>
+                                    <button class="rbt-btn rbt-btn-sm rbt-btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#deliveryAddressEditModal"><i
+                                            class="fa-light fa-pen-to-square mr--4"></i>Edit</button>
+                                </div>
+                                <p class="b1 mb--8">Lawrence Moreno 935-9940,</p>
+                                <p class="b1 mb--0">Tortor St, Santa Rosa, USA</p>
+                            </div>
+                            <hr>
+                            <div class="rbt-single-info mb--24">
+                                <div
+                                    class="rbt-single-info-header d-flex justify-content-between align-items-center mb--12 pt--4">
+                                    <h2 class="h6 mb--0">Alternate Delivery Address</h2>
+                                    <button class="rbt-btn rbt-btn-sm rbt-btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#alternateDeliveryAddressEditModal"><i
+                                            class="fa-light fa-pen-to-square mr--4"></i>Edit</button>
+                                </div>
+                                <p class="b1 mb--8">Nyssa Vazquez 511-5762 At Rd,</p>
+                                <p class="b1 mb--0">Chelsea, USA</p>
+                            </div>
+                            <hr>
+                            <div class="rbt-single-info mb--24">
+                                <div
+                                    class="rbt-single-info-header d-flex justify-content-between align-items-center mb--12 pt--4">
+                                    <h2 class="h6 mb--0">Delete Account</h2>
+                                </div>
+                                <p class="b1 mb--8">Once you delete your account, your public profile will be
+                                    deactivated instantly. If you decide to restore it within 14 days, simply sign in
+                                    with your email and password, and we'll provide a reactivation link.</p>
+                                <button class="rbt-btn rbt-btn-sm rbt-bg-color-danger mt--16 shadow-none"><i
+                                        class="fa-regular fa-trash-can-slash mr--4"></i>Delete Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- start basic info edit modal  -->
+    <div class="rbt-default-modal modal fade has-rbt-top-folder-shape" id="basicInfoEditModal" tabindex="-1"
+        role="dialog" aria-modal="true" aria-labelledby="basicInfoEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered rbt-cart-edit-area">
+            <div class="modal-content">
+                <div class="rbt-folder-shape-right-portion">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="85" height="90" viewBox="0 0 85 90" fill="none">
+                        <path
+                            d="M0 0H11.1844C14.5695 0 17.7971 1.42971 20.0716 3.93671L82.1927 72.4059C83.9992 74.397 84.9999 76.9893 84.9999 79.6778C84.9999 85.6547 85.0001 90 85.0001 90H0V0Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="modal-header">
+                    <button type="button" class="rbt-round-btn rbt-modal-dis-btn" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rbt-top-folder-shape-wrapper">
+                    <!-- Start Component Area -->
+                    <div class="rbt-single-product-area rbt-bg-color-white rbt-content-trs-portion">
+                        <h2 class="rbt-title rbt-modal-title h5 mb--24" id="basicInfoEditModalLabel">Change basic
+                            information</h2>
+                        <form>
+                            <div class="row row--12 mt_dec--24">
+                                <div class="col-md-6 mt--24">
+                                    <label for="first_name" class="form-label">First name</label>
+                                    <input type="text" id="first_name" value="Johnson">
+                                </div>
+                                <div class="col-md-6 mt--24">
+                                    <label for="last_name" class="form-label">Last name</label>
+                                    <input type="text" id="last_name" value="Charle">
+                                </div>
+                                <div class="col-md-6 mt--24">
+                                    <label for="language" class="form-label">Language</label>
+                                    <div class="rbt-input-field-grp mb--0">
+                                        <div
+                                            class="rbt-dropdown-select filter-select rbt-modern-select rbt-bordered-style search-by-category w-100">
+                                            <select id="language" class="w-100 rbt-select-activation"
+                                                data-live-search="true" data-live-search-placeholder="Search Your City">
+                                                <option>English</option>
+                                                <option>Japanese</option>
+                                                <option>Portuguese</option>
+                                                <option>Bengali</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt--24">
+                                    <label for="birth_date" class="form-label">Birth Date</label>
+                                    <div class="input-group date rbt-date-picker-activation">
+                                        <input type="text" value="07/05/1994" class="form-control" id="birth_date" />
+                                        <span class="input-group-append">
+                                            <span class="input-group-text d-block">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex rbt-gap--16">
+                                        <button type="button"
+                                            class="rbt-btn rbt-btn-secondary rbt-btn-md rbt-square-btn mt--24"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="rbt-btn rbt-btn-md rbt-square-btn mt--24">
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End Component Area -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end basic info edit modal  -->
+
+    <!-- start contact info edit modal  -->
+    <div class="rbt-default-modal modal fade has-rbt-top-folder-shape" id="contactInfoEditModal" tabindex="-1"
+        role="dialog" aria-modal="true" aria-labelledby="contactInfoEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered rbt-cart-edit-area">
+            <div class="modal-content">
+                <div class="rbt-folder-shape-right-portion">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="85" height="90" viewBox="0 0 85 90" fill="none">
+                        <path
+                            d="M0 0H11.1844C14.5695 0 17.7971 1.42971 20.0716 3.93671L82.1927 72.4059C83.9992 74.397 84.9999 76.9893 84.9999 79.6778C84.9999 85.6547 85.0001 90 85.0001 90H0V0Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="modal-header">
+                    <button type="button" class="rbt-round-btn rbt-modal-dis-btn" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rbt-top-folder-shape-wrapper">
+                    <!-- Start Component Area -->
+                    <div class="rbt-single-product-area rbt-bg-color-white rbt-content-trs-portion">
+                        <h2 class="rbt-title rbt-modal-title h5 mb--24" id="contactInfoEditModalLabel">Change contact
+                            information</h2>
+                        <form>
+                            <div class="row row--12 mt_dec--24">
+                                <div class="col-md-6 mt--24">
+                                    <label for="edit_email" class="form-label">Email Address</label>
+                                    <input type="text" id="edit_email" value="johnson.charle99@gmail.com">
+                                </div>
+                                <div class="col-md-6 mt--24">
+                                    <label for="phone_number" class="form-label">Phone Number</label>
+                                    <input type="text" id="phone_number" value="+800300-353-569">
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex rbt-gap--16">
+                                        <button type="button"
+                                            class="rbt-btn rbt-btn-secondary rbt-btn-md rbt-square-btn mt--24"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="rbt-btn rbt-btn-md rbt-square-btn mt--24">
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End Component Area -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end contact info edit modal  -->
+
+    <!-- start password change modal  -->
+    <div class="rbt-default-modal modal fade has-rbt-top-folder-shape" id="passwordEditModal" tabindex="-1"
+        role="dialog" aria-modal="true" aria-labelledby="passwordEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered rbt-cart-edit-area">
+            <div class="modal-content">
+                <div class="rbt-folder-shape-right-portion">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="85" height="90" viewBox="0 0 85 90" fill="none">
+                        <path
+                            d="M0 0H11.1844C14.5695 0 17.7971 1.42971 20.0716 3.93671L82.1927 72.4059C83.9992 74.397 84.9999 76.9893 84.9999 79.6778C84.9999 85.6547 85.0001 90 85.0001 90H0V0Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="modal-header">
+                    <button type="button" class="rbt-round-btn rbt-modal-dis-btn" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rbt-top-folder-shape-wrapper">
+                    <!-- Start Component Area -->
+                    <div class="rbt-single-product-area rbt-bg-color-white rbt-content-trs-portion">
+                        <h2 class="rbt-title rbt-modal-title h5 mb--24" id="passwordEditModalLabel">Change password</h2>
+                        <form>
+                            <div class="row row--12 mt_dec--24">
+                                <div class="col-md-6 mt--24">
+                                    <label for="curent_password" class="form-label">Current password</label>
+                                    <input type="password" id="curent_password" placeholder="Enter current password">
+                                </div>
+                                <div class="col-md-6 mt--24">
+                                    <label for="new_password" class="form-label">New password</label>
+                                    <input type="password" id="new_password" placeholder="Enter new password">
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex rbt-gap--16">
+                                        <button type="button"
+                                            class="rbt-btn rbt-btn-secondary rbt-btn-md rbt-square-btn mt--24"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="rbt-btn rbt-btn-md rbt-square-btn mt--24">
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End Component Area -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end password change modal  -->
+
+    <!-- start delivery address edit modal  -->
+    <div class="rbt-default-modal modal fade has-rbt-top-folder-shape" id="deliveryAddressEditModal" tabindex="-1"
+        role="dialog" aria-modal="true" aria-labelledby="deliveryAddressEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered rbt-cart-edit-area">
+            <div class="modal-content">
+                <div class="rbt-folder-shape-right-portion">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="85" height="90" viewBox="0 0 85 90" fill="none">
+                        <path
+                            d="M0 0H11.1844C14.5695 0 17.7971 1.42971 20.0716 3.93671L82.1927 72.4059C83.9992 74.397 84.9999 76.9893 84.9999 79.6778C84.9999 85.6547 85.0001 90 85.0001 90H0V0Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="modal-header">
+                    <button type="button" class="rbt-round-btn rbt-modal-dis-btn" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rbt-top-folder-shape-wrapper">
+                    <!-- Start Component Area -->
+                    <div class="rbt-single-product-area rbt-bg-color-white rbt-content-trs-portion">
+                        <h2 class="rbt-title rbt-modal-title h5 mb--24" id="deliveryAddressEditModalLabel">Change
+                            delivery
+                            address</h2>
+                        <form>
+                            <div class="row row--12 mt_dec--24">
+                                <div class="col-md-6 mt--24">
+                                    <label for="delivery_country" class="form-label">Country</label>
+                                    <div class="rbt-input-field-grp mb--0">
+                                        <div
+                                            class="rbt-dropdown-select filter-select rbt-modern-select rbt-bordered-style search-by-category w-100">
+                                            <select id="delivery_country" class="w-100 rbt-select-activation"
+                                                data-live-search="true" data-live-search-placeholder="Search Country">
+                                                <option>United States</option>
+                                                <option>United Kingdom</option>
+                                                <option>Nigeria</option>
+                                                <option>South Africa</option>
+                                                <option>Kenya</option>
+                                                <option>Egypt</option>
+                                                <option>Ethiopia</option>
+                                                <option>China</option>
+                                                <option>India</option>
+                                                <option>Japan</option>
+                                                <option>South Korea</option>
+                                                <option>Saudi Arabia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt--24">
+                                    <label for="delivery_city" class="form-label">City</label>
+                                    <div class="rbt-input-field-grp mb--0">
+                                        <div
+                                            class="rbt-dropdown-select filter-select rbt-modern-select rbt-bordered-style search-by-category w-100">
+                                            <select id="delivery_city" class="w-100 rbt-select-activation"
+                                                data-live-search="true" data-live-search-placeholder="Search City">
+                                                <option>Santa Rosa</option>
+                                                <option>Chelsea</option>
+                                                <option>Austin</option>
+                                                <option>Charlotte</option>
+                                                <option>Chicago</option>
+                                                <option>Columbus</option>
+                                                <option>Dallas</option>
+                                                <option>Houston</option>
+                                                <option>Jacksonville</option>
+                                                <option>Los Angeles</option>
+                                                <option>New York</option>
+                                                <option>Orlando</option>
+                                                <option>Philadelphia</option>
+                                                <option>Phoenix</option>
+                                                <option>San Antonio</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt--24">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" id="address" value="Tortor St, Santa Rosa, USA">
+                                </div>
+                                <div class="col-md-6 mt--24">
+                                    <label for="zip_code" class="form-label">ZIP code</label>
+                                    <input type="text" id="zip_code" value="935-9940">
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex rbt-gap--16">
+                                        <button type="button"
+                                            class="rbt-btn rbt-btn-secondary rbt-btn-md rbt-square-btn mt--24"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="rbt-btn rbt-btn-md rbt-square-btn mt--24">
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End Component Area -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end delivery address edit modal  -->
+
+    <!-- start alternate delivery address edit modal  -->
+    <div class="rbt-default-modal modal fade has-rbt-top-folder-shape" id="alternateDeliveryAddressEditModal"
+        tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="alternateDeliveryAddressEditModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered rbt-cart-edit-area">
+            <div class="modal-content">
+                <div class="rbt-folder-shape-right-portion">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="85" height="90" viewBox="0 0 85 90" fill="none">
+                        <path
+                            d="M0 0H11.1844C14.5695 0 17.7971 1.42971 20.0716 3.93671L82.1927 72.4059C83.9992 74.397 84.9999 76.9893 84.9999 79.6778C84.9999 85.6547 85.0001 90 85.0001 90H0V0Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="modal-header">
+                    <button type="button" class="rbt-round-btn rbt-modal-dis-btn" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="rbt-top-folder-shape-wrapper">
+                    <!-- Start Component Area -->
+                    <h2 class="rbt-title rbt-modal-title h5 mb--24" id="alternateDeliveryAddressEditModalLabel">Change
+                        alternative delivery address</h2>
+                    <form>
+                        <div class="row row--12 mt_dec--24">
+                            <div class="col-md-6 mt--24">
+                                <label for="alt_country" class="form-label">Country</label>
+                                <div class="rbt-input-field-grp mb--0">
+                                    <div
+                                        class="rbt-dropdown-select filter-select rbt-modern-select rbt-bordered-style search-by-category w-100">
+                                        <select id="alt_country" class="w-100 rbt-select-activation"
+                                            data-live-search="true" data-live-search-placeholder="Search Country">
+                                            <option>United States</option>
+                                            <option>United Kingdom</option>
+                                            <option>Nigeria</option>
+                                            <option>South Africa</option>
+                                            <option>Kenya</option>
+                                            <option>Egypt</option>
+                                            <option>Ethiopia</option>
+                                            <option>China</option>
+                                            <option>India</option>
+                                            <option>Japan</option>
+                                            <option>South Korea</option>
+                                            <option>Saudi Arabia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt--24">
+                                <label for="alt_city" class="form-label">City</label>
+                                <div class="rbt-input-field-grp mb--0">
+                                    <div
+                                        class="rbt-dropdown-select filter-select rbt-modern-select rbt-bordered-style search-by-category w-100">
+                                        <select id="alt_city" class="w-100 rbt-select-activation"
+                                            data-live-search="true" data-live-search-placeholder="Search City">
+                                            <option>Chelsea</option>
+                                            <option>Santa Rosa</option>
+                                            <option>Austin</option>
+                                            <option>Charlotte</option>
+                                            <option>Chicago</option>
+                                            <option>Columbus</option>
+                                            <option>Dallas</option>
+                                            <option>Houston</option>
+                                            <option>Jacksonville</option>
+                                            <option>Los Angeles</option>
+                                            <option>New York</option>
+                                            <option>Orlando</option>
+                                            <option>Philadelphia</option>
+                                            <option>Phoenix</option>
+                                            <option>San Antonio</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt--24">
+                                <label for="alt_address" class="form-label">Address</label>
+                                <input type="text" id="alt_address" value="Nyssa Vazquez">
+                            </div>
+                            <div class="col-md-6 mt--24">
+                                <label for="alt_zip_code" class="form-label">ZIP code</label>
+                                <input type="text" id="alt_zip_code" value="511-5762">
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex rbt-gap--16">
+                                    <button type="button"
+                                        class="rbt-btn rbt-btn-secondary rbt-btn-md rbt-square-btn mt--24"
+                                        data-bs-dismiss="modal" aria-label="Close">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="rbt-btn rbt-btn-md rbt-square-btn mt--24">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- End Component Area -->
+            </div>
+        </div>
+    </div>
+    <!-- end alternate delivery address edit modal  -->
+
+    @@include('modals/added-comparison-popup.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/quickviewRestockModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('common/dashboard/review-offcanvas.html')
+    @@include('footer/footerSeven.html')
+    @@include('scripts.html')
+</body>
+
+</html>

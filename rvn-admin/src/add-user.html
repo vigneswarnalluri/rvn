@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Add User"}}
+  <body data-page="add-user" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6">
+          <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Users</p>
+          <h1 class="text-[24px] font-semibold text-ink-900">Add User</h1>
+          <p class="mt-1 text-[14px] text-ink-500">Create an admin, staff, or customer profile.</p>
+        </div>
+
+        <form id="add-user-form" class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_280px]">
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <h2 class="mb-5 text-[17px] font-semibold text-ink-900">Profile Information</h2>
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="block">
+                <span class="text-[13px] font-semibold text-ink-700"
+                  >Full Name <span class="text-danger-500">*</span></span
+                >
+                <input
+                  required
+                  name="name"
+                  placeholder="Jane Cooper"
+                  class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                />
+              </label>
+              <label class="block">
+                <span class="text-[13px] font-semibold text-ink-700">Email <span class="text-danger-500">*</span></span>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  placeholder="jane@example.com"
+                  class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                />
+              </label>
+              <label class="block">
+                <span class="text-[13px] font-semibold text-ink-700">Phone</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+1 555 0142"
+                  class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-body px-3 text-[14px] focus:border-brand-600"
+                />
+              </label>
+              <label class="block">
+                <span class="text-[13px] font-semibold text-ink-700">Role</span>
+                <select
+                  name="role"
+                  class="mt-1.5 h-11 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+                >
+                  <option>Customer</option>
+                  <option>Store Manager</option>
+                  <option>Support Agent</option>
+                  <option>Administrator</option>
+                </select>
+              </label>
+              <label class="block md:col-span-2">
+                <span class="text-[13px] font-semibold text-ink-700">Address</span>
+                <textarea
+                  rows="4"
+                  name="address"
+                  class="mt-1.5 min-h-[110px] w-full resize-y rounded-base border border-surface-line bg-surface-body px-3 py-3 text-[14px] text-ink-700 focus:border-brand-600"
+                ></textarea>
+              </label>
+            </div>
+          </article>
+
+          <aside class="space-y-5">
+            <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+              <h3 class="mb-3 text-[15px] font-semibold text-ink-900">Account Status</h3>
+              <select
+                class="h-11 w-full rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+              >
+                <option>Active</option>
+                <option>Pending invite</option>
+                <option>Suspended</option>
+              </select>
+            </article>
+            <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+              <h3 class="mb-3 text-[15px] font-semibold text-ink-900">Invite</h3>
+              <label class="flex items-center gap-2 text-[13px] font-semibold text-ink-700">
+                <input
+                  type="checkbox"
+                  checked
+                  class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+                />
+                Send welcome email
+              </label>
+            </article>
+          </aside>
+        </form>
+
+        <div class="mt-8 flex items-center justify-end gap-3 border-t border-surface-line pt-5">
+          <a
+            href="/customers.html"
+            class="inline-flex h-11 items-center rounded-base border border-surface-line px-5 text-[14px] font-semibold text-ink-700 hover:bg-surface-muted"
+            >Cancel</a
+          >
+          <button
+            type="submit"
+            form="add-user-form"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-5 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="save" class="h-4 w-4"></i>
+            Save Changes
+          </button>
+        </div>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

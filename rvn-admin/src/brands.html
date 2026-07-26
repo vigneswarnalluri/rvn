@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Brands"}}
+  <body data-page="brands" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Catalog</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Brands</h1>
+            <p class="mt-1 text-[14px] text-ink-500">
+              Manage product brands, storefront visibility, and brand merchandising details.
+            </p>
+          </div>
+          <a
+            href="/add-brand.html"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="plus" class="h-4 w-4"></i>
+            Add Brand
+          </a>
+        </div>
+
+        <section class="mb-6 rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+          <div class="flex items-center justify-between gap-3">
+            <h2 class="text-[20px] font-medium text-ink-900">Brand Showcase</h2>
+            <div class="flex items-center gap-1.5">
+              <button
+                type="button"
+                data-brand-prev
+                aria-label="Previous brands"
+                class="grid h-8 w-8 place-items-center rounded-full border border-surface-line text-ink-500 transition-colors hover:bg-surface-muted hover:text-ink-900 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-ink-500"
+              >
+                <i data-lucide="chevron-left" class="h-4 w-4"></i>
+              </button>
+              <button
+                type="button"
+                data-brand-next
+                aria-label="Next brands"
+                class="grid h-8 w-8 place-items-center rounded-full border border-surface-line text-ink-500 transition-colors hover:bg-surface-muted hover:text-ink-900 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-ink-500"
+              >
+                <i data-lucide="chevron-right" class="h-4 w-4"></i>
+              </button>
+            </div>
+          </div>
+          <div data-brand-scroll class="no-scrollbar mt-5 flex flex-nowrap gap-5 overflow-x-auto pb-2">
+            {{> components/brand-tile initials="AA" label="Acme Audio" logoClass="bg-brand-50 text-brand-600"}} {{>
+            components/brand-tile initials="FF" label="FreshFarm" logoClass="bg-success-50 text-success-600"}} {{>
+            components/brand-tile initials="UW" label="UrbanWear" logoClass="bg-accent-50 text-accent-700"}} {{>
+            components/brand-tile initials="HH" label="HomeHaven" logoClass="bg-warning-50 text-warning-600"}} {{>
+            components/brand-tile initials="GC" label="GlowCare" logoClass="bg-danger-50 text-danger-500"}} {{>
+            components/brand-tile initials="TN" label="TechNova" logoClass="bg-surface-muted text-ink-600"}} {{>
+            components/brand-tile initials="FT" label="FitFuel" logoClass="bg-brand-100 text-brand-700"}} {{>
+            components/brand-tile initials="PN" label="PetNest" logoClass="bg-success-100 text-success-700"}} {{>
+            components/brand-tile initials="PD" label="PureDairy" logoClass="bg-warning-100 text-warning-600"}} {{>
+            components/brand-tile initials="DB" label="DailyBake" logoClass="bg-accent-100 text-accent-700"}} {{>
+            components/brand-tile initials="GL" label="GreenLeaf" logoClass="bg-success-50 text-success-600"}} {{>
+            components/brand-tile initials="NK" label="NovaKids" logoClass="bg-brand-50 text-brand-600"}}
+          </div>
+        </section>
+
+        <section
+          data-list-table
+          data-list-noun="brands"
+          class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card"
+        >
+          <div class="mb-5 flex flex-wrap items-center gap-3">
+            <label class="relative block min-w-[200px] flex-1">
+              <span class="sr-only">Search brands</span>
+              <i
+                data-lucide="search"
+                class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+              ></i>
+              <input
+                data-list-search
+                class="h-11 w-full rounded-base border border-surface-line bg-surface-body pl-11 pr-4 text-[14px] focus:border-brand-600"
+                type="search"
+                placeholder="Search brands"
+              />
+            </label>
+            <select
+              data-list-filter
+              class="h-11 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option value="all">All status</option>
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+              <option value="archived">Archived</option>
+            </select>
+            <div class="relative">
+              <button
+                type="button"
+                data-menu-toggle="cols-brands"
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="inline-flex h-11 items-center gap-2 rounded-base border border-surface-line bg-surface-card px-4 text-[14px] font-semibold text-ink-700 transition-colors hover:bg-surface-muted"
+              >
+                <i data-lucide="sliders-horizontal" class="h-4 w-4"></i>
+                Columns
+              </button>
+              <div
+                data-menu="cols-brands"
+                class="absolute right-0 z-20 mt-2 hidden w-48 rounded-base border border-surface-line bg-surface-card p-2 shadow-card"
+              >
+                <p class="px-2 py-1 text-[12px] font-semibold uppercase text-ink-400">Toggle columns</p>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="3" checked aria-label="Toggle Slug column" /> Slug
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="4" checked aria-label="Toggle Products column" /> Products
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="5" checked aria-label="Toggle Visibility column" /> Visibility
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="6" checked aria-label="Toggle Status column" /> Status
+                </label>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-bulk-delete
+              disabled
+              class="inline-flex h-11 items-center justify-center gap-2 rounded-base bg-danger-500 px-4 text-[14px] font-semibold text-white transition-colors hover:bg-danger-600 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <i data-lucide="trash-2" class="h-4 w-4"></i>
+              Delete Selected (<span data-bulk-count>0</span>)
+            </button>
+          </div>
+
+          <div class="dashboard-scrollbar overflow-x-auto">
+            <table class="w-full min-w-[920px] text-left">
+              <thead>
+                <tr class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                  <th class="w-10 pb-3 pr-3">
+                    <input data-select-all type="checkbox" aria-label="Select all brands" class="h-4 w-4" />
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="name" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Brand <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">Slug</th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="count" data-sort-type="num" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Products <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">Visibility</th>
+                  <th class="pb-3 pr-4 font-semibold">Status</th>
+                  <th class="pb-3 text-right font-semibold">Action</th>
+                </tr>
+              </thead>
+              <tbody data-brand-tbody class="text-[14px]">
+                {{> components/brand-row initials="AA" name="Acme Audio" website="acmeaudio.com" slug="acme-audio"
+                count="42" visibility="Featured" status="published" statusLabel="Published" statusClass="bg-success-50
+                text-success-600" logoClass="bg-brand-50 text-brand-600"}} {{> components/brand-row initials="FF"
+                name="FreshFarm" website="freshfarm.co" slug="freshfarm" count="28" visibility="Featured"
+                status="published" statusLabel="Published" statusClass="bg-success-50 text-success-600"
+                logoClass="bg-success-50 text-success-600"}} {{> components/brand-row initials="UW" name="UrbanWear"
+                website="urbanwear.shop" slug="urbanwear" count="35" visibility="Standard" status="published"
+                statusLabel="Published" statusClass="bg-success-50 text-success-600" logoClass="bg-accent-50
+                text-accent-700"}} {{> components/brand-row initials="HH" name="HomeHaven" website="homehaven.store"
+                slug="homehaven" count="21" visibility="Standard" status="published" statusLabel="Published"
+                statusClass="bg-success-50 text-success-600" logoClass="bg-warning-50 text-warning-600"}} {{>
+                components/brand-row initials="GC" name="GlowCare" website="glowcare.com" slug="glowcare" count="18"
+                visibility="Featured" status="draft" statusLabel="Draft" statusClass="bg-surface-muted text-ink-600"
+                logoClass="bg-danger-50 text-danger-500"}} {{> components/brand-row initials="TN" name="TechNova"
+                website="technova.dev" slug="technova" count="56" visibility="Featured" status="published"
+                statusLabel="Published" statusClass="bg-success-50 text-success-600" logoClass="bg-surface-muted
+                text-ink-600"}} {{> components/brand-row initials="FT" name="FitFuel" website="fitfuel.life"
+                slug="fitfuel" count="16" visibility="Standard" status="draft" statusLabel="Draft"
+                statusClass="bg-surface-muted text-ink-600" logoClass="bg-brand-100 text-brand-700"}} {{>
+                components/brand-row initials="PN" name="PetNest" website="petnest.shop" slug="petnest" count="12"
+                visibility="Standard" status="published" statusLabel="Published" statusClass="bg-success-50
+                text-success-600" logoClass="bg-success-100 text-success-700"}} {{> components/brand-row initials="PD"
+                name="PureDairy" website="puredairy.co" slug="puredairy" count="24" visibility="Hidden"
+                status="archived" statusLabel="Archived" statusClass="bg-warning-50 text-warning-600"
+                logoClass="bg-warning-100 text-warning-600"}} {{> components/brand-row initials="DB" name="DailyBake"
+                website="dailybake.store" slug="dailybake" count="31" visibility="Standard" status="published"
+                statusLabel="Published" statusClass="bg-success-50 text-success-600" logoClass="bg-accent-100
+                text-accent-700"}} {{> components/brand-row initials="GL" name="GreenLeaf" website="greenleaf.market"
+                slug="greenleaf" count="27" visibility="Featured" status="published" statusLabel="Published"
+                statusClass="bg-success-50 text-success-600" logoClass="bg-success-50 text-success-600"}} {{>
+                components/brand-row initials="NK" name="NovaKids" website="novakids.shop" slug="novakids" count="14"
+                visibility="Standard" status="draft" statusLabel="Draft" statusClass="bg-surface-muted text-ink-600"
+                logoClass="bg-brand-50 text-brand-600"}}
+              </tbody>
+            </table>
+          </div>
+
+          <p data-list-empty class="hidden py-10 text-center text-[14px] text-ink-400">No brands match your search.</p>
+
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-surface-line pt-4">
+            <p class="text-[13px] text-ink-500" data-list-info>Showing 12 of 12 brands</p>
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    {{> components/confirm-modal}}
+
+    <script type="module" src="/scripts/main.js"></script>
+    <script type="module">
+      (function () {
+        'use strict';
+
+        const brandsJs = {
+          _scroll: null,
+          _prev: null,
+          _next: null,
+
+          i: function () {
+            brandsJs.d();
+            brandsJs.methods();
+          },
+
+          d: function () {
+            this._scroll = document.querySelector('[data-brand-scroll]');
+            this._prev = document.querySelector('[data-brand-prev]');
+            this._next = document.querySelector('[data-brand-next]');
+          },
+
+          methods: function () {
+            brandsJs.slider();
+          },
+
+          slider: function () {
+            const scroll = brandsJs._scroll;
+            if (!scroll) return;
+            const step = () => Math.max(scroll.clientWidth * 0.8, 200);
+
+            function smoothScrollTo(target) {
+              const max = scroll.scrollWidth - scroll.clientWidth;
+              scroll.scrollTo({ left: Math.max(0, Math.min(max, target)), behavior: 'smooth' });
+            }
+
+            function updateArrows() {
+              const max = scroll.scrollWidth - scroll.clientWidth - 2;
+              if (brandsJs._prev) brandsJs._prev.disabled = scroll.scrollLeft <= 0;
+              if (brandsJs._next) brandsJs._next.disabled = scroll.scrollLeft >= max;
+            }
+
+            brandsJs._prev?.addEventListener('click', () => smoothScrollTo(scroll.scrollLeft - step()));
+            brandsJs._next?.addEventListener('click', () => smoothScrollTo(scroll.scrollLeft + step()));
+            scroll.addEventListener('scroll', updateArrows, { passive: true });
+            window.addEventListener('resize', updateArrows);
+            window.addEventListener('load', updateArrows);
+            updateArrows();
+          },
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', brandsJs.i);
+        } else {
+          brandsJs.i();
+        }
+      })();
+    </script>
+  </body>
+</html>

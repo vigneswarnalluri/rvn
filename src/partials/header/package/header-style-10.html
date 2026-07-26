@@ -1,0 +1,26 @@
+<header class="rbt-header rbt-header-10 @@rbtHeaderTransparancy">
+
+    @@include('header/header-main/header10.html', {
+        "stickyActivation": "rbt-header-sticky-activation",
+        "logo": "logo.webp",
+        "transparent": "header-not-transparent header-sticky",
+        "gapSpaceBetween": "header-space-between",
+        "container": "wrapper plr--48 plr_lg--20 plr_md--20 plr_sm--16",
+    })
+    @@include('header/headerMid/headerMid-9.html', {
+        "bgColor": "rbt-bg-color-white",
+        "container": "wrapper plr--48 plr_lg--20 plr_md--20 plr_sm--16",
+    })
+    @@include('header/header-search/search-header-one.html')
+    @@include('header/sticky-header/commonSticky-header.html', {
+        "logo": "logo.webp",
+        "gapSpaceBetween": "justify-content-between",
+        "bgColor": "rbt-bg-color-white",
+        "container": "container",
+    })
+</header>
+
+@@include('header/navStyles/mobilemenu.html')
+@@include('header/offcanvas/cart-offcanvas.html')
+@@include('header/offcanvas/category-offcanvas.html')
+

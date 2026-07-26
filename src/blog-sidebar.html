@@ -1,0 +1,57 @@
+@@include('styles.html',{
+"title": "Blog Sidebar"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Blog Sidebar</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-two-variationOne.html', {
+    "bg-color": "rbt-bg-color-gray-light",
+    "justify-content": "justify-content-start",
+    "title": "Blog Sidebar"
+    })
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-blog-post-card-area rbt-bg-color-gray-light rbt-section-gap3Top rbt-section-gap2Bottom">
+        <div class="container">
+            <div class="row row--12">
+                <div class="col-xl-9">
+                    @@include('common/blog-post/blog-post-grid-combo.html')
+                    <!-- Start Pagination -->
+                    <div class="rbt-pagination-area mt--40">
+                        <div class="row">
+                            <div class="col-12">
+                                @@include('common/pagination-styles/pagination-02.html')
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Pagination -->
+                </div>
+                <div class="col-xl-3">
+                    @@include('sidebar/blog-post-sidebar.html')
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+
+        
+    @@include('modals/notifyModal.html')
+    @@include('header/offcanvas/comparison.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/quickviewModal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/addedcartModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+</html>

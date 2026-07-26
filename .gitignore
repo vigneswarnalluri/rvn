@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+server/node_modules/
+rvn-admin/node_modules/
+
+# Environment Variables & Local Secrets
+.env
+server/.env
+
+# Local Databases
+*.db
+server/*.db
+
+# Build Outputs
+dist/
+dest/
+rvn-admin/dist/
+.vercel/
+
+# Logs & System Files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

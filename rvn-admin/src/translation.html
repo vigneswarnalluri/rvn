@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Translation"}}
+  <body data-page="translation" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Localization</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Translation</h1>
+            <p class="mt-1 text-[14px] text-ink-500">Track storefront language coverage and translation progress.</p>
+          </div>
+          <button type="button"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="plus" class="h-4 w-4"></i>
+            Add Language
+          </button>
+        </div>
+
+        <section class="grid gap-4 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <aside class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <h2 class="mb-4 text-[17px] font-semibold text-ink-900">Languages</h2>
+            <div class="space-y-2">
+              <button type="button"
+                class="flex w-full items-center justify-between rounded-base bg-brand-50 px-3 py-2 text-left text-[14px] font-semibold text-brand-600"
+              >
+                English <span>100%</span>
+              </button>
+              <button type="button"
+                class="flex w-full items-center justify-between rounded-base px-3 py-2 text-left text-[14px] text-ink-700 hover:bg-surface-muted"
+              >
+                Bangla <span class="text-ink-400">72%</span>
+              </button>
+              <button type="button"
+                class="flex w-full items-center justify-between rounded-base px-3 py-2 text-left text-[14px] text-ink-700 hover:bg-surface-muted"
+              >
+                Arabic <span class="text-ink-400">48%</span>
+              </button>
+            </div>
+          </aside>
+
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+              <h2 class="text-[17px] font-semibold text-ink-900">Translation Keys</h2>
+              <label class="relative block min-w-[220px]">
+                <span class="sr-only">Search translation keys</span>
+                <i
+                  data-lucide="search"
+                  class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+                ></i>
+                <input
+                  placeholder="Search keys"
+                  class="h-10 w-full rounded-base border border-surface-line bg-surface-body pl-10 pr-3 text-[14px] focus:border-brand-600"
+                />
+              </label>
+            </div>
+            <div class="dashboard-scrollbar overflow-x-auto">
+              <table class="w-full min-w-[680px] text-left text-[14px]">
+                <thead class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                  <tr>
+                    <th class="pb-3 pr-4 font-semibold">Key</th>
+                    <th class="pb-3 pr-4 font-semibold">English</th>
+                    <th class="pb-3 pr-4 font-semibold">Bangla</th>
+                    <th class="pb-3 font-semibold">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-surface-line">
+                    <td class="py-4 pr-4 font-semibold text-ink-900">nav.products</td>
+                    <td class="py-4 pr-4 text-ink-700">Products</td>
+                    <td class="py-4 pr-4 text-ink-700">Ponno</td>
+                    <td class="py-4"><span class="badge bg-success-50 text-success-600">Done</span></td>
+                  </tr>
+                  <tr class="border-b border-surface-line">
+                    <td class="py-4 pr-4 font-semibold text-ink-900">checkout.total</td>
+                    <td class="py-4 pr-4 text-ink-700">Total</td>
+                    <td class="py-4 pr-4 text-ink-400">Missing</td>
+                    <td class="py-4"><span class="badge bg-warning-50 text-warning-600">Review</span></td>
+                  </tr>
+                  <tr>
+                    <td class="py-4 pr-4 font-semibold text-ink-900">coupon.apply</td>
+                    <td class="py-4 pr-4 text-ink-700">Apply coupon</td>
+                    <td class="py-4 pr-4 text-ink-400">Missing</td>
+                    <td class="py-4"><span class="badge bg-surface-muted text-ink-600">Draft</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

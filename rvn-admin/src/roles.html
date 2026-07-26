@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Roles"}}
+  <body data-page="roles" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Access Control</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Roles</h1>
+            <p class="mt-1 text-[14px] text-ink-500">Control dashboard permissions for admins and staff members.</p>
+          </div>
+          <a
+            href="/create-role.html"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="plus" class="h-4 w-4"></i>
+            Create Role
+          </a>
+        </div>
+
+        <section
+          data-list-table
+          data-list-noun="roles"
+          class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card"
+        >
+          <div class="mb-5 flex flex-wrap items-center gap-3">
+            <label class="relative block min-w-[220px] flex-1">
+              <span class="sr-only">Search roles</span>
+              <i
+                data-lucide="search"
+                class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+              ></i>
+              <input
+                data-list-search
+                type="search"
+                placeholder="Search roles"
+                class="h-11 w-full rounded-base border border-surface-line bg-surface-body pl-11 pr-4 text-[14px] focus:border-brand-600"
+              />
+            </label>
+            <select
+              data-list-filter
+              class="h-11 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option value="all">All status</option>
+              <option value="active">Active</option>
+              <option value="draft">Draft</option>
+            </select>
+            <div class="relative">
+              <button
+                type="button"
+                data-menu-toggle="cols-roles"
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="inline-flex h-11 items-center gap-2 rounded-base border border-surface-line bg-surface-card px-4 text-[14px] font-semibold text-ink-700 transition-colors hover:bg-surface-muted"
+              >
+                <i data-lucide="sliders-horizontal" class="h-4 w-4"></i>
+                Columns
+              </button>
+              <div
+                data-menu="cols-roles"
+                class="absolute right-0 z-20 mt-2 hidden w-48 rounded-base border border-surface-line bg-surface-card p-2 shadow-card"
+              >
+                <p class="px-2 py-1 text-[12px] font-semibold uppercase text-ink-400">Toggle columns</p>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="3" checked aria-label="Toggle Users column" /> Users
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="4" checked aria-label="Toggle Permissions column" /> Permissions
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="5" checked aria-label="Toggle Status column" /> Status
+                </label>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-bulk-delete
+              disabled
+              class="inline-flex h-11 items-center justify-center gap-2 rounded-base bg-danger-500 px-4 text-[14px] font-semibold text-white transition-colors hover:bg-danger-600 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <i data-lucide="trash-2" class="h-4 w-4"></i>
+              Delete Selected (<span data-bulk-count>0</span>)
+            </button>
+          </div>
+
+          <div class="dashboard-scrollbar overflow-x-auto">
+            <table class="w-full min-w-[820px] text-left">
+              <thead>
+                <tr class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                  <th class="w-10 pb-3 pr-3">
+                    <input data-select-all type="checkbox" aria-label="Select all roles" class="h-4 w-4" />
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="name" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Role <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">Users</th>
+                  <th class="pb-3 pr-4 font-semibold">Permissions</th>
+                  <th class="pb-3 pr-4 font-semibold">Status</th>
+                  <th class="pb-3 text-right font-semibold">Action</th>
+                </tr>
+              </thead>
+              <tbody class="text-[14px]">
+                <tr data-name="Administrator" data-status="active" class="border-b border-surface-line hover:bg-surface-body/70">
+                  <td class="py-4 pr-3">
+                    <input data-row-select type="checkbox" aria-label="Select Administrator" class="h-4 w-4" />
+                  </td>
+                  <td class="py-4 pr-4 font-semibold text-ink-900">Administrator</td>
+                  <td class="py-4 pr-4 text-ink-700">4 users</td>
+                  <td class="py-4 pr-4 text-ink-500">Full access</td>
+                  <td class="py-4 pr-4"><span class="badge bg-success-50 text-success-600">Active</span></td>
+                  <td class="py-4 text-right">
+                    <a
+                      href="/create-role.html"
+                      class="icon-button hover:bg-brand-50 hover:text-brand-600"
+                      aria-label="Edit role"
+                      ><i data-lucide="pencil" class="h-4 w-4"></i
+                    ></a>
+                  </td>
+                </tr>
+                <tr data-name="Store Manager" data-status="active" class="border-b border-surface-line hover:bg-surface-body/70">
+                  <td class="py-4 pr-3">
+                    <input data-row-select type="checkbox" aria-label="Select Store Manager" class="h-4 w-4" />
+                  </td>
+                  <td class="py-4 pr-4 font-semibold text-ink-900">Store Manager</td>
+                  <td class="py-4 pr-4 text-ink-700">12 users</td>
+                  <td class="py-4 pr-4 text-ink-500">Products, orders, coupons</td>
+                  <td class="py-4 pr-4"><span class="badge bg-success-50 text-success-600">Active</span></td>
+                  <td class="py-4 text-right">
+                    <a
+                      href="/create-role.html"
+                      class="icon-button hover:bg-brand-50 hover:text-brand-600"
+                      aria-label="Edit role"
+                      ><i data-lucide="pencil" class="h-4 w-4"></i
+                    ></a>
+                  </td>
+                </tr>
+                <tr data-name="Support Agent" data-status="draft" class="hover:bg-surface-body/70">
+                  <td class="py-4 pr-3">
+                    <input data-row-select type="checkbox" aria-label="Select Support Agent" class="h-4 w-4" />
+                  </td>
+                  <td class="py-4 pr-4 font-semibold text-ink-900">Support Agent</td>
+                  <td class="py-4 pr-4 text-ink-700">8 users</td>
+                  <td class="py-4 pr-4 text-ink-500">Customers, tickets, orders</td>
+                  <td class="py-4 pr-4"><span class="badge bg-surface-muted text-ink-600">Draft</span></td>
+                  <td class="py-4 text-right">
+                    <a
+                      href="/create-role.html"
+                      class="icon-button hover:bg-brand-50 hover:text-brand-600"
+                      aria-label="Edit role"
+                      ><i data-lucide="pencil" class="h-4 w-4"></i
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p data-list-empty class="hidden py-10 text-center text-[14px] text-ink-400">No roles match your search.</p>
+
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-surface-line pt-4">
+            <p class="text-[13px] text-ink-500" data-list-info>Showing 3 of 3 roles</p>
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    {{> components/confirm-modal}}
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

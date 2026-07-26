@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Notifications"}}
+  <body data-page="notifications" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Settings</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Notifications</h1>
+            <p class="mt-1 text-[14px] text-ink-500">
+              Control admin alerts for orders, security, promotions, and product feedback.
+            </p>
+          </div>
+          <button type="button"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="save" class="h-4 w-4"></i>
+            Save Changes
+          </button>
+        </div>
+
+        <form class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+          <div class="border-b border-surface-line pb-5">
+            <h2 class="text-[20px] font-medium text-ink-900">Notification Preferences</h2>
+            <p class="mt-1 text-[14px] text-ink-500">
+              Choose which operational and account notifications should be delivered to admins.
+            </p>
+          </div>
+
+          <div class="divide-y divide-surface-line">
+            <label class="flex cursor-pointer items-start gap-3 py-5">
+              <input
+                type="checkbox"
+                checked
+                class="mt-1 h-4 w-4 shrink-0 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+              />
+              <span>
+                <span class="block text-[14px] font-semibold text-ink-900">Order Alerts</span>
+                <span class="mt-1 block text-[13px] text-ink-500">
+                  Receive alerts when orders fail payment, stock, or fulfillment checks.
+                </span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 py-5">
+              <input
+                type="checkbox"
+                checked
+                class="mt-1 h-4 w-4 shrink-0 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+              />
+              <span>
+                <span class="block text-[14px] font-semibold text-ink-900">Login Activity</span>
+                <span class="mt-1 block text-[13px] text-ink-500">
+                  Receive alerts when a new device or location accesses an admin account.
+                </span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 py-5">
+              <input
+                type="checkbox"
+                class="mt-1 h-4 w-4 shrink-0 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+              />
+              <span>
+                <span class="block text-[14px] font-semibold text-ink-900">Promotional Offers</span>
+                <span class="mt-1 block text-[13px] text-ink-500">
+                  Get updates about discounts, coupons, and limited-time campaign opportunities.
+                </span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 py-5">
+              <input
+                type="checkbox"
+                class="mt-1 h-4 w-4 shrink-0 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+              />
+              <span>
+                <span class="block text-[14px] font-semibold text-ink-900">Security Updates</span>
+                <span class="mt-1 block text-[13px] text-ink-500">
+                  Notify admins about policy changes, password events, and new security features.
+                </span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-start gap-3 py-5">
+              <input
+                type="checkbox"
+                checked
+                class="mt-1 h-4 w-4 shrink-0 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+              />
+              <span>
+                <span class="block text-[14px] font-semibold text-ink-900">Review Reminders</span>
+                <span class="mt-1 block text-[13px] text-ink-500">
+                  Remind admins to moderate new product reviews and customer feedback.
+                </span>
+              </span>
+            </label>
+          </div>
+
+          <div class="mt-6 grid gap-5 border-t border-surface-line pt-6 md:grid-cols-2">
+            <label class="block">
+              <span class="text-[14px] font-semibold text-ink-700">Primary email</span>
+              <input
+                type="email"
+                value="support@RVN.local"
+                class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+              />
+            </label>
+            <label class="block">
+              <span class="text-[14px] font-semibold text-ink-700">Digest frequency</span>
+              <select
+                class="mt-2 h-11 w-full rounded-base border border-surface-line bg-surface-body px-4 text-[14px] focus:border-brand-600"
+              >
+                <option>Instant alerts</option>
+                <option>Daily digest</option>
+                <option>Weekly digest</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="mt-6 flex flex-wrap justify-end gap-2">
+            <a
+              href="/settings.html"
+              class="inline-flex h-11 items-center rounded-base border border-surface-line px-4 text-[14px] font-semibold text-ink-700 hover:bg-surface-muted"
+              >Cancel</a
+            >
+            <button
+              type="submit"
+              class="h-11 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

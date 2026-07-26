@@ -1,0 +1,101 @@
+@@include('styles.html',{
+"title": "Our Team"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Team Page One</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-white",
+    "justify-content": "justify-content-start",
+    "sectionType": "Pages",
+    "title": "Team"
+    })
+
+    <div class="rbt-team-area rbt-bg-color-white rbt-section-gapBottom">
+        <div class="container">
+            <!-- Start Product Banner Area -->
+            <div
+                class="rbt-product-banner rbt-product-banner-style-five rbt-product-banner-style-five-lg rbt-bg-color-gray-one">
+                <div class="rbt-banner-inner">
+                    <div class="rbt-product-banner-img rbt-scroll-trigger zoom_in animation-order-4">
+                        <img src="assets/images/product-banner/product-banner-team-a-1.webp"
+                            alt="Ecommerce Product Banner Image">
+                    </div>
+                    <div class="rbt-product-banner-content rbt-corner-style rbt-banner-content-rb">
+                        <div
+                            class="rbt-corner-portion-wrapper rbt-bg-color-white rbt-slideshow-content-inner effect_fadeindown space-var-one">
+                            <h4 class="rbt-banner-subtitle mb-0 ">Meet Our Team</h4>
+                            <h2 class="rbt-banner-title h1 mb-0"><span class="rbt-bold--text d-block">Ready for the
+                                    trendy </span> Monochrome Magic Dots!</h2>
+                            <button class="rbt-btn rbt-btn-md mt--24 mt_sm--8">Know About Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Product Banner Area -->
+        </div>
+    </div>
+
+    <div class="rbt-team-area rbt-section-gap rbt-bg-color-gray-light">
+        <div class="container">
+            @@include('team/team-04.html')
+        </div>
+    </div>
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-about-area rbt-section-gap2Top rbt-section-gap2Bottom">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <div class="rbt-about-feature-area">
+                        <div class="inner">
+                            <div class="section-title text-start">
+                                <h3 class="rbt-title mb--16">We are the world's biggest
+                                    electronics online store where innovation meets the real printing.</h3>
+                                <p class="b1 rbt-text-color-gray-600 mb--24">Let the beauty of what you love be what you
+                                    do.
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum
+                                    has been the industry’s standard dummy text ever since the, remaining essentially.
+                                </p>
+                                <div class="read-more-btn">
+                                    <a class="rbt-btn" href="https://www.youtube.com/watch?v=abFXQQzFVDc"
+                                        data-fancybox="">Play Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <div class="video-popup-wrapper rbt-curved-style-box">
+                        <img class="w-100 rbt-radius" src="assets/images/about/about-image-6.webp" alt="Video Images">
+                        <a class="rbt-btn rounded-player popup-video position-to-top rbtplayer"
+                            href="https://www.youtube.com/watch?v=abFXQQzFVDc" data-fancybox="">
+                            <span><i class="fa-solid fa-play"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    @@include('modals/notifyModal.html')
+    @@include('header/offcanvas/comparison.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/quickviewModal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/addedcartModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+</html>

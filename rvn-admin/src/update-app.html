@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Update App"}}
+  <body data-page="update-app" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6">
+          <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">System</p>
+          <h1 class="text-[24px] font-semibold text-ink-900">Update App</h1>
+          <p class="mt-1 text-[14px] text-ink-500">Review template version information and update readiness.</p>
+        </div>
+
+        <section class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+          <article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+            <h2 class="text-[17px] font-semibold text-ink-900">Version Notes</h2>
+            <div class="mt-5 space-y-4 text-[14px] text-ink-600">
+              <p>
+                <span class="font-semibold text-ink-900">v1.5.69</span> includes dashboard layout polish, catalog pages,
+                and expanded admin navigation.
+              </p>
+              <p>
+                Run the production build before publishing template updates to confirm generated routes are available.
+              </p>
+            </div>
+          </article>
+          <aside class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <span class="badge bg-success-50 text-success-600">Ready</span>
+            <h2 class="mt-4 text-[18px] font-semibold text-ink-900">No action required</h2>
+            <p class="mt-1 text-[13px] text-ink-500">
+              This page is a static template placeholder for app update workflows.
+            </p>
+          </aside>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

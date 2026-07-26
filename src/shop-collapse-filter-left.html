@@ -1,0 +1,68 @@
+@@include('styles.html',{
+"title": "Shop With Filter Collapse Left"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Shop Collapse Filter Left</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-two.html', {
+    "bg-color": "rbt-bg-color-gray-light",
+    "justify-content": "justify-content-start",
+    "sectionType": "Pages",
+    "title": "Shop"
+    })
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-page-banner-content rbt-bg-color-gray-light">
+        <div class="container">
+            @@include('common/shop/shop-banner-row-one.html')
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-catagories-area pt--16 rbt-bg-color-gray-light">
+        <div class="container">
+            @@include('common/shop/shop-catagories-row.html')
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    <div class="rbt-component-area ptb--32 ptb_sm--12 ptb_md--20 rbt-bg-color-gray-light">
+        <div class="container">
+            <div class="rbt-separator rbt-separator-gray200"></div>
+        </div>
+    </div>
+
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-shop-filter-area rbt-bg-color-gray-light">
+        <div class="container">
+            <div class="row row--12 mt_dec--12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt--12">
+                    @@include('common/shop/shop-tools-row-three-left.html')
+                    @@include('common/shop/shop-products-row-col-3-fliter-left.html')
+                    <div class="row mt--40 mt_sm--12">
+                        <div class="col-12">
+                            @@include('common/pagination-styles/pagination-02.html')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    @@include('modals/quickviewModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+    @@include('modals/addedcartModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('header/offcanvas/filter-offcanvas.html')
+    @@include('header/offcanvas/comparison.html')
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Support Tickets"}}
+  <body data-page="support-tickets" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Support</p>
+            <h1 class="text-[24px] font-semibold text-ink-900">Support Tickets</h1>
+            <p class="mt-1 text-[14px] text-ink-500">
+              Track customer requests, assignment, priority, and resolution status.
+            </p>
+          </div>
+          <button type="button"
+            class="inline-flex h-11 items-center gap-2 rounded-base bg-brand-600 px-4 text-[14px] font-semibold text-white hover:bg-brand-700"
+          >
+            <i data-lucide="plus" class="h-4 w-4"></i>
+            New Ticket
+          </button>
+        </div>
+
+        <section
+          data-list-table
+          data-list-noun="tickets"
+          class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card"
+        >
+          <div class="mb-5 flex flex-wrap items-center gap-3">
+            <label class="relative block min-w-[220px] flex-1">
+              <span class="sr-only">Search tickets</span>
+              <i
+                data-lucide="search"
+                class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+              ></i>
+              <input
+                data-list-search
+                placeholder="Search tickets"
+                class="h-11 w-full rounded-base border border-surface-line bg-surface-body pl-11 pr-4 text-[14px] focus:border-brand-600"
+              />
+            </label>
+            <select
+              data-list-filter
+              class="h-11 rounded-base border border-surface-line bg-surface-card px-3 text-[14px] text-ink-700 focus:border-brand-600"
+            >
+              <option value="all">All status</option>
+              <option value="open">Open</option>
+              <option value="pending">Pending</option>
+              <option value="resolved">Resolved</option>
+            </select>
+            <div class="relative">
+              <button
+                type="button"
+                data-menu-toggle="cols-tickets"
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="inline-flex h-11 items-center gap-2 rounded-base border border-surface-line bg-surface-card px-4 text-[14px] font-semibold text-ink-700 transition-colors hover:bg-surface-muted"
+              >
+                <i data-lucide="sliders-horizontal" class="h-4 w-4"></i>
+                Columns
+              </button>
+              <div
+                data-menu="cols-tickets"
+                class="absolute right-0 z-20 mt-2 hidden w-48 rounded-base border border-surface-line bg-surface-card p-2 shadow-card"
+              >
+                <p class="px-2 py-1 text-[12px] font-semibold uppercase text-ink-400">Toggle columns</p>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="3" checked aria-label="Toggle Customer column" /> Customer
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="4" checked aria-label="Toggle Priority column" /> Priority
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="5" checked aria-label="Toggle Assigned To column" /> Assigned To
+                </label>
+                <label class="flex items-center gap-2 rounded px-2 py-1.5 text-[14px] text-ink-700 hover:bg-surface-muted">
+                  <input type="checkbox" data-col-item="6" checked aria-label="Toggle Status column" /> Status
+                </label>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-bulk-delete
+              disabled
+              class="inline-flex h-11 items-center justify-center gap-2 rounded-base bg-danger-500 px-4 text-[14px] font-semibold text-white transition-colors hover:bg-danger-600 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <i data-lucide="trash-2" class="h-4 w-4"></i>
+              Delete Selected (<span data-bulk-count>0</span>)
+            </button>
+          </div>
+          <div class="dashboard-scrollbar overflow-x-auto">
+            <table class="w-full min-w-[960px] text-left text-[14px]">
+              <thead class="border-b border-surface-line text-[13px] uppercase text-ink-400">
+                <tr>
+                  <th class="w-10 pb-3 pr-3">
+                    <input data-select-all type="checkbox" aria-label="Select all tickets" class="h-4 w-4" />
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">
+                    <button type="button" data-sort="name" class="inline-flex items-center gap-1 uppercase hover:text-ink-700">
+                      Ticket <i data-lucide="chevrons-up-down" class="h-3.5 w-3.5"></i>
+                    </button>
+                  </th>
+                  <th class="pb-3 pr-4 font-semibold">Customer</th>
+                  <th class="pb-3 pr-4 font-semibold">Priority</th>
+                  <th class="pb-3 pr-4 font-semibold">Assigned To</th>
+                  <th class="pb-3 pr-4 font-semibold">Status</th>
+                  <th class="pb-3 text-right font-semibold">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-name="#TK-1042 Delivery delay" data-status="open" class="border-b border-surface-line">
+                  <td class="py-4 pr-3">
+                    <input data-row-select type="checkbox" aria-label="Select ticket TK-1042" class="h-4 w-4" />
+                  </td>
+                  <td class="py-4 pr-4 font-semibold text-ink-900">#TK-1042 Delivery delay</td>
+                  <td class="py-4 pr-4 text-ink-700">Robert Doe</td>
+                  <td class="py-4 pr-4 text-danger-500">High</td>
+                  <td class="py-4 pr-4 text-ink-700">Emay Walter</td>
+                  <td class="py-4 pr-4"><span class="badge bg-warning-50 text-warning-600">Open</span></td>
+                  <td class="py-4 text-right">
+                    <button type="button" class="icon-button hover:bg-brand-50 hover:text-brand-600" aria-label="View ticket">
+                      <i data-lucide="eye" class="h-4 w-4"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="#TK-1041 Refund request" data-status="pending" class="border-b border-surface-line">
+                  <td class="py-4 pr-3">
+                    <input data-row-select type="checkbox" aria-label="Select ticket TK-1041" class="h-4 w-4" />
+                  </td>
+                  <td class="py-4 pr-4 font-semibold text-ink-900">#TK-1041 Refund request</td>
+                  <td class="py-4 pr-4 text-ink-700">Mikaela Collins</td>
+                  <td class="py-4 pr-4 text-warning-600">Medium</td>
+                  <td class="py-4 pr-4 text-ink-700">Support Team</td>
+                  <td class="py-4 pr-4"><span class="badge bg-brand-50 text-brand-600">Pending</span></td>
+                  <td class="py-4 text-right">
+                    <button type="button" class="icon-button hover:bg-brand-50 hover:text-brand-600" aria-label="View ticket">
+                      <i data-lucide="eye" class="h-4 w-4"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="#TK-1040 Product question" data-status="resolved">
+                  <td class="py-4 pr-3">
+                    <input data-row-select type="checkbox" aria-label="Select ticket TK-1040" class="h-4 w-4" />
+                  </td>
+                  <td class="py-4 pr-4 font-semibold text-ink-900">#TK-1040 Product question</td>
+                  <td class="py-4 pr-4 text-ink-700">Amin Khan</td>
+                  <td class="py-4 pr-4 text-ink-500">Low</td>
+                  <td class="py-4 pr-4 text-ink-700">Support Team</td>
+                  <td class="py-4 pr-4"><span class="badge bg-success-50 text-success-600">Resolved</span></td>
+                  <td class="py-4 text-right">
+                    <button type="button" class="icon-button hover:bg-brand-50 hover:text-brand-600" aria-label="View ticket">
+                      <i data-lucide="eye" class="h-4 w-4"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p data-list-empty class="hidden py-10 text-center text-[14px] text-ink-400">No tickets match your search.</p>
+
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-surface-line pt-4">
+            <p class="text-[13px] text-ink-500" data-list-info>Showing 3 of 3 tickets</p>
+          </div>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    {{> components/confirm-modal}}
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

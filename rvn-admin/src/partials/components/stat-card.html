@@ -1,0 +1,14 @@
+<article class="rounded-card border border-surface-line bg-surface-card p-6 shadow-card">
+  <div class="flex items-center justify-between gap-4">
+    <div class="border-l-2 {{accentBorder}} pl-3">
+      <p class="text-[15px] text-ink-400">{{label}}</p>
+      <div class="mt-1 flex flex-wrap items-center gap-2">
+        <strong class="text-[28px] font-semibold leading-none text-ink-700">{{value}}</strong>
+        <span class="rounded-base px-2 py-1 text-[12px] font-semibold {{badgeClass}}">{{badge}}</span>
+      </div>
+    </div>
+    <div class="grid h-11 w-11 place-items-center rounded-base {{iconClass}}">
+      <i data-lucide="{{icon}}" class="h-5 w-5"></i>
+    </div>
+  </div>
+</article>

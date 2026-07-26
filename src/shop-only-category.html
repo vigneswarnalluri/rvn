@@ -1,0 +1,40 @@
+@@include('styles.html',{
+    "title": "Shop"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Shop Only Category</h1>
+    @@include('header/package/header-style-2.html')
+    @@include('common/breadcrumb-default-bgImage.html', {
+        "bg-imagesrc": "rbt-breadcrumb-bg-1",
+        "text": "Only",
+        "justify-content": "justify-content-start",
+        "sectionType": "Pages",
+        "title": "Shop",
+        "title2": "Catagory Shop"
+    })
+    
+    <!-- Start Component Area -->
+    <div class="rbt-component-area rbt-catagories-area rbt-section-gap rbt-bg-color-white">
+        <div class="container">
+            @@include('common/catagories-styles/catagories-style-five.html')
+        </div>
+    </div>
+    <!-- End Component Area -->
+
+    @@include('modals/notifyModal.html')
+    @@include('header/offcanvas/comparison.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/quickviewModal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/addedcartModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+</html>

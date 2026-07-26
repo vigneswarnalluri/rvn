@@ -1,0 +1,40 @@
+@@include('styles.html',{
+    "title": "Our Team"
+})
+
+<body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Team Page Three</h1>
+    @@include('header/package/header-style-2.html')
+
+    @@include('common/breadcrumb-default-bgImage.html', {
+        "bg-imagesrc": "rbt-breadcrumb-bg-1",
+        "text": "Meet Our",
+        "justify-content": "justify-content-start",
+        "sectionType": "Pages",
+        "title": "Team",
+        "title2": "Team"
+    })
+
+    <div class="rbt-team-area rbt-bg-color-white rbt-section-gap">
+        <div class="container">
+            @@include('team/team-08.html')
+        </div>
+    </div>
+
+    @@include('modals/notifyModal.html')
+    @@include('header/offcanvas/comparison.html')
+    @@include('modals/find-store-modal.html')
+    @@include('modals/quickviewModal.html')
+    @@include('modals/popup-cartModal.html')
+    @@include('modals/quickviewSizeGuideModal.html')
+    @@include('modals/wishlistModal.html')
+    @@include('modals/addedcartModal.html')
+    @@include('modals/compareProductModal.html')
+    @@include('modals/socialShareModal.html')
+    @@include('modals/quickviewEditCartModal.html')
+
+    @@include('footer/footerTen.html')
+    @@include('scripts.html')
+</body>
+
+</html>

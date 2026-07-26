@@ -1,0 +1,39 @@
+@@include('styles.html',{
+    "title": "Blog Grid"
+    })
+    
+    <body class="rbt-header-sticky">
+    <h1 class="visually-hidden">Blog Grid</h1>
+        @@include('header/package/header-style-2.html')
+    
+        @@include('common/breadcrumb-two-variationOne.html', {
+        "bg-color": "rbt-bg-color-gray-light",
+        "justify-content": "justify-content-start",
+        "title": "Blog Grid"
+        })
+    
+    
+        <!-- Start Component Area -->
+        <div class="rbt-component-area rbt-blog-post-card-area rbt-bg-color-gray-light rbt-section-gap3Top rbt-section-gap2Bottom">
+            <div class="container">
+                @@include('common/blog-post/blog-post-grid-combo.html')
+                <div class="rbt-paination-section mt--60">
+                    @@include('common/pagination-styles/pagination-02.html')
+                </div>
+            </div>
+        </div>
+        <!-- End Component Area -->
+    
+    
+        @@include('modals/quickviewModal.html')
+        @@include('modals/socialShareModal.html')
+        @@include('modals/quickviewEditCartModal.html')
+        @@include('modals/wishlistModal.html')
+        @@include('modals/compareProductModal.html')
+        @@include('modals/addedcartModal.html')
+    
+        @@include('footer/footerTen.html')
+        @@include('scripts.html')
+    </body>
+    
+    </html>

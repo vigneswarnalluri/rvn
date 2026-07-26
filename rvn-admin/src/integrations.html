@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  {{> head title="Integrations"}}
+  <body data-page="integrations" data-sidebar-open="false">
+    {{> preloader}} {{> sidebar}}
+
+    <div class="min-h-screen lg:pl-sidebar">
+      {{> topbar}}
+
+      <main class="min-h-[calc(100vh-140px)] px-4 py-6 lg:px-6">
+        <div class="mb-6">
+          <p class="mb-1 text-[13px] font-semibold uppercase text-brand-600">Workspace</p>
+          <h1 class="text-[24px] font-semibold text-ink-900">Integrations</h1>
+          <p class="mt-1 text-[14px] text-ink-500">
+            Connect store tools for payments, shipping, analytics, and messaging.
+          </p>
+        </div>
+
+        <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <span class="grid h-11 w-11 place-items-center rounded-base bg-brand-50 text-brand-600"
+              ><i data-lucide="credit-card" class="h-5 w-5"></i
+            ></span>
+            <h2 class="mt-4 text-[16px] font-semibold text-ink-900">Payments</h2>
+            <p class="mt-1 text-[13px] text-ink-500">Connect payment gateways and checkout providers.</p>
+            <span class="mt-4 inline-flex badge bg-success-50 text-success-600">Connected</span>
+          </article>
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <span class="grid h-11 w-11 place-items-center rounded-base bg-warning-50 text-warning-600"
+              ><i data-lucide="truck" class="h-5 w-5"></i
+            ></span>
+            <h2 class="mt-4 text-[16px] font-semibold text-ink-900">Shipping</h2>
+            <p class="mt-1 text-[13px] text-ink-500">Sync carrier rates and fulfillment updates.</p>
+            <span class="mt-4 inline-flex badge bg-surface-muted text-ink-600">Not connected</span>
+          </article>
+          <article class="rounded-card border border-surface-line bg-surface-card p-5 shadow-card">
+            <span class="grid h-11 w-11 place-items-center rounded-base bg-success-50 text-success-600"
+              ><i data-lucide="bar-chart-3" class="h-5 w-5"></i
+            ></span>
+            <h2 class="mt-4 text-[16px] font-semibold text-ink-900">Analytics</h2>
+            <p class="mt-1 text-[13px] text-ink-500">Send conversion events and customer insights.</p>
+            <span class="mt-4 inline-flex badge bg-brand-50 text-brand-600">Setup ready</span>
+          </article>
+        </section>
+      </main>
+
+      {{> footer}}
+    </div>
+
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

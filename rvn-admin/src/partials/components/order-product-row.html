@@ -1,0 +1,19 @@
+<label
+  data-product-item
+  data-name="{{name}}"
+  data-price="{{price}}"
+  class="flex cursor-pointer items-center gap-3 border-b border-surface-line py-3 last:border-b-0 hover:bg-surface-body/60{{#if checked}} border-brand-600 bg-brand-50/40{{/if}}"
+>
+  <input
+    type="checkbox"
+    {{#if checked}}checked{{/if}}
+    class="h-4 w-4 shrink-0 rounded border-surface-line text-brand-600 focus:ring-brand-600"
+  />
+  <img src="{{image}}" alt="{{name}}" class="h-11 w-11 shrink-0 rounded-base bg-surface-body object-cover" />
+  <div class="min-w-0 flex-1">
+    <p class="font-semibold text-ink-900">{{name}}</p>
+    <p class="text-[13px] text-ink-400">Price: ${{price}}</p>
+    <p class="text-[13px] text-ink-400">SKU: {{sku}}</p>
+  </div>
+  <span class="shrink-0 text-[14px] font-medium text-ink-500">{{qty}}</span>
+</label>

@@ -1,0 +1,60 @@
+<!-- Start Header Mid -->
+<div class="rbt-header-middle position-relative rbt-header-mid-3 @@bgColor d-none d-xl-block">
+    <div class="@@container">
+        <div class="rbt-header-sec align-items-center rbt-gap--48 justify-content-between mainbar-row">
+            <div class="header-info">
+                <div class="rbt-category-menu-wrapper rbt-category-update">
+
+                    <div class="rbt-category-btn">
+                        <div class="rbt-offcanvas-trigger md-size icon">
+                            <span class="d-none d-xl-block">
+                                <i class="fa-regular fa-bars"></i>
+                                <i class="fa-regular fa-chevron-down"></i>
+                            </span>
+                            <i title="Category" class="fa-regular fa-bars d-block d-xl-none"></i>
+                        </div>
+                        <span class="category-text d-none d-xl-block">All Categories</span>
+                    </div>
+                    @@include('header/catagory-dropdown-01.html',{
+                        "dropdown-child-wrapper-align": ""
+                    })
+                </div>
+            </div>
+
+            <div class="rbt-main-navigation d-none d-xl-block">
+                @@include('header/navStyles/nav-style-four.html')
+            </div>
+
+            <div class="rbt-header-sec-col">
+                <div class="rbt-header-content">
+                    <!-- Navbar Icons -->
+                    <ul class="rbt-quick-access rbt-gap--20">
+                        <li class="rbt-access-box rbt-scroll-trigger fade_in animation-order-1 rbt-access-box-has-bg-hover d-none d-lg-flex">
+                            <a class="rbt-access-box-wrapper" href="wishlist.html">
+                                <span class="rbt-round-btn rbt-bg-static-gray has-rbt-md-fsize">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <span class="access-box-count">5</span>
+                                </span>
+                                <div class="content">
+                                    <span class="title-text">Wishlist</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="rbt-access-box rbt-scroll-trigger fade_in animation-order-1 rbt-access-box-has-bg-hover d-none d-lg-flex">
+                            <a class="rbt-access-box-wrapper" href="#!" data-bs-toggle="modal" data-bs-target="#signinModal">
+                                <span class="rbt-round-btn rbt-bg-static-gray has-rbt-md-fsize">
+                                    <i class="fa-regular fa-user"></i>
+                                </span>
+                                <div class="content">
+                                    <span class="title-text">Log In/Register</span>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Header Top -->
