@@ -8,7 +8,7 @@
 	],
 	"scripts": {
 		"dev": "gulp",
-		"build": "gulp dist && npm run build --workspace=rvn-admin",
+		"build": "gulp dist && npm run build --workspace=rvn-admin && node -e \"require('fs').cpSync('rvn-admin/dist', 'dest/admin', {recursive: true})\"",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
