@@ -2,7 +2,9 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const dbPath = path.resolve(__dirname, 'RVN.db');
+const isVercel = process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME;
+const dbDir = isVercel ? '/tmp' : __dirname;
+const dbPath = path.resolve(dbDir, 'RVN.db');
 const db = new sqlite3.Database(dbPath);
 
 db.serialize(() => {
