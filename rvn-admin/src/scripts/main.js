@@ -684,7 +684,7 @@ import {
               grid: { left: 44, right: 0, top: 24, bottom: 26, containLabel: false },
               tooltip: {
                 ...tooltipBase('axis'),
-                valueFormatter: (v) => `$${v}k`,
+                valueFormatter: (v) => `₹${v}k`,
                 axisPointer: {
                   type: 'line',
                   lineStyle: { color: '#0da487', width: 1, type: 'dashed' },
@@ -692,7 +692,7 @@ import {
                 },
               },
               xAxis: { ...axis(current.categories), axisPointer: { snap: true } },
-              yAxis: valueAxis({ axisLabel: { formatter: '${value}' } }),
+              yAxis: valueAxis({ axisLabel: { formatter: '₹{value}' } }),
               series: [
                 {
                   name: 'Revenue',
@@ -719,7 +719,7 @@ import {
                     symbol: 'none',
                     lineStyle: { color: isDark() ? '#64748b' : '#cbd5e1', type: 'dashed', width: 1 },
                     label: {
-                      formatter: 'Avg ${c}',
+                      formatter: 'Avg ₹{c}',
                       position: 'insideEndTop',
                       color: labelColor(),
                       fontFamily: 'Cabin',
@@ -733,7 +733,7 @@ import {
                     symbolSize: 9,
                     itemStyle: { color: '#0da487', borderColor: cardBg(), borderWidth: 2 },
                     label: {
-                      formatter: '${@[1]}k',
+                      formatter: '₹{@[1]}k',
                       position: 'top',
                       color: '#0da487',
                       fontFamily: 'Cabin',
@@ -776,7 +776,7 @@ import {
               grid: { left: 40, right: 0, top: 36, bottom: 26, containLabel: false },
               tooltip: {
                 ...tooltipBase('axis'),
-                valueFormatter: (v) => `$${v}k`,
+                valueFormatter: (v) => `₹${v}k`,
                 axisPointer: {
                   type: 'line',
                   lineStyle: { color: isDark() ? '#64748b' : '#cbd5e1', width: 1, type: 'dashed' },
@@ -795,7 +795,7 @@ import {
               },
               color: ['#426de0', '#0da487'],
               xAxis: axis(MONTHS),
-              yAxis: valueAxis({ axisLabel: { formatter: '${value}' } }),
+              yAxis: valueAxis({ axisLabel: { formatter: '₹{value}' } }),
               series: [
                 {
                   name: 'This Year',
@@ -915,7 +915,7 @@ import {
           salesChart.setOption(
             {
               grid: { left: 44, right: 12, top: 34, bottom: 28, containLabel: false },
-              tooltip: { ...tooltipBase('axis'), valueFormatter: (v) => `$${v}k`, axisPointer: { type: 'shadow' } },
+              tooltip: { ...tooltipBase('axis'), valueFormatter: (v) => `₹${v}k`, axisPointer: { type: 'shadow' } },
               legend: {
                 show: true,
                 top: 0,
@@ -929,7 +929,7 @@ import {
               },
               color: quarterColors,
               xAxis: { ...axis(cats), boundaryGap: true },
-              yAxis: valueAxis({ axisLabel: { formatter: '${value}' } }),
+              yAxis: valueAxis({ axisLabel: { formatter: '₹{value}' } }),
               series: quarters.map((q, y) => ({
                 name: q,
                 type: 'bar',
@@ -947,7 +947,7 @@ import {
             {
               tooltip: {
                 ...tooltipBase('item'),
-                formatter: (p) => `${cats[p.value[0]]} · ${quarters[p.value[1]]}<br/><b>$${p.value[2]}k</b>`,
+                formatter: (p) => `${cats[p.value[0]]} · ${quarters[p.value[1]]}<br/><b>₹${p.value[2]}k</b>`,
               },
               visualMap: {
                 show: false,

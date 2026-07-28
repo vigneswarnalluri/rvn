@@ -113,9 +113,8 @@
                                                 address</label>
                                         </div>
                                         <div class="text-center mt--12 text-center rbt-btn-area">
-                                            <a href="checkout-payment.html"
-                                                class="rbt-btn splash-btn icon-reverse-left rbt-scroll-trigger fade_in animation-order-5 d-block rbt-rounded--4"
-                                                target="_blank">
+                                            <a href="checkout-payment.html" id="continue-checkout-btn"
+                                                class="rbt-btn splash-btn icon-reverse-left rbt-scroll-trigger fade_in animation-order-5 d-block rbt-rounded--4">
                                                 <span class="icon-left"><i
                                                         class="fa-sharp fa-regular fa-arrow-right mr--4"></i></span>
                                                 <span>Continue Order Process</span>
@@ -124,6 +123,32 @@
                                             </a>
                                         </div>
                                     </form>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', () => {
+                                            const btn = document.getElementById('continue-checkout-btn');
+                                            if (btn) {
+                                                btn.addEventListener('click', (e) => {
+                                                    e.preventDefault();
+                                                    const fn = document.getElementById('shipping-fn').value.trim();
+                                                    const ln = document.getElementById('shipping-ln').value.trim();
+                                                    const email = document.getElementById('shipping-email').value.trim();
+                                                    const mobile = document.getElementById('shipping-mobile').value.trim();
+                                                    const city = document.querySelector('.search-by-category select')?.value || 'New York';
+                                                    const postcode = document.getElementById('shipping-postcode').value.trim();
+                                                    const address = document.getElementById('shipping-address').value.trim();
+
+                                                    if (!fn || !ln || !email || !postcode || !address) {
+                                                        alert('Please fill out all required fields marked with *');
+                                                        return;
+                                                    }
+
+                                                    const shippingInfo = { fn, ln, email, mobile, city, postcode, address };
+                                                    localStorage.setItem('rvn_shipping_info', JSON.stringify(shippingInfo));
+                                                    window.location.href = 'checkout-payment.html';
+                                                });
+                                            }
+                                        });
+                                    </script>
                                 </div>
                             </div>
                             <div class="rbt-checkout-single-content">

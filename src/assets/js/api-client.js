@@ -58,7 +58,7 @@ window.RVNStore = {
         });
 
         document.querySelectorAll('.rbt-mini-cart .content span').forEach(el => {
-            el.textContent = `Total $${total}`;
+            el.textContent = `Total ₹${total}`;
         });
     },
 
@@ -137,8 +137,8 @@ window.RVNStore = {
                                 <a href="product-single-default.html?id=${prod.id}">${prod.title}</a>
                             </h5>
                             <div class="d-flex align-items-center justify-content-between mb-3">
-                                <span class="h5 text-primary font-weight-bold mb-0">$${prod.price.toFixed(2)}</span>
-                                ${prod.old_price ? `<span class="text-muted text-decoration-line-through text-sm">$${prod.old_price.toFixed(2)}</span>` : ''}
+                                <span class="h5 text-primary font-weight-bold mb-0">₹${prod.price.toFixed(2)}</span>
+                                ${prod.old_price ? `<span class="text-muted text-decoration-line-through text-sm">₹${prod.old_price.toFixed(2)}</span>` : ''}
                             </div>
                             <button onclick="window.RVNStore.addToCart({id: ${prod.id}, title: '${prod.title.replace(/'/g, "\\'")}', price: ${prod.price}, image: '${prod.image}'})" 
                                 class="btn btn-primary w-100 rounded-pill font-weight-semibold">

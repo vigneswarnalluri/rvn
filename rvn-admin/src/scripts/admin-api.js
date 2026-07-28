@@ -58,11 +58,11 @@ window.RVNAdmin = {
 
             // Match stat cards dynamically by their label text
             document.querySelectorAll('strong').forEach(el => {
-                const labelEl = el.closest('div')?.querySelector('p');
+                const labelEl = el.closest('article')?.querySelector('p');
                 if (!labelEl) return;
                 const label = labelEl.textContent.trim().toLowerCase();
 
-                if (label.includes('revenue')) el.textContent = `$${data.total_revenue.toLocaleString()}`;
+                if (label.includes('revenue')) el.textContent = `₹${data.total_revenue.toLocaleString()}`;
                 if (label.includes('orders')) el.textContent = data.total_orders.toLocaleString();
                 if (label.includes('products')) el.textContent = data.total_products.toLocaleString();
                 if (label.includes('customers')) el.textContent = `${(data.total_customers / 1000).toFixed(1)}k`;
@@ -120,7 +120,7 @@ window.RVNAdmin = {
                     <td class="py-3 px-4 font-semibold text-blue-600">${order.order_number}</td>
                     <td class="py-3 px-4">${order.customer_name}</td>
                     <td class="py-3 px-4">${new Date(order.created_at).toLocaleDateString()}</td>
-                    <td class="py-3 px-4 font-semibold">$${order.total_amount.toFixed(2)}</td>
+                    <td class="py-3 px-4 font-semibold">₹${order.total_amount.toFixed(2)}</td>
                     <td class="py-3 px-4">${order.payment_method}</td>
                     <td class="py-3 px-4">
                         <span class="px-2.5 py-1 text-xs font-semibold rounded-full ${
@@ -137,6 +137,63 @@ window.RVNAdmin = {
             `).join('');
         } catch (err) {
             console.error('Error loading orders:', err);
+        }
+    },
+
+    async loadProductsTable(tableSelector = 'tbody') {
+        const tbody = document.querySelector(tableSelector);
+        if (!tbody) return;
+
+        try {
+            await this.ensureAuthenticated();
+            const res = await fetch(`${ADMIN_API_BASE_URL.replace('/admin', '')}/products`);
+            const products = await res.json();
+
+            if (!products || !products.length) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4">No products found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = products.map(prod => `
+                <tr class="border-b border-surface-line hover:bg-surface-body/70">
+                    <td class="py-4 pr-3">
+                        <input type="checkbox" class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600" />
+                    </td>
+                    <td class="py-4 pr-4">
+                        <div class="flex items-center gap-3">
+                            <img src="${prod.image.startsWith('/') ? prod.image : '/' + prod.image}" alt="${prod.title}" class="h-12 w-12 rounded-base bg-surface-body object-cover" style="width: 48px; height: 48px; object-fit: contain;" />
+                            <div>
+                                <span class="font-semibold text-ink-900">${prod.title}</span>
+                                <p class="mt-1 text-[13px] text-ink-400">SKU: PROD-${prod.id}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-4 pr-4 text-ink-700">${prod.category_name || 'Retail'}</td>
+                    <td class="py-4 pr-4 text-ink-700">₹${prod.price.toFixed(2)}</td>
+                    <td class="py-4 pr-4 text-ink-700">${prod.stock}</td>
+                    <td class="py-4 pr-4">
+                        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-success-50 text-success-600">
+                            Published
+                        </span>
+                    </td>
+                    <td class="py-4 text-right">
+                        <div class="inline-flex items-center gap-1">
+                            <a href="${prod.image}" target="_blank" class="icon-button hover:bg-brand-50 hover:text-brand-600" style="padding: 6px; display: inline-block;">
+                                <i data-lucide="eye" class="h-4 w-4" style="width: 16px; height: 16px;"></i>
+                            </a>
+                            <button class="icon-button hover:bg-danger-50 hover:text-danger-500" style="padding: 6px;" onclick="alert('Delete functionality not implemented yet')">
+                                <i data-lucide="trash-2" class="h-4 w-4" style="width: 16px; height: 16px;"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        } catch (err) {
+            console.error('Error loading products:', err);
         }
     },
 
@@ -182,5 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wire Orders page if table exists
     if (window.location.pathname.includes('orders')) {
         window.RVNAdmin.loadOrdersTable();
+    }
+
+    // Wire Products page if table exists
+    if (window.location.pathname.includes('products')) {
+        window.RVNAdmin.loadProductsTable();
     }
 });

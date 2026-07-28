@@ -44,11 +44,11 @@
                                         <div class="rbt-link-hover"><a href="checkout-shipping.html">Edit</a></div>
                                     </div>
                                     <div class="content">
-                                        <p class="desc mb-0">Michael Johnson</p>
-                                        <p class="desc mt--12">michael.johnson@email.com</p>
-                                        <p class="desc mt--12">(312) 555-7890</p>
-                                        <p class="desc mt--12">Illinois 60601</p>
-                                        <p class="desc mt--12">123 Oak Street Apt 45 Chicago</p>
+                                        <p class="desc mb-0" id="review-name">Loading name...</p>
+                                        <p class="desc mt--12" id="review-email">Loading email...</p>
+                                        <p class="desc mt--12" id="review-phone">Loading phone...</p>
+                                        <p class="desc mt--12" id="review-location">Loading location...</p>
+                                        <p class="desc mt--12" id="review-address">Loading address...</p>
                                     </div>
                                 </div>
                             </div>
@@ -180,17 +180,86 @@
                                             </label>
                                         </div>
                                         <div class="text-center mt--12 text-center rbt-btn-area d-block">
-                                            <a href="checkout-thankyou.html"
-                                                class="rbt-btn splash-btn icon-reverse-left rbt-scroll-trigger fade_in animation-order-5 rbt-rounded--4 d-block"
-                                                target="_blank">
+                                            <button id="pay-button" type="button"
+                                                class="rbt-btn splash-btn icon-reverse-left rbt-scroll-trigger fade_in animation-order-5 rbt-rounded--4 d-block w-100 border-0">
                                                 <span class="icon-left"><i
                                                         class="fa-sharp fa-regular fa-arrow-right mr--4"></i></span>
-                                                <span>Pay $5,650.00</span>
+                                                <span id="pay-button-text">Pay ₹0.00</span>
                                                 <span class="icon-right"><i
                                                         class="fa-solid fa-money-bill-1-wave ml--4"></i></span>
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', () => {
+                                            // Populate shipping details
+                                            const shipping = JSON.parse(localStorage.getItem('rvn_shipping_info') || '{}');
+                                            if (shipping.fn) {
+                                                document.getElementById('review-name').textContent = `${shipping.fn} ${shipping.ln}`;
+                                                document.getElementById('review-email').textContent = shipping.email;
+                                                document.getElementById('review-phone').textContent = shipping.mobile || 'N/A';
+                                                document.getElementById('review-location').textContent = `${shipping.city || ''} ${shipping.postcode || ''}`;
+                                                document.getElementById('review-address').textContent = shipping.address;
+                                            } else {
+                                                document.querySelector('.rbt-checkout-single-content').innerHTML = `
+                                                    <div class="alert alert-warning">No shipping details found. <a href="checkout-shipping.html">Fill shipping form</a></div>
+                                                `;
+                                            }
+
+                                            // Populate total amount
+                                            const total = window.RVNStore.getCartTotal();
+                                            document.getElementById('pay-button-text').textContent = `Pay $${total.toFixed(2)}`;
+
+                                            // Handle payment click
+                                            const payBtn = document.getElementById('pay-button');
+                                            if (payBtn) {
+                                                payBtn.addEventListener('click', async (e) => {
+                                                    e.preventDefault();
+                                                    if (!document.getElementById('accept-terms').checked) {
+                                                        alert('You must accept the Terms and Conditions to proceed.');
+                                                        return;
+                                                    }
+
+                                                    const cart = window.RVNStore.getCart();
+                                                    if (!cart || !cart.length) {
+                                                        alert('Your cart is empty.');
+                                                        return;
+                                                    }
+
+                                                    const selectedMethodEl = document.querySelector('input[name="payment-method"]:checked');
+                                                    const paymentMethod = selectedMethodEl ? selectedMethodEl.parentElement.textContent.trim() : 'Credit Card';
+
+                                                    const orderData = {
+                                                        customer_name: `${shipping.fn} ${shipping.ln}`,
+                                                        customer_email: shipping.email,
+                                                        customer_phone: shipping.mobile || '',
+                                                        shipping_address: shipping.address,
+                                                        city: shipping.city || '',
+                                                        zip_code: shipping.postcode || '',
+                                                        total_amount: total,
+                                                        payment_method: paymentMethod,
+                                                        items: cart
+                                                    };
+
+                                                    payBtn.disabled = true;
+                                                    payBtn.style.opacity = '0.7';
+                                                    payBtn.querySelector('#pay-button-text').textContent = 'Processing Order...';
+
+                                                    const response = await window.RVNStore.submitOrder(orderData);
+                                                    if (response && response.order_number) {
+                                                        window.RVNStore.saveCart([]); // clear cart
+                                                        localStorage.removeItem('rvn_shipping_info');
+                                                        window.location.href = 'checkout-thankyou.html';
+                                                    } else {
+                                                        alert('Order submission failed: ' + (response.error || 'Unknown error'));
+                                                        payBtn.disabled = false;
+                                                        payBtn.style.opacity = '1';
+                                                        payBtn.querySelector('#pay-button-text').textContent = `Pay $${total.toFixed(2)}`;
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    </script>
                                 </div>
                             </div>
                         </div>

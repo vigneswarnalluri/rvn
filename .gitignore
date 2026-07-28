@@ -6,6 +6,7 @@ rvn-admin/node_modules/
 # Environment Variables & Local Secrets
 .env
 server/.env
+server/firebase-key.json.json
 
 # Local Databases
 *.db

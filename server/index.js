@@ -38,7 +38,7 @@ app.use(express.json());
 // Root Health Check Route
 app.get('/', (req, res) => {
     res.json({
-        message: 'RVN Backend API Server is running!',
+        message: 'RVN Backend API Server is running on Firebase Firestore!',
         status: 'online',
         endpoints: [
             '/api/products',
@@ -71,21 +71,26 @@ const authenticateAdmin = (req, res, next) => {
 };
 
 // Admin Login
-app.post('/api/admin/login', (req, res) => {
+app.post('/api/admin/login', async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
         return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    db.get('SELECT * FROM users WHERE email = ?', [email], (err, user) => {
-        if (err) return res.status(500).json({ error: err.message });
-        if (!user) return res.status(401).json({ error: 'Invalid email or password' });
+    try {
+        const userDoc = await db.collection('users').doc(email).get();
+        if (!userDoc.exists) {
+            return res.status(401).json({ error: 'Invalid email or password' });
+        }
 
+        const user = userDoc.data();
         const isMatch = bcrypt.compareSync(password, user.password);
-        if (!isMatch) return res.status(401).json({ error: 'Invalid email or password' });
+        if (!isMatch) {
+            return res.status(401).json({ error: 'Invalid email or password' });
+        }
 
         const token = jwt.sign(
-            { id: user.id, name: user.name, email: user.email, role: user.role },
+            { id: user.id || user.email, name: user.name, email: user.email, role: user.role },
             JWT_SECRET,
             { expiresIn: '24h' }
         );
@@ -93,9 +98,11 @@ app.post('/api/admin/login', (req, res) => {
         res.json({
             message: 'Login successful',
             token,
-            user: { id: user.id, name: user.name, email: user.email, role: user.role }
+            user: { id: user.id || user.email, name: user.name, email: user.email, role: user.role }
         });
-    });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // Get Current Logged-in Admin Profile
@@ -108,76 +115,124 @@ app.get('/api/admin/me', authenticateAdmin, (req, res) => {
 // ----------------------------------------------------
 
 // 1. Get Categories
-app.get('/api/categories', (req, res) => {
-    db.all('SELECT * FROM categories', [], (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
+app.get('/api/categories', async (req, res) => {
+    try {
+        const snap = await db.collection('categories').get();
+        const rows = [];
+        snap.forEach(doc => rows.push(doc.data()));
+        // Sort by ID ascending
+        rows.sort((a, b) => a.id - b.id);
         res.json(rows);
-    });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // 2. Get Brands
-app.get('/api/brands', (req, res) => {
-    db.all('SELECT * FROM brands', [], (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
+app.get('/api/brands', async (req, res) => {
+    try {
+        const snap = await db.collection('brands').get();
+        const rows = [];
+        snap.forEach(doc => rows.push(doc.data()));
+        rows.sort((a, b) => a.id - b.id);
         res.json(rows);
-    });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // 3. Get Products (Supports search query, category_id filter, limit, featured)
-app.get('/api/products', (req, res) => {
+app.get('/api/products', async (req, res) => {
     const { category_id, search, is_featured, limit } = req.query;
-    let query = `
-        SELECT p.*, c.name as category_name, b.name as brand_name 
-        FROM products p
-        LEFT JOIN categories c ON p.category_id = c.id
-        LEFT JOIN brands b ON p.brand_id = b.id
-        WHERE 1=1
-    `;
-    const params = [];
+    try {
+        let query = db.collection('products');
 
-    if (category_id) {
-        query += ' AND p.category_id = ?';
-        params.push(category_id);
-    }
-    if (is_featured) {
-        query += ' AND p.is_featured = 1';
-    }
-    if (search) {
-        query += ' AND (p.title LIKE ? OR p.description LIKE ?)';
-        params.push(`%${search}%`, `%${search}%`);
-    }
+        if (category_id) {
+            query = query.where('category_id', '==', parseInt(category_id));
+        }
+        if (is_featured) {
+            query = query.where('is_featured', '==', 1);
+        }
 
-    query += ' ORDER BY p.id DESC';
+        const snap = await query.get();
+        let rows = [];
 
-    if (limit) {
-        query += ' LIMIT ?';
-        params.push(parseInt(limit));
-    }
+        // Fetch categories and brands mapping to resolve titles in-memory
+        const categoriesSnap = await db.collection('categories').get();
+        const brandsSnap = await db.collection('brands').get();
+        
+        const categoryMap = {};
+        categoriesSnap.forEach(doc => {
+            const data = doc.data();
+            categoryMap[data.id] = data.name;
+        });
 
-    db.all(query, params, (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
+        const brandMap = {};
+        brandsSnap.forEach(doc => {
+            const data = doc.data();
+            brandMap[data.id] = data.name;
+        });
+
+        snap.forEach(doc => {
+            const p = doc.data();
+            p.category_name = categoryMap[p.category_id] || 'Retail';
+            p.brand_name = brandMap[p.brand_id] || '';
+            rows.push(p);
+        });
+
+        if (search) {
+            const searchLower = search.toLowerCase();
+            rows = rows.filter(p => 
+                (p.title && p.title.toLowerCase().includes(searchLower)) || 
+                (p.description && p.description.toLowerCase().includes(searchLower))
+            );
+        }
+
+        // Sort products by ID descending (newest first)
+        rows.sort((a, b) => b.id - a.id);
+
+        if (limit) {
+            rows = rows.slice(0, parseInt(limit));
+        }
+
         res.json(rows);
-    });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // 4. Get Single Product Detail
-app.get('/api/products/:id', (req, res) => {
+app.get('/api/products/:id', async (req, res) => {
     const { id } = req.params;
-    db.get(`
-        SELECT p.*, c.name as category_name, b.name as brand_name 
-        FROM products p
-        LEFT JOIN categories c ON p.category_id = c.id
-        LEFT JOIN brands b ON p.brand_id = b.id
-        WHERE p.id = ? OR p.slug = ?
-    `, [id, id], (err, row) => {
-        if (err) return res.status(500).json({ error: err.message });
-        if (!row) return res.status(404).json({ error: 'Product not found' });
-        res.json(row);
-    });
+    try {
+        let snap;
+        if (!isNaN(id)) {
+            snap = await db.collection('products').where('id', '==', parseInt(id)).get();
+        } else {
+            snap = await db.collection('products').where('slug', '==', id).get();
+        }
+
+        if (snap.empty) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        const prod = snap.docs[0].data();
+
+        // Populate Category and Brand Names
+        const catDoc = await db.collection('categories').doc(String(prod.category_id)).get();
+        if (catDoc.exists) prod.category_name = catDoc.data().name;
+        
+        const brandDoc = await db.collection('brands').doc(String(prod.brand_id)).get();
+        if (brandDoc.exists) prod.brand_name = brandDoc.data().name;
+
+        res.json(prod);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // 5. Create New Order (Storefront Checkout)
-app.post('/api/orders', (req, res) => {
+app.post('/api/orders', async (req, res) => {
     const { customer_name, customer_email, customer_phone, shipping_address, city, zip_code, total_amount, payment_method, items } = req.body;
     
     if (!customer_name || !customer_email || !total_amount || !items || !items.length) {
@@ -185,27 +240,40 @@ app.post('/api/orders', (req, res) => {
     }
 
     const orderNumber = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    const orderId = Math.floor(10000 + Math.random() * 90000);
 
-    db.run(`
-        INSERT INTO orders (order_number, customer_name, customer_email, customer_phone, shipping_address, city, zip_code, total_amount, payment_method, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Processing')
-    `, [orderNumber, customer_name, customer_email, customer_phone || '', shipping_address || '', city || '', zip_code || '', total_amount, payment_method || 'Credit Card'], function(err) {
-        if (err) return res.status(500).json({ error: err.message });
-        
-        const orderId = this.lastID;
-        const stmt = db.prepare('INSERT INTO order_items (order_id, product_id, product_title, price, quantity) VALUES (?, ?, ?, ?, ?)');
-        
-        items.forEach(item => {
-            stmt.run(orderId, item.product_id, item.product_title || 'Product', item.price, item.quantity);
-        });
-        stmt.finalize();
+    try {
+        const newOrder = {
+            id: orderId,
+            order_number: orderNumber,
+            customer_name,
+            customer_email,
+            customer_phone: customer_phone || '',
+            shipping_address: shipping_address || '',
+            city: city || '',
+            zip_code: zip_code || '',
+            total_amount: parseFloat(total_amount),
+            payment_method: payment_method || 'Credit Card',
+            status: 'Processing',
+            created_at: new Date().toISOString(),
+            items: items.map(item => ({
+                product_id: parseInt(item.product_id),
+                product_title: item.product_title || 'Product',
+                price: parseFloat(item.price),
+                quantity: parseInt(item.quantity)
+            }))
+        };
+
+        await db.collection('orders').doc(String(orderId)).set(newOrder);
 
         res.status(201).json({
             message: 'Order created successfully!',
             order_number: orderNumber,
             order_id: orderId
         });
-    });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // ----------------------------------------------------
@@ -213,63 +281,124 @@ app.post('/api/orders', (req, res) => {
 // ----------------------------------------------------
 
 // 6. Admin Analytics Stats
-app.get('/api/admin/stats', authenticateAdmin, (req, res) => {
-    db.get('SELECT COUNT(*) as total_products FROM products', (err, prodRow) => {
-        db.get('SELECT COUNT(*) as total_orders, COALESCE(SUM(total_amount), 0) as total_revenue FROM orders', (err, orderRow) => {
-            db.get('SELECT COUNT(*) as total_customers FROM (SELECT DISTINCT customer_email FROM orders)', (err, custRow) => {
-                res.json({
-                    total_revenue: orderRow ? orderRow.total_revenue : 6659,
-                    total_orders: orderRow ? orderRow.total_orders : 9856,
-                    total_products: prodRow ? prodRow.total_products : 893,
-                    total_customers: custRow ? custRow.total_customers : 4600
-                });
-            });
+app.get('/api/admin/stats', authenticateAdmin, async (req, res) => {
+    try {
+        const prodSnap = await db.collection('products').get();
+        const orderSnap = await db.collection('orders').get();
+
+        const total_products = prodSnap.size;
+        const total_orders = orderSnap.size;
+        let total_revenue = 0;
+        const customerEmails = new Set();
+
+        orderSnap.forEach(doc => {
+            const o = doc.data();
+            total_revenue += parseFloat(o.total_amount || 0);
+            if (o.customer_email) {
+                customerEmails.add(o.customer_email.trim().toLowerCase());
+            }
         });
-    });
+
+        res.json({
+            total_revenue,
+            total_orders,
+            total_products,
+            total_customers: customerEmails.size
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // 7. Admin Add Product
-app.post('/api/admin/products', authenticateAdmin, (req, res) => {
+app.post('/api/admin/products', authenticateAdmin, async (req, res) => {
     const { title, price, old_price, stock, category_id, brand_id, image, description } = req.body;
     
     if (!title || !price) {
         return res.status(400).json({ error: 'Title and Price are required' });
     }
 
-    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-    const imgUrl = image || '/assets/images/product/product-1.jpg';
+    try {
+        // Calculate next product ID
+        const prodSnap = await db.collection('products').get();
+        let maxId = 0;
+        prodSnap.forEach(doc => {
+            const p = doc.data();
+            if (p.id && p.id > maxId) maxId = p.id;
+        });
+        const newId = maxId + 1;
 
-    db.run(`
-        INSERT INTO products (title, slug, price, old_price, stock, category_id, brand_id, rating, reviews_count, image, description, is_featured, is_new)
-        VALUES (?, ?, ?, ?, ?, ?, ?, 5.0, 1, ?, ?, 1, 1)
-    `, [title, slug, price, old_price || price * 1.2, stock || 50, category_id || 1, brand_id || 1, imgUrl, description || ''], function(err) {
-        if (err) return res.status(500).json({ error: err.message });
-        res.status(201).json({ message: 'Product created successfully', id: this.lastID });
-    });
+        const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+        const imgUrl = image || '/assets/images/product/product-1.jpg';
+
+        const newProduct = {
+            id: newId,
+            title,
+            slug,
+            price: parseFloat(price),
+            old_price: parseFloat(old_price || price * 1.2),
+            stock: parseInt(stock || 50),
+            category_id: parseInt(category_id || 1),
+            brand_id: parseInt(brand_id || 1),
+            rating: 5.0,
+            reviews_count: 1,
+            image: imgUrl,
+            description: description || '',
+            is_featured: 1,
+            is_new: 1
+        };
+
+        await db.collection('products').doc(String(newId)).set(newProduct);
+        res.status(201).json({ message: 'Product created successfully', id: newId });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // 8. Admin List Orders
-app.get('/api/admin/orders', authenticateAdmin, (req, res) => {
-    db.all('SELECT * FROM orders ORDER BY id DESC', [], (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
+app.get('/api/admin/orders', authenticateAdmin, async (req, res) => {
+    try {
+        const snap = await db.collection('orders').get();
+        const rows = [];
+        snap.forEach(doc => rows.push(doc.data()));
+        // Sort newest first
+        rows.sort((a, b) => b.id - a.id);
         res.json(rows);
-    });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // 9. Admin Update Order Status
-app.put('/api/admin/orders/:id', authenticateAdmin, (req, res) => {
+app.put('/api/admin/orders/:id', authenticateAdmin, async (req, res) => {
     const { status } = req.body;
     const { id } = req.params;
 
-    db.run('UPDATE orders SET status = ? WHERE id = ?', [status, id], function(err) {
-        if (err) return res.status(500).json({ error: err.message });
+    try {
+        const orderRef = db.collection('orders').doc(String(id));
+        const doc = await orderRef.get();
+        
+        if (doc.exists) {
+            await orderRef.update({ status });
+            return res.json({ message: 'Order status updated successfully' });
+        }
+
+        // Check if query matches field 'id' instead of document name
+        const snap = await db.collection('orders').where('id', '==', parseInt(id)).get();
+        if (snap.empty) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+
+        await snap.docs[0].ref.update({ status });
         res.json({ message: 'Order status updated successfully' });
-    });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
     app.listen(PORT, () => {
-        console.log(`RVN Backend API Server running at http://localhost:${PORT}`);
+        console.log(`RVN Backend API Server running at http://localhost:${PORT} with Firebase Firestore`);
     });
 }
 
