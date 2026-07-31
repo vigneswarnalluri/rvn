@@ -244,49 +244,113 @@ window.RVNStore = {
     },
 
     initSearchFeature() {
-        const handleSearch = (query) => {
-            if (!query) return;
-            const cleanQuery = query.trim().toLowerCase();
+        const executeSearch = (rawQuery) => {
+            if (!rawQuery) return;
+            const cleanQuery = rawQuery.trim();
             if (!cleanQuery) return;
 
-            if (window.location.pathname.includes('shop')) {
-                // Live filter product cards on shop page
-                document.querySelectorAll('.product-grid-one, .rbt-card, [data-product-card], .col-lg-3, .col-xl-3').forEach(card => {
-                    const title = card.querySelector('.rbt-title, .title, a')?.textContent.toLowerCase() || '';
-                    if (title.includes(cleanQuery)) {
-                        card.style.display = '';
-                    } else if (title) {
-                        card.style.display = 'none';
-                    }
-                });
-            } else {
-                window.location.href = `shop.html?search=${encodeURIComponent(cleanQuery)}`;
-            }
+            const isShop = window.location.pathname.includes('shop');
+            const targetPage = isShop ? 'shop.html' : 'index.html';
+            window.location.href = `${targetPage}?search=${encodeURIComponent(cleanQuery)}`;
         };
 
-        // Bind storefront search inputs and forms
-        document.querySelectorAll('.rbt-search-form, .search-form').forEach(form => {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
+        // Attach listeners to search submit events, clicks, and Enter key
+        document.addEventListener('submit', (e) => {
+            const form = e.target.closest('.rbt-search-form, .search-form, form');
+            if (form) {
                 const input = form.querySelector('.search-input, input[type="text"], input[type="search"]');
-                if (input) handleSearch(input.value);
-            });
-
-            const submitBtn = form.querySelector('.submit-btn a, button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.addEventListener('click', (e) => {
+                if (input && input.value) {
                     e.preventDefault();
-                    const input = form.querySelector('.search-input, input[type="text"], input[type="search"]');
-                    if (input) handleSearch(input.value);
-                });
+                    executeSearch(input.value);
+                }
             }
         });
 
-        // Auto-apply search filter if ?search= is present in URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const searchQuery = urlParams.get('search');
-        if (searchQuery && window.location.pathname.includes('shop')) {
-            setTimeout(() => handleSearch(searchQuery), 300);
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.submit-btn, .submit-btn a, .inner-search-icon, .rbt-search-dropdown a.rbt-btn');
+            if (btn) {
+                const form = btn.closest('.rbt-search-form, .rbt-search-dropdown, form') || document;
+                const input = form.querySelector('.search-input, input[type="text"], input[type="search"]');
+                if (input && input.value) {
+                    e.preventDefault();
+                    executeSearch(input.value);
+                }
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const input = e.target.closest('.search-input, input[type="search"]');
+                if (input && input.value) {
+                    e.preventDefault();
+                    executeSearch(input.value);
+                }
+            }
+        });
+    },
+
+    async renderDynamicProducts() {
+        try {
+            const products = await this.fetchProducts();
+            if (!products || !products.length) return;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            let displayProducts = products;
+
+            if (searchQuery) {
+                const q = searchQuery.toLowerCase().trim();
+                displayProducts = products.filter(p => p.title.toLowerCase().includes(q) || (p.description && p.description.toLowerCase().includes(q)));
+            }
+
+            const productContainers = document.querySelectorAll('.rbt-component-area .row.row--12, [data-product-grid], .shop-product-grid');
+            if (!productContainers.length) return;
+
+            const productCardHTML = (prod) => `
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6 mt--24">
+                    <div class="rbt-card rbt-product-card has-hover-box-shadow" style="background:#fff; border-radius:12px; padding:16px; border:1px solid #eee;">
+                        <div class="inner">
+                            <div class="rbt-card-img rbt-has-hover-img" style="text-align:center; background:#f9f9f9; border-radius:8px; padding:12px;">
+                                <a href="product-single-default.html?id=${prod.id}">
+                                    <img class="rbt-prd-img" src="${prod.image}" alt="${prod.title}" style="height:180px; object-fit:contain; max-width:100%;">
+                                </a>
+                            </div>
+                            <div class="rbt-card-body mt--15">
+                                <h4 class="rbt-card-title h6" style="font-size:15px; font-weight:600; min-height:42px;">
+                                    <a href="product-single-default.html?id=${prod.id}">${prod.title}</a>
+                                </h4>
+                                <div class="rbt-price-wrapper mt--10" style="font-size:16px;">
+                                    <span class="rbt-price-text offer-price font-bold" style="color:#215ada; font-weight:700;">₹${parseFloat(prod.price).toFixed(2)}</span>
+                                    ${prod.old_price ? `<span class="regular-price ml--5 text-gray-400" style="text-decoration:line-through; font-size:13px; margin-left:8px;">₹${parseFloat(prod.old_price).toFixed(2)}</span>` : ''}
+                                </div>
+                                <div class="rbt-card-bottom mt--15">
+                                    <button class="rbt-btn rbt-btn-sm w-100 rbt-add-to-cart-btn" style="background:#215ada; color:#fff; border:none; padding:10px; border-radius:6px; font-weight:600; width:100%; cursor:pointer;" onclick="window.RVNStore.addToCart({ id: ${prod.id}, title: '${prod.title.replace(/'/g, "\\'")}', price: ${prod.price}, image: '${prod.image}' })">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            productContainers.forEach(container => {
+                if (container.querySelector('.rbt-card, .col-xxl-3, .col-xl-3, .col-lg-4')) {
+                    if (searchQuery && displayProducts.length === 0) {
+                        container.innerHTML = `
+                            <div class="col-12 text-center py-5" style="padding: 60px 0;">
+                                <h3>No products found matching "${searchQuery}"</h3>
+                                <p class="text-muted">Try searching for headphones, cable, smartwatch, TV, speaker, or power bank.</p>
+                                <a href="index.html" class="rbt-btn btn-md mt--20" style="display:inline-block; margin-top:20px; background:#215ada; color:#fff; padding:10px 24px; border-radius:6px;">View All Products</a>
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML = displayProducts.map(productCardHTML).join('');
+                    }
+                }
+            });
+        } catch (err) {
+            console.error('Error rendering dynamic products:', err);
         }
     }
 };
@@ -297,6 +361,7 @@ const initStore = () => {
     window.RVNStore.bindExistingUI();
     window.RVNStore.loadProductDetails();
     window.RVNStore.initSearchFeature();
+    window.RVNStore.renderDynamicProducts();
 };
 
 if (document.readyState === 'loading') {
