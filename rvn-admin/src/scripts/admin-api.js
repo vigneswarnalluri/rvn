@@ -405,6 +405,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.RVNAdmin.addProduct(product);
             }
         });
+
+        // Bind click explicitly to the save button
+        const saveBtn = document.querySelector('button[form="add-product-form"]');
+        if (saveBtn) {
+            saveBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (addProductForm.reportValidity ? addProductForm.reportValidity() : true) {
+                    addProductForm.dispatchEvent(new Event('submit'));
+                }
+            });
+        }
     }
 
     // Wire Edit Product Form if present
@@ -437,6 +448,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.RVNAdmin.updateProduct(id, product);
                 }
             });
+
+            // Bind click explicitly to the save button
+            const saveBtn = document.querySelector('button[form="edit-product-form"]');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (editForm.reportValidity ? editForm.reportValidity() : true) {
+                        editForm.dispatchEvent(new Event('submit'));
+                    }
+                });
+            }
         }
     }
 
