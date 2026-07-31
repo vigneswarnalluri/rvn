@@ -363,14 +363,47 @@ document.addEventListener('DOMContentLoaded', () => {
         addProductForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const formData = new FormData(addProductForm);
-            const product = {
-                title: formData.get('title') || formData.get('product_name') || 'New Sample Item',
-                price: parseFloat(formData.get('price')) || 49.99,
-                old_price: parseFloat(formData.get('old_price')) || 69.99,
-                stock: parseInt(formData.get('stock')) || 50,
-                description: formData.get('description') || 'Product description added from Admin Portal.'
+            
+            const categoryName = formData.get('category');
+            const categoryMap = {
+                'Electronics': 1,
+                'Grocery': 2,
+                'Bakery': 3,
+                'Drinks': 4,
+                'Snacks': 5,
+                'Dairy': 6
             };
-            window.RVNAdmin.addProduct(product);
+            const categoryId = categoryMap[categoryName] || 1;
+
+            const product = {
+                title: formData.get('name') || formData.get('title') || 'New Product',
+                price: parseFloat(formData.get('price')) || 0.00,
+                old_price: parseFloat(formData.get('old_price')) || null,
+                stock: parseInt(formData.get('stock')) || 10,
+                category_id: categoryId,
+                description: formData.get('description') || ''
+            };
+
+            const thumbInput = document.getElementById('thumb-input');
+            if (thumbInput && thumbInput.files && thumbInput.files[0]) {
+                const file = thumbInput.files[0];
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    product.image = reader.result;
+                    window.RVNAdmin.addProduct(product);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                const sampleImages = [
+                    'assets/images/product-img/electronics/product-img-electro-a-01.webp',
+                    'assets/images/product-img/electronics/electro-c-01.webp',
+                    'assets/images/product-img/electronics/product-img-watch-b-01.webp',
+                    'assets/images/product-img/electronics/headphone-lg-01.webp',
+                    'assets/images/product-img/electronics/electronics-bg-trans-01-a-1.webp'
+                ];
+                product.image = sampleImages[Math.floor(Math.random() * sampleImages.length)];
+                window.RVNAdmin.addProduct(product);
+            }
         });
     }
 
@@ -390,7 +423,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     price: parseFloat(formData.get('price')),
                     description: formData.get('description')
                 };
-                window.RVNAdmin.updateProduct(id, product);
+
+                const thumbInput = document.getElementById('thumb-input');
+                if (thumbInput && thumbInput.files && thumbInput.files[0]) {
+                    const file = thumbInput.files[0];
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        product.image = reader.result;
+                        window.RVNAdmin.updateProduct(id, product);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    window.RVNAdmin.updateProduct(id, product);
+                }
             });
         }
     }

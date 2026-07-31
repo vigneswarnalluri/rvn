@@ -127,7 +127,9 @@ window.RVNStore = {
 
             cards.forEach((card, index) => {
                 const titleEl = card.querySelector('.rbt-card-title a, .title a, h2 a, h3 a, h4 a, h5 a, h6 a');
-                const priceEl = card.querySelector('.price-text, .price, .offer-price, .rbt-price-text');
+                const priceEl = card.querySelector('.pricing-part .price-text:not(del), .price:not(del), .offer-price, .rbt-price-text');
+                const oldPriceEl = card.querySelector('.pricing-part del, del.price-text, del');
+                const badgeEl = card.querySelector('.rbt-offer-badge, .badge-sale, [class*="badge"]');
                 const imgEls = card.querySelectorAll('.rbt-prd-img, .rbt-hover-img, img');
                 const linkEls = card.querySelectorAll('a[href*="product-single"]');
 
@@ -139,6 +141,18 @@ window.RVNStore = {
 
                 if (priceEl && prod) {
                     priceEl.textContent = `₹${parseFloat(prod.price).toFixed(2)}`;
+                }
+
+                if (oldPriceEl && prod) {
+                    if (prod.old_price && parseFloat(prod.old_price) > parseFloat(prod.price)) {
+                        oldPriceEl.textContent = `₹${parseFloat(prod.old_price).toFixed(2)}`;
+                        oldPriceEl.style.display = '';
+                    } else {
+                        oldPriceEl.style.display = 'none';
+                        if (badgeEl && (badgeEl.textContent.includes('%') || badgeEl.textContent.toLowerCase().includes('save'))) {
+                            badgeEl.style.display = 'none';
+                        }
+                    }
                 }
 
                 if (imgEls.length > 0 && prod && prod.image) {
