@@ -70,7 +70,7 @@ async function seedDatabase() {
         // 4. Seed Products
         const productsCol = db.collection('products');
         const prodSnap = await productsCol.limit(1).get();
-        if (prodSnap.empty) {
+        if (false && prodSnap.empty) {
             console.log('Seeding initial products to Firestore...');
             const products = [
                 { id: 1, title: 'Wireless ANC Noise Cancelling Headphones', slug: 'wireless-anc-headphones', price: 199.99, old_price: 249.99, stock: 45, category_id: 1, brand_id: 3, rating: 4.8, reviews_count: 48, image: 'assets/images/product-img/electronics/electronics-bg-trans-01-a-1.webp', description: 'Premium active noise cancelling over-ear headphones with 30-hour battery life.', is_featured: 1, is_new: 1 },
