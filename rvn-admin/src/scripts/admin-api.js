@@ -167,7 +167,7 @@ window.RVNAdmin = {
 
             const resolveImg = (imgUrl) => {
                 if (!imgUrl) return 'https://via.placeholder.com/150';
-                if (imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) return imgUrl;
+                if (imgUrl.startsWith('data:') || imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) return imgUrl;
                 const cleanPath = imgUrl.startsWith('/') ? imgUrl.slice(1) : imgUrl;
                 return window.location.port === '5173' ? `http://localhost:3000/${cleanPath}` : `/${cleanPath}`;
             };
@@ -293,7 +293,7 @@ window.RVNAdmin = {
 
                 const resolveImg = (imgUrl) => {
                     if (!imgUrl) return 'https://via.placeholder.com/150';
-                    if (imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) return imgUrl;
+                    if (imgUrl.startsWith('data:') || imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) return imgUrl;
                     const cleanPath = imgUrl.startsWith('/') ? imgUrl.slice(1) : imgUrl;
                     return window.location.port === '5173' ? `http://localhost:3000/${cleanPath}` : `/${cleanPath}`;
                 };
