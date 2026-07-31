@@ -154,6 +154,13 @@ window.RVNAdmin = {
                 return;
             }
 
+            const resolveImg = (imgUrl) => {
+                if (!imgUrl) return 'https://via.placeholder.com/150';
+                if (imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) return imgUrl;
+                const cleanPath = imgUrl.startsWith('/') ? imgUrl.slice(1) : imgUrl;
+                return window.location.port === '5173' ? `http://localhost:3000/${cleanPath}` : `/${cleanPath}`;
+            };
+
             tbody.innerHTML = products.map(prod => `
                 <tr class="border-b border-surface-line hover:bg-surface-body/70">
                     <td class="py-4 pr-3">
@@ -161,7 +168,7 @@ window.RVNAdmin = {
                     </td>
                     <td class="py-4 pr-4">
                         <div class="flex items-center gap-3">
-                            <img src="${prod.image.startsWith('/') ? prod.image : '/' + prod.image}" alt="${prod.title}" class="h-12 w-12 rounded-base bg-surface-body object-cover" style="width: 48px; height: 48px; object-fit: contain;" />
+                            <img src="${resolveImg(prod.image)}" alt="${prod.title}" class="h-12 w-12 rounded-base bg-surface-body object-cover" style="width: 48px; height: 48px; object-fit: contain;" />
                             <div>
                                 <span class="font-semibold text-ink-900">${prod.title}</span>
                                 <p class="mt-1 text-[13px] text-ink-400">SKU: PROD-${prod.id}</p>
@@ -178,7 +185,7 @@ window.RVNAdmin = {
                     </td>
                     <td class="py-4 text-right">
                         <div class="inline-flex items-center gap-1">
-                            <a href="${prod.image}" target="_blank" class="icon-button hover:bg-brand-50 hover:text-brand-600" style="padding: 6px; display: inline-block;">
+                            <a href="${resolveImg(prod.image)}" target="_blank" class="icon-button hover:bg-brand-50 hover:text-brand-600" style="padding: 6px; display: inline-block;">
                                 <i data-lucide="eye" class="h-4 w-4" style="width: 16px; height: 16px;"></i>
                             </a>
                             <button class="icon-button hover:bg-danger-50 hover:text-danger-500" style="padding: 6px;" onclick="alert('Delete functionality not implemented yet')">
@@ -188,6 +195,11 @@ window.RVNAdmin = {
                     </td>
                 </tr>
             `).join('');
+
+            const listInfo = document.querySelector('[data-list-info]');
+            if (listInfo) {
+                listInfo.textContent = `Showing ${products.length} of ${products.length} products`;
+            }
 
             if (window.lucide) {
                 window.lucide.createIcons();
