@@ -183,6 +183,73 @@ window.RVNStore = {
         this.renderCartOffcanvas();
     },
 
+    async loadProductDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        if (!productId) return;
+
+        try {
+            const res = await fetch(`${API_BASE_URL}/products/${productId}`);
+            if (!res.ok) return;
+            const product = await res.json();
+
+            if (product && product.title) {
+                // Update product title elements
+                document.querySelectorAll('.rbt-single-product-title, .rbt-card-title, h1.title, h2.rbt-card-title, .product-title').forEach(el => {
+                    if (el.closest('.rbt-single-product-content, .rbt-single-product-area, main, .container')) {
+                        el.textContent = product.title;
+                    }
+                });
+
+                // Update breadcrumbs
+                const breadcrumbTitle = document.querySelector('.breadcrumb, nav[aria-label="breadcrumb"], .rbt-breadcrumb-item.active, .breadcrumb-item.active');
+                if (breadcrumbTitle) breadcrumbTitle.textContent = product.title;
+
+                // Update pricing
+                document.querySelectorAll('.pricing-part .price-text:not(del), .rbt-single-product-price, .offer-price').forEach(el => {
+                    el.textContent = `₹${parseFloat(product.price).toFixed(2)}`;
+                });
+
+                if (product.old_price) {
+                    document.querySelectorAll('.pricing-part del').forEach(el => {
+                        el.textContent = `₹${parseFloat(product.old_price).toFixed(2)}`;
+                    });
+                }
+
+                // Update description
+                if (product.description) {
+                    document.querySelectorAll('.description-text, .product-description, .rbt-single-product-content p').forEach(el => {
+                        el.textContent = product.description;
+                    });
+                }
+
+                // Update product image
+                if (product.image) {
+                    document.querySelectorAll('.rbt-product-single-img img, .product-single-slider-two-activation img, .rbt-thumb-img-sm img').forEach(el => {
+                        el.src = product.image;
+                    });
+                }
+
+                // Bind Add to Cart button
+                document.querySelectorAll('.rbt-single-product-add-to-cart, .rbt-btn-cart, .rbt-cart-sidenav-activation').forEach(btn => {
+                    if (btn.closest('.rbt-single-product-content, .rbt-single-product-area')) {
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.addToCart({
+                                id: product.id,
+                                title: product.title,
+                                price: product.price,
+                                image: product.image
+                            });
+                        });
+                    }
+                });
+            }
+        } catch (err) {
+            console.error('Failed to load product details:', err);
+        }
+    },
+
     initSearchFeature() {
         const executeSearch = (rawQuery) => {
             if (!rawQuery) return;
