@@ -38,10 +38,29 @@ window.RVNAdmin = {
         }
     },
 
-    async ensureAuthenticated() {
-        if (!this.getToken()) {
+    async ensureAuthenticated(force = false) {
+        if (force || !this.getToken()) {
+            localStorage.removeItem('rvn_admin_token');
             await this.login();
         }
+    },
+
+    async fetchWithAuth(url, options = {}) {
+        await this.ensureAuthenticated();
+        options.headers = {
+            ...this.getHeaders(),
+            ...(options.headers || {})
+        };
+        let res = await fetch(url, options);
+        if (res.status === 401) {
+            await this.ensureAuthenticated(true);
+            options.headers = {
+                ...this.getHeaders(),
+                ...(options.headers || {})
+            };
+            res = await fetch(url, options);
+        }
+        return res;
     },
 
     // ----------------------------------------------------
@@ -49,10 +68,7 @@ window.RVNAdmin = {
     // ----------------------------------------------------
     async loadDashboardStats() {
         try {
-            await this.ensureAuthenticated();
-            const res = await fetch(`${ADMIN_API_BASE_URL}/stats`, {
-                headers: this.getHeaders()
-            });
+            const res = await this.fetchWithAuth(`${ADMIN_API_BASE_URL}/stats`);
             if (!res.ok) return;
             const data = await res.json();
 
@@ -77,10 +93,8 @@ window.RVNAdmin = {
     // ----------------------------------------------------
     async addProduct(productData) {
         try {
-            await this.ensureAuthenticated();
-            const res = await fetch(`${ADMIN_API_BASE_URL}/products`, {
+            const res = await this.fetchWithAuth(`${ADMIN_API_BASE_URL}/products`, {
                 method: 'POST',
-                headers: this.getHeaders(),
                 body: JSON.stringify(productData)
             });
             const result = await res.json();
@@ -104,10 +118,7 @@ window.RVNAdmin = {
         if (!tbody) return;
 
         try {
-            await this.ensureAuthenticated();
-            const res = await fetch(`${ADMIN_API_BASE_URL}/orders`, {
-                headers: this.getHeaders()
-            });
+            const res = await this.fetchWithAuth(`${ADMIN_API_BASE_URL}/orders`);
             const orders = await res.json();
 
             if (!orders || !orders.length) {
@@ -230,10 +241,8 @@ window.RVNAdmin = {
 
     async updateStatus(orderId, status) {
         try {
-            await this.ensureAuthenticated();
-            const res = await fetch(`${ADMIN_API_BASE_URL}/orders/${orderId}`, {
+            const res = await this.fetchWithAuth(`${ADMIN_API_BASE_URL}/orders/${orderId}`, {
                 method: 'PUT',
-                headers: this.getHeaders(),
                 body: JSON.stringify({ status })
             });
             if (res.ok) {
@@ -248,10 +257,8 @@ window.RVNAdmin = {
     async deleteProduct(productId) {
         if (!confirm('Are you sure you want to delete this product?')) return;
         try {
-            await this.ensureAuthenticated();
-            const res = await fetch(`${ADMIN_API_BASE_URL}/products/${productId}`, {
-                method: 'DELETE',
-                headers: this.getHeaders()
+            const res = await this.fetchWithAuth(`${ADMIN_API_BASE_URL}/products/${productId}`, {
+                method: 'DELETE'
             });
             if (res.ok) {
                 alert('Product deleted successfully!');
@@ -302,10 +309,8 @@ window.RVNAdmin = {
 
     async updateProduct(id, productData) {
         try {
-            await this.ensureAuthenticated();
-            const res = await fetch(`${ADMIN_API_BASE_URL}/products/${id}`, {
+            const res = await this.fetchWithAuth(`${ADMIN_API_BASE_URL}/products/${id}`, {
                 method: 'PUT',
-                headers: this.getHeaders(),
                 body: JSON.stringify(productData)
             });
             const result = await res.json();
@@ -326,10 +331,7 @@ window.RVNAdmin = {
         if (!id) return;
 
         try {
-            await this.ensureAuthenticated();
-            const res = await fetch(`${ADMIN_API_BASE_URL}/orders/${id}`, {
-                headers: this.getHeaders()
-            });
+            const res = await this.fetchWithAuth(`${ADMIN_API_BASE_URL}/orders/${id}`);
             if (!res.ok) return;
             const order = await res.json();
 
