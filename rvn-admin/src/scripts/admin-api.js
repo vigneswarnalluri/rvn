@@ -302,6 +302,36 @@ window.RVNAdmin = {
         } catch (err) {
             console.error('Update product error:', err);
         }
+    },
+
+    async loadOrderDetail() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        if (!id) return;
+
+        try {
+            await this.ensureAuthenticated();
+            const res = await fetch(`${ADMIN_API_BASE_URL}/orders/${id}`, {
+                headers: this.getHeaders()
+            });
+            if (!res.ok) return;
+            const order = await res.json();
+
+            if (order) {
+                const titleEl = document.querySelector('h2');
+                if (titleEl && order.order_number) {
+                    titleEl.textContent = `Order Details (${order.order_number})`;
+                }
+                document.querySelectorAll('dd').forEach(el => {
+                    const label = el.previousElementSibling?.textContent.toLowerCase() || '';
+                    if (label.includes('date')) el.textContent = new Date(order.created_at).toLocaleDateString();
+                    if (label.includes('payment')) el.textContent = order.payment_method || 'Credit Card';
+                    if (label.includes('customer')) el.textContent = order.customer_name;
+                });
+            }
+        } catch (err) {
+            console.error('Error loading order detail:', err);
+        }
     }
 };
 
@@ -345,6 +375,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.RVNAdmin.updateProduct(id, product);
             });
         }
+    }
+
+    // Wire Order Detail page if present
+    if (window.location.pathname.includes('order-detail')) {
+        window.RVNAdmin.loadOrderDetail();
     }
 
     // Wire Orders page if table exists

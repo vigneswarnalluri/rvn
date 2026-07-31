@@ -401,6 +401,25 @@ app.get('/api/admin/orders', authenticateAdmin, async (req, res) => {
     }
 });
 
+// Admin Get Single Order Detail
+app.get('/api/admin/orders/:id', authenticateAdmin, async (req, res) => {
+    const { id } = req.params;
+    try {
+        let doc = await db.collection('orders').doc(String(id)).get();
+        if (doc.exists) {
+            return res.json(doc.data());
+        }
+        const snap = await db.collection('orders').where('id', '==', parseInt(id)).get();
+        if (!snap.empty) {
+            return res.json(snap.docs[0].data());
+        }
+        res.status(404).json({ error: 'Order not found' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+
 // 9. Admin Update Order Status
 app.put('/api/admin/orders/:id', authenticateAdmin, async (req, res) => {
     const { status } = req.body;
