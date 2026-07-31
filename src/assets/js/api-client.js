@@ -117,49 +117,48 @@ window.RVNStore = {
     async bindExistingUI() {
         try {
             const products = await this.fetchProducts();
+            if (!products || !products.length) return;
+
             const urlParams = new URLSearchParams(window.location.search);
             const searchQuery = urlParams.get('search')?.toLowerCase().trim();
 
-            const cards = document.querySelectorAll('.rbt-card, .rbt-product-card');
+            // Target main grid product cards explicitly
+            const cards = document.querySelectorAll('.rbt-filterproduct-row .rbt-card, .rbt-component-area .rbt-card, .row--12 .rbt-card, [data-product-grid] .rbt-card, .rbt-card');
 
             cards.forEach((card, index) => {
                 const titleEl = card.querySelector('.rbt-card-title a, .title a, h2 a, h3 a, h4 a, h5 a, h6 a');
                 const priceEl = card.querySelector('.price-text, .price, .offer-price, .rbt-price-text');
-                const imgEl = card.querySelector('.rbt-prd-img, img');
+                const imgEls = card.querySelectorAll('.rbt-prd-img, .rbt-hover-img, img');
                 const linkEls = card.querySelectorAll('a[href*="product-single"]');
 
-                // If product data exists at this index, bind database item
-                if (products && products[index]) {
-                    const prod = products[index];
+                const prod = products[index % products.length];
 
-                    if (titleEl) {
-                        titleEl.textContent = prod.title;
-                    }
+                if (titleEl && prod) {
+                    titleEl.textContent = prod.title;
+                }
 
-                    if (priceEl) {
-                        priceEl.textContent = `₹${parseFloat(prod.price).toFixed(2)}`;
-                    }
+                if (priceEl && prod) {
+                    priceEl.textContent = `₹${parseFloat(prod.price).toFixed(2)}`;
+                }
 
-                    if (imgEl && prod.image) {
-                        imgEl.src = prod.image;
-                    }
+                if (imgEls.length > 0 && prod && prod.image) {
+                    imgEls.forEach(img => img.src = prod.image);
+                }
 
+                if (linkEls.length > 0 && prod) {
                     linkEls.forEach(link => {
                         link.href = `product-single-default.html?id=${prod.id}`;
                     });
+                }
 
-                    // Filter native card by search query if search query is active
-                    if (searchQuery) {
-                        const titleText = (prod.title + ' ' + (prod.description || '')).toLowerCase();
-                        if (titleText.includes(searchQuery)) {
-                            card.closest('.col-xxl-3, .col-xl-3, .col-lg-4, .col-md-6, .col-sm-6, .col-6, .swiper-slide')?.style.setProperty('display', '', 'important');
-                        } else {
-                            card.closest('.col-xxl-3, .col-xl-3, .col-lg-4, .col-md-6, .col-sm-6, .col-6, .swiper-slide')?.style.setProperty('display', 'none', 'important');
-                        }
+                // Filter native card by search query if search query is active
+                if (searchQuery && prod) {
+                    const titleText = (prod.title + ' ' + (prod.description || '')).toLowerCase();
+                    if (titleText.includes(searchQuery)) {
+                        card.closest('.col-xxl-3, .col-xl-3, .col-lg-4, .col-md-6, .col-sm-6, .col-6, .swiper-slide')?.style.setProperty('display', '', 'important');
+                    } else {
+                        card.closest('.col-xxl-3, .col-xl-3, .col-lg-4, .col-md-6, .col-sm-6, .col-6, .swiper-slide')?.style.setProperty('display', 'none', 'important');
                     }
-                } else if (searchQuery) {
-                    // Hide extra cards if search query is active
-                    card.closest('.col-xxl-3, .col-xl-3, .col-lg-4, .col-md-6, .col-sm-6, .col-6, .swiper-slide')?.style.setProperty('display', 'none', 'important');
                 }
 
                 // Attach Add To Cart listener
