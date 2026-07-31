@@ -208,7 +208,7 @@
 
                                             // Populate total amount
                                             const total = window.RVNStore.getCartTotal();
-                                            document.getElementById('pay-button-text').textContent = `Pay $${total.toFixed(2)}`;
+                                            document.getElementById('pay-button-text').textContent = `Pay ₹${total.toFixed(2)}`;
 
                                             // Handle payment click
                                             const payBtn = document.getElementById('pay-button');
@@ -254,7 +254,7 @@
                                                         alert('Order submission failed: ' + (response.error || 'Unknown error'));
                                                         payBtn.disabled = false;
                                                         payBtn.style.opacity = '1';
-                                                        payBtn.querySelector('#pay-button-text').textContent = `Pay $${total.toFixed(2)}`;
+                                                        payBtn.querySelector('#pay-button-text').textContent = `Pay ₹${total.toFixed(2)}`;
                                                     }
                                                 });
                                             }

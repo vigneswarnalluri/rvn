@@ -162,11 +162,13 @@ const buildPluginsCss = () => {
         .pipe(gulp.dest(dest.rootPluginsCss));
 };
 
+const terserOptions = { ecma: 2020, module: false, compress: { passes: 1 } };
+
 const buildVendorJs = () => {
     return gulp
         .src(src.rootVendorJs)
         .pipe(customPlumber('Error On Minifying Vendor JS'))
-        .pipe(terser())
+        .pipe(terser(terserOptions))
         .pipe(gulp.dest(dest.rootVendorJs));
 };
 
@@ -174,20 +176,20 @@ const buildPluginsJs = () => {
     return gulp
         .src(src.rootPluginsJs)
         .pipe(customPlumber('Error On Minifying Plugins JS'))
-        .pipe(terser())
+        .pipe(terser(terserOptions))
         .pipe(gulp.dest(dest.rootPluginsJs));
 };
 
 const buildMainJs = () => {
     gulp.src('./src/assets/js/api-client.js')
         .pipe(customPlumber('Error On Minifying API Client JS'))
-        .pipe(terser())
+        .pipe(terser(terserOptions))
         .pipe(gulp.dest(dest.rootJs));
 
     return gulp
         .src(src.mainJs)
         .pipe(customPlumber('Error On Minifying Main JS'))
-        .pipe(terser())
+        .pipe(terser(terserOptions))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(dest.rootJs));
 };
@@ -260,7 +262,7 @@ gulp.task('mainJs', function () {
     return gulp
         .src(src.mainJs)
         .pipe(customPlumber('Error On Minifying Main Js File'))
-        .pipe(terser())
+        .pipe(terser(terserOptions))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(dest.rootJs));
 });
