@@ -194,56 +194,49 @@ window.RVNStore = {
             const product = await res.json();
 
             if (product && product.title) {
-                // Update product title elements
-                document.querySelectorAll('.rbt-single-product-title, .rbt-card-title, h1.title, h2.rbt-card-title, .product-title').forEach(el => {
-                    if (el.closest('.rbt-single-product-content, .rbt-single-product-area, main, .container')) {
-                        el.textContent = product.title;
-                    }
-                });
+                // Target ONLY the main single product title heading
+                const titleEl = document.querySelector('.rbt-single-product-content > h2.rbt-card-title, h1.product-title, .rbt-single-product-title');
+                if (titleEl) titleEl.textContent = product.title;
 
-                // Update breadcrumbs
-                const breadcrumbTitle = document.querySelector('.breadcrumb, nav[aria-label="breadcrumb"], .rbt-breadcrumb-item.active, .breadcrumb-item.active');
-                if (breadcrumbTitle) breadcrumbTitle.textContent = product.title;
+                // Update breadcrumb active item
+                const breadcrumbActive = document.querySelector('.breadcrumb .active, nav[aria-label="breadcrumb"] li:last-child');
+                if (breadcrumbActive) breadcrumbActive.textContent = product.title;
 
-                // Update pricing
-                document.querySelectorAll('.pricing-part .price-text:not(del), .rbt-single-product-price, .offer-price').forEach(el => {
-                    el.textContent = `₹${parseFloat(product.price).toFixed(2)}`;
-                });
+                // Update price in main pricing container
+                const priceEl = document.querySelector('.rbt-store-price-1 .pricing-part .price-text:not(del), .rbt-single-product-price');
+                if (priceEl) priceEl.textContent = `₹${parseFloat(product.price).toFixed(2)}`;
 
                 if (product.old_price) {
-                    document.querySelectorAll('.pricing-part del').forEach(el => {
-                        el.textContent = `₹${parseFloat(product.old_price).toFixed(2)}`;
-                    });
+                    const oldPriceEl = document.querySelector('.rbt-store-price-1 .pricing-part del');
+                    if (oldPriceEl) oldPriceEl.textContent = `₹${parseFloat(product.old_price).toFixed(2)}`;
                 }
 
-                // Update description
+                // Target ONLY the main description paragraph
                 if (product.description) {
-                    document.querySelectorAll('.description-text, .product-description, .rbt-single-product-content p').forEach(el => {
-                        el.textContent = product.description;
-                    });
+                    const descEl = document.querySelector('.description-text.b2, .rbt-single-product-content > p.description-text');
+                    if (descEl) descEl.textContent = product.description;
                 }
 
-                // Update product image
+                // Update product single images
                 if (product.image) {
-                    document.querySelectorAll('.rbt-product-single-img img, .product-single-slider-two-activation img, .rbt-thumb-img-sm img').forEach(el => {
+                    document.querySelectorAll('.rbt-product-single-img img, .product-single-slider-two-activation .thumbnail img, .rbt-thumb-img-sm img').forEach(el => {
                         el.src = product.image;
                     });
                 }
 
-                // Bind Add to Cart button
-                document.querySelectorAll('.rbt-single-product-add-to-cart, .rbt-btn-cart, .rbt-cart-sidenav-activation').forEach(btn => {
-                    if (btn.closest('.rbt-single-product-content, .rbt-single-product-area')) {
-                        btn.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            this.addToCart({
-                                id: product.id,
-                                title: product.title,
-                                price: product.price,
-                                image: product.image
-                            });
+                // Bind Add to Cart button on single product page
+                const addToCartBtn = document.querySelector('.rbt-single-product-content .rbt-cart-sidenav-activation, .rbt-single-product-content .rbt-btn-cart');
+                if (addToCartBtn) {
+                    addToCartBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.addToCart({
+                            id: product.id,
+                            title: product.title,
+                            price: product.price,
+                            image: product.image
                         });
-                    }
-                });
+                    });
+                }
             }
         } catch (err) {
             console.error('Failed to load product details:', err);
