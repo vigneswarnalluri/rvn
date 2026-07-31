@@ -184,12 +184,15 @@ window.RVNAdmin = {
                         </span>
                     </td>
                     <td class="py-4 text-right">
-                        <div class="inline-flex items-center gap-1">
-                            <a href="${resolveImg(prod.image)}" target="_blank" class="icon-button hover:bg-brand-50 hover:text-brand-600" style="padding: 6px; display: inline-block;">
-                                <i data-lucide="eye" class="h-4 w-4" style="width: 16px; height: 16px;"></i>
+                        <div class="inline-flex items-center gap-1.5">
+                            <a href="${resolveImg(prod.image)}" target="_blank" class="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="View Product">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                             </a>
-                            <button class="icon-button hover:bg-danger-50 hover:text-danger-500" style="padding: 6px;" onclick="alert('Delete functionality not implemented yet')">
-                                <i data-lucide="trash-2" class="h-4 w-4" style="width: 16px; height: 16px;"></i>
+                            <a href="/edit-product.html?id=${prod.id}" class="p-2 text-gray-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" title="Edit Product">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                            </a>
+                            <button type="button" onclick="window.RVNAdmin.deleteProduct(${prod.id})" class="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="Delete Product">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
                             </button>
                         </div>
                     </td>
@@ -223,6 +226,25 @@ window.RVNAdmin = {
             }
         } catch (err) {
             console.error('Update status error:', err);
+        }
+    },
+
+    async deleteProduct(productId) {
+        if (!confirm('Are you sure you want to delete this product?')) return;
+        try {
+            await this.ensureAuthenticated();
+            const res = await fetch(`${ADMIN_API_BASE_URL}/products/${productId}`, {
+                method: 'DELETE',
+                headers: this.getHeaders()
+            });
+            if (res.ok) {
+                alert('Product deleted successfully!');
+                this.loadProductsTable();
+            } else {
+                alert('Failed to delete product.');
+            }
+        } catch (err) {
+            console.error('Delete product error:', err);
         }
     }
 };

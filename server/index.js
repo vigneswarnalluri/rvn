@@ -355,6 +355,18 @@ app.post('/api/admin/products', authenticateAdmin, async (req, res) => {
     }
 });
 
+// Admin Delete Product
+app.delete('/api/admin/products/:id', authenticateAdmin, async (req, res) => {
+    const { id } = req.params;
+    try {
+        await db.collection('products').doc(String(id)).delete();
+        res.json({ message: 'Product deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+
 // 8. Admin List Orders
 app.get('/api/admin/orders', authenticateAdmin, async (req, res) => {
     try {
