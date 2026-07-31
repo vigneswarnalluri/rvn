@@ -366,6 +366,26 @@ app.delete('/api/admin/products/:id', authenticateAdmin, async (req, res) => {
     }
 });
 
+// Admin Update Product
+app.put('/api/admin/products/:id', authenticateAdmin, async (req, res) => {
+    const { id } = req.params;
+    const { title, price, description, image } = req.body;
+    try {
+        const prodRef = db.collection('products').doc(String(id));
+        const updates = {};
+        if (title) updates.title = title;
+        if (price) updates.price = parseFloat(price);
+        if (description !== undefined) updates.description = description;
+        if (image) updates.image = image;
+
+        await prodRef.update(updates);
+        res.json({ message: 'Product updated successfully' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+
 
 // 8. Admin List Orders
 app.get('/api/admin/orders', authenticateAdmin, async (req, res) => {

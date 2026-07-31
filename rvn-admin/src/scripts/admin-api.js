@@ -246,6 +246,62 @@ window.RVNAdmin = {
         } catch (err) {
             console.error('Delete product error:', err);
         }
+    },
+
+    async loadEditProductForm() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        if (!id) return;
+
+        try {
+            const res = await fetch(`${ADMIN_API_BASE_URL.replace('/admin', '')}/products/${id}`);
+            if (!res.ok) return;
+            const product = await res.json();
+
+            if (product && product.title) {
+                const nameInput = document.querySelector('input[name="name"], input[name="title"]');
+                const priceInput = document.querySelector('input[name="price"]');
+                const descInput = document.querySelector('textarea[name="description"]');
+                const thumbImg = document.querySelector('#edit-product-form img, form img, article img');
+
+                if (nameInput) nameInput.value = product.title;
+                if (priceInput) priceInput.value = product.price;
+                if (descInput && product.description) descInput.value = product.description;
+
+                const resolveImg = (imgUrl) => {
+                    if (!imgUrl) return 'https://via.placeholder.com/150';
+                    if (imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) return imgUrl;
+                    const cleanPath = imgUrl.startsWith('/') ? imgUrl.slice(1) : imgUrl;
+                    return window.location.port === '5173' ? `http://localhost:3000/${cleanPath}` : `/${cleanPath}`;
+                };
+
+                if (thumbImg && product.image) {
+                    thumbImg.src = resolveImg(product.image);
+                }
+            }
+        } catch (err) {
+            console.error('Error loading edit product form:', err);
+        }
+    },
+
+    async updateProduct(id, productData) {
+        try {
+            await this.ensureAuthenticated();
+            const res = await fetch(`${ADMIN_API_BASE_URL}/products/${id}`, {
+                method: 'PUT',
+                headers: this.getHeaders(),
+                body: JSON.stringify(productData)
+            });
+            const result = await res.json();
+            if (res.ok) {
+                alert('Product updated successfully!');
+                window.location.href = '/products.html';
+            } else {
+                alert('Error updating product: ' + (result.error || 'Unknown error'));
+            }
+        } catch (err) {
+            console.error('Update product error:', err);
+        }
     }
 };
 
@@ -268,6 +324,27 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             window.RVNAdmin.addProduct(product);
         });
+    }
+
+    // Wire Edit Product Form if present
+    if (window.location.pathname.includes('edit-product')) {
+        window.RVNAdmin.loadEditProductForm();
+        const editForm = document.querySelector('#edit-product-form');
+        if (editForm) {
+            editForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get('id');
+                if (!id) return;
+                const formData = new FormData(editForm);
+                const product = {
+                    title: formData.get('name') || formData.get('title'),
+                    price: parseFloat(formData.get('price')),
+                    description: formData.get('description')
+                };
+                window.RVNAdmin.updateProduct(id, product);
+            });
+        }
     }
 
     // Wire Orders page if table exists
