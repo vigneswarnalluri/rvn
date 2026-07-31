@@ -161,48 +161,64 @@ window.RVNAdmin = {
                 return window.location.port === '5173' ? `http://localhost:3000/${cleanPath}` : `/${cleanPath}`;
             };
 
-            tbody.innerHTML = products.map(prod => `
-                <tr class="border-b border-surface-line hover:bg-surface-body/70">
-                    <td class="py-4 pr-3">
-                        <input type="checkbox" class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600" />
-                    </td>
-                    <td class="py-4 pr-4">
-                        <div class="flex items-center gap-3">
-                            <img src="${resolveImg(prod.image)}" alt="${prod.title}" class="h-12 w-12 rounded-base bg-surface-body object-cover" style="width: 48px; height: 48px; object-fit: contain;" />
-                            <div>
-                                <span class="font-semibold text-ink-900">${prod.title}</span>
-                                <p class="mt-1 text-[13px] text-ink-400">SKU: PROD-${prod.id}</p>
+            const renderRows = (items) => {
+                if (!items || !items.length) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4">No products match your search.</td></tr>';
+                    return;
+                }
+                tbody.innerHTML = items.map(prod => `
+                    <tr class="border-b border-surface-line hover:bg-surface-body/70">
+                        <td class="py-4 pr-3">
+                            <input type="checkbox" class="h-4 w-4 rounded border-surface-line text-brand-600 focus:ring-brand-600" />
+                        </td>
+                        <td class="py-4 pr-4">
+                            <div class="flex items-center gap-3">
+                                <img src="${resolveImg(prod.image)}" alt="${prod.title}" class="h-12 w-12 rounded-base bg-surface-body object-cover" style="width: 48px; height: 48px; object-fit: contain;" />
+                                <div>
+                                    <span class="font-semibold text-ink-900">${prod.title}</span>
+                                    <p class="mt-1 text-[13px] text-ink-400">SKU: PROD-${prod.id}</p>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="py-4 pr-4 text-ink-700">${prod.category_name || 'Retail'}</td>
-                    <td class="py-4 pr-4 text-ink-700">₹${prod.price.toFixed(2)}</td>
-                    <td class="py-4 pr-4 text-ink-700">${prod.stock}</td>
-                    <td class="py-4 pr-4">
-                        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-success-50 text-success-600">
-                            Published
-                        </span>
-                    </td>
-                    <td class="py-4 text-right">
-                        <div class="inline-flex items-center gap-1.5">
-                            <a href="${resolveImg(prod.image)}" target="_blank" class="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="View Product">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                            </a>
-                            <a href="/edit-product.html?id=${prod.id}" class="p-2 text-gray-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" title="Edit Product">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
-                            </a>
-                            <button type="button" onclick="window.RVNAdmin.deleteProduct(${prod.id})" class="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="Delete Product">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
+                        </td>
+                        <td class="py-4 pr-4 text-ink-700">${prod.category_name || 'Retail'}</td>
+                        <td class="py-4 pr-4 text-ink-700">₹${prod.price.toFixed(2)}</td>
+                        <td class="py-4 pr-4 text-ink-700">${prod.stock}</td>
+                        <td class="py-4 pr-4">
+                            <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-success-50 text-success-600">
+                                Published
+                            </span>
+                        </td>
+                        <td class="py-4 text-right">
+                            <div class="inline-flex items-center gap-1.5">
+                                <a href="${resolveImg(prod.image)}" target="_blank" class="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="View Product">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </a>
+                                <a href="/edit-product.html?id=${prod.id}" class="p-2 text-gray-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" title="Edit Product">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                                </a>
+                                <button type="button" onclick="window.RVNAdmin.deleteProduct(${prod.id})" class="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="Delete Product">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+                const listInfo = document.querySelector('[data-list-info]');
+                if (listInfo) {
+                    listInfo.textContent = `Showing ${items.length} of ${products.length} products`;
+                }
+            };
 
-            const listInfo = document.querySelector('[data-list-info]');
-            if (listInfo) {
-                listInfo.textContent = `Showing ${products.length} of ${products.length} products`;
-            }
+            renderRows(products);
+
+            // Bind search inputs
+            document.querySelectorAll('input[placeholder*="Search"], [data-search-input]').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const q = e.target.value.toLowerCase().trim();
+                    const filtered = products.filter(p => p.title.toLowerCase().includes(q) || (p.category_name && p.category_name.toLowerCase().includes(q)));
+                    renderRows(filtered);
+                });
+            });
 
             if (window.lucide) {
                 window.lucide.createIcons();

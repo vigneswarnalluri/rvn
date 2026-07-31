@@ -241,6 +241,53 @@ window.RVNStore = {
             console.error('Order Submission Error:', err);
             return { error: 'Failed to place order' };
         }
+    },
+
+    initSearchFeature() {
+        const handleSearch = (query) => {
+            if (!query) return;
+            const cleanQuery = query.trim().toLowerCase();
+            if (!cleanQuery) return;
+
+            if (window.location.pathname.includes('shop')) {
+                // Live filter product cards on shop page
+                document.querySelectorAll('.product-grid-one, .rbt-card, [data-product-card], .col-lg-3, .col-xl-3').forEach(card => {
+                    const title = card.querySelector('.rbt-title, .title, a')?.textContent.toLowerCase() || '';
+                    if (title.includes(cleanQuery)) {
+                        card.style.display = '';
+                    } else if (title) {
+                        card.style.display = 'none';
+                    }
+                });
+            } else {
+                window.location.href = `shop.html?search=${encodeURIComponent(cleanQuery)}`;
+            }
+        };
+
+        // Bind storefront search inputs and forms
+        document.querySelectorAll('.rbt-search-form, .search-form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = form.querySelector('.search-input, input[type="text"], input[type="search"]');
+                if (input) handleSearch(input.value);
+            });
+
+            const submitBtn = form.querySelector('.submit-btn a, button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const input = form.querySelector('.search-input, input[type="text"], input[type="search"]');
+                    if (input) handleSearch(input.value);
+                });
+            }
+        });
+
+        // Auto-apply search filter if ?search= is present in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+        if (searchQuery && window.location.pathname.includes('shop')) {
+            setTimeout(() => handleSearch(searchQuery), 300);
+        }
     }
 };
 
@@ -249,6 +296,7 @@ const initStore = () => {
     window.RVNStore.updateCartBadge();
     window.RVNStore.bindExistingUI();
     window.RVNStore.loadProductDetails();
+    window.RVNStore.initSearchFeature();
 };
 
 if (document.readyState === 'loading') {
