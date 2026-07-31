@@ -114,133 +114,74 @@ window.RVNStore = {
         }
     },
 
-    bindExistingUI() {
-        // Attach click listeners to all existing template "Add To Cart" buttons
-        const cartButtons = document.querySelectorAll('.rbt-cart-sidenav-activation, .rbt-add-to-cart-btn, .addto-cart-btn, [data-add-cart], .add-itembtn');
-        cartButtons.forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-                const card = btn.closest('.rbt-card, .rbt-product-card, .minicart-item, .inner, .swiper-slide');
-                if (!card) return;
+    async bindExistingUI() {
+        try {
+            const products = await this.fetchProducts();
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search')?.toLowerCase().trim();
 
-                const titleEl = card.querySelector('.rbt-card-title, .title, h2, h3, h4, h5, h6');
+            const cards = document.querySelectorAll('.rbt-card, .rbt-product-card');
+
+            cards.forEach((card, index) => {
+                const titleEl = card.querySelector('.rbt-card-title a, .title a, h2 a, h3 a, h4 a, h5 a, h6 a');
                 const priceEl = card.querySelector('.price-text, .price, .offer-price, .rbt-price-text');
                 const imgEl = card.querySelector('.rbt-prd-img, img');
+                const linkEls = card.querySelectorAll('a[href*="product-single"]');
 
-                const title = titleEl ? titleEl.innerText.trim() : 'Store Item';
-                let price = 199.00;
-                if (priceEl) {
-                    const priceMatches = priceEl.innerText.match(/[\d,]+\.?\d*/g);
-                    if (priceMatches && priceMatches.length > 0) {
-                        price = parseFloat(priceMatches[priceMatches.length - 1].replace(/,/g, ''));
+                // If product data exists at this index, bind database item
+                if (products && products[index]) {
+                    const prod = products[index];
+
+                    if (titleEl) {
+                        titleEl.textContent = prod.title;
                     }
-                }
-                const image = imgEl ? imgEl.src : 'assets/images/product-img/electronics/electronics-bg-trans-10-a-1.webp';
-                const id = 'prod_' + Math.abs(this.hashCode(title));
 
-                this.addToCart({ id, title, price, image });
+                    if (priceEl) {
+                        priceEl.textContent = `₹${parseFloat(prod.price).toFixed(2)}`;
+                    }
+
+                    if (imgEl && prod.image) {
+                        imgEl.src = prod.image;
+                    }
+
+                    linkEls.forEach(link => {
+                        link.href = `product-single-default.html?id=${prod.id}`;
+                    });
+
+                    // Filter native card by search query if search query is active
+                    if (searchQuery) {
+                        const titleText = (prod.title + ' ' + (prod.description || '')).toLowerCase();
+                        if (titleText.includes(searchQuery)) {
+                            card.closest('.col-xxl-3, .col-xl-3, .col-lg-4, .col-md-6, .col-sm-6, .col-6, .swiper-slide')?.style.setProperty('display', '', 'important');
+                        } else {
+                            card.closest('.col-xxl-3, .col-xl-3, .col-lg-4, .col-md-6, .col-sm-6, .col-6, .swiper-slide')?.style.setProperty('display', 'none', 'important');
+                        }
+                    }
+                } else if (searchQuery) {
+                    // Hide extra cards if search query is active
+                    card.closest('.col-xxl-3, .col-xl-3, .col-lg-4, .col-md-6, .col-sm-6, .col-6, .swiper-slide')?.style.setProperty('display', 'none', 'important');
+                }
+
+                // Attach Add To Cart listener
+                const cartBtn = card.querySelector('.rbt-cart-sidenav-activation, .rbt-add-to-cart-btn, .addto-cart-btn, [data-add-cart], .add-itembtn, button');
+                if (cartBtn) {
+                    cartBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const currentProd = (products && products[index]) ? products[index] : null;
+                        const title = currentProd ? currentProd.title : (titleEl ? titleEl.innerText.trim() : 'Store Item');
+                        const price = currentProd ? currentProd.price : (priceEl ? parseFloat(priceEl.innerText.replace(/[^\d.]/g, '')) || 199 : 199);
+                        const image = currentProd ? currentProd.image : (imgEl ? imgEl.src : '');
+                        const id = currentProd ? currentProd.id : 'prod_' + Math.abs(this.hashCode(title));
+
+                        this.addToCart({ id, title, price, image });
+                    });
+                }
             });
-        });
+        } catch (err) {
+            console.error('Error binding native template UI:', err);
+        }
 
         this.renderCartOffcanvas();
-    },
-
-    hashCode(str) {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            hash = (hash << 5) - hash + str.charCodeAt(i);
-            hash |= 0;
-        }
-        return hash;
-    },
-
-    renderCartOffcanvas() {
-        const cart = this.getCart();
-        const minicartWrapper = document.querySelector('.rbt-cart-side-menu .rbt-minicart-wrapper');
-        const subtotalElements = document.querySelectorAll('.rbt-cart-subttotal .price');
-        
-        if (minicartWrapper && cart.length > 0) {
-            minicartWrapper.innerHTML = cart.map(item => `
-                <li class="minicart-item">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img src="${item.image}" alt="${item.product_title}">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="title h6"><a href="#">${item.product_title}</a></h3>
-                        <span class="quantity">${item.quantity}x <span class="price">₹${item.price.toFixed(2)}</span></span>
-                    </div>
-                    <div class="close-btn">
-                        <button onclick="window.RVNStore.removeFromCart('${item.product_id}'); window.RVNStore.renderCartOffcanvas();" class="rbt-round-btn">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
-                </li>
-            `).join('');
-        }
-
-        const total = this.getCartTotal().toFixed(2);
-        if (subtotalElements.length > 0) {
-            subtotalElements.forEach(el => {
-                if (el.closest('.rbt-cart-subttotal')?.querySelector('.subtotal')) {
-                    el.textContent = `₹${total}`;
-                }
-            });
-        }
-    },
-
-    async loadProductDetails() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
-        if (!productId) return;
-
-        try {
-            const res = await fetch(`${API_BASE_URL}/products/${productId}`);
-            if (!res.ok) return;
-            const product = await res.json();
-
-            if (product && product.title) {
-                document.querySelectorAll('.rbt-product-Name, .product-title, .rbt-single-product-title, h1.title').forEach(el => {
-                    el.textContent = product.title;
-                });
-                document.querySelectorAll('.rbt-single-product-price, .offer-price, .price-text').forEach(el => {
-                    el.textContent = `₹${parseFloat(product.price).toFixed(2)}`;
-                });
-                if (product.image) {
-                    document.querySelectorAll('.rbt-single-product-media-area img, .rbt-thumb-img-sm img').forEach(el => {
-                        el.src = product.image;
-                    });
-                }
-                const addToCartBtn = document.querySelector('.rbt-single-product-add-to-cart, .rbt-btn-cart');
-                if (addToCartBtn) {
-                    addToCartBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        this.addToCart({
-                            id: product.id,
-                            title: product.title,
-                            price: product.price,
-                            image: product.image
-                        });
-                    });
-                }
-            }
-        } catch (err) {
-            console.error('Failed to load product details:', err);
-        }
-    },
-
-    async submitOrder(orderData) {
-        try {
-            const res = await fetch(`${API_BASE_URL}/orders`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(orderData)
-            });
-            return await res.json();
-        } catch (err) {
-            console.error('Order Submission Error:', err);
-            return { error: 'Failed to place order' };
-        }
     },
 
     initSearchFeature() {
@@ -254,7 +195,7 @@ window.RVNStore = {
             window.location.href = `${targetPage}?search=${encodeURIComponent(cleanQuery)}`;
         };
 
-        // Attach listeners to search submit events, clicks, and Enter key
+        // Listen for submit events, click on search button/icon, and Enter key
         document.addEventListener('submit', (e) => {
             const form = e.target.closest('.rbt-search-form, .search-form, form');
             if (form) {
@@ -287,71 +228,6 @@ window.RVNStore = {
                 }
             }
         });
-    },
-
-    async renderDynamicProducts() {
-        try {
-            const products = await this.fetchProducts();
-            if (!products || !products.length) return;
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchQuery = urlParams.get('search');
-            let displayProducts = products;
-
-            if (searchQuery) {
-                const q = searchQuery.toLowerCase().trim();
-                displayProducts = products.filter(p => p.title.toLowerCase().includes(q) || (p.description && p.description.toLowerCase().includes(q)));
-            }
-
-            const productContainers = document.querySelectorAll('.rbt-component-area .row.row--12, [data-product-grid], .shop-product-grid');
-            if (!productContainers.length) return;
-
-            const productCardHTML = (prod) => `
-                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6 mt--24">
-                    <div class="rbt-card rbt-product-card has-hover-box-shadow" style="background:#fff; border-radius:12px; padding:16px; border:1px solid #eee;">
-                        <div class="inner">
-                            <div class="rbt-card-img rbt-has-hover-img" style="text-align:center; background:#f9f9f9; border-radius:8px; padding:12px;">
-                                <a href="product-single-default.html?id=${prod.id}">
-                                    <img class="rbt-prd-img" src="${prod.image}" alt="${prod.title}" style="height:180px; object-fit:contain; max-width:100%;">
-                                </a>
-                            </div>
-                            <div class="rbt-card-body mt--15">
-                                <h4 class="rbt-card-title h6" style="font-size:15px; font-weight:600; min-height:42px;">
-                                    <a href="product-single-default.html?id=${prod.id}">${prod.title}</a>
-                                </h4>
-                                <div class="rbt-price-wrapper mt--10" style="font-size:16px;">
-                                    <span class="rbt-price-text offer-price font-bold" style="color:#215ada; font-weight:700;">₹${parseFloat(prod.price).toFixed(2)}</span>
-                                    ${prod.old_price ? `<span class="regular-price ml--5 text-gray-400" style="text-decoration:line-through; font-size:13px; margin-left:8px;">₹${parseFloat(prod.old_price).toFixed(2)}</span>` : ''}
-                                </div>
-                                <div class="rbt-card-bottom mt--15">
-                                    <button class="rbt-btn rbt-btn-sm w-100 rbt-add-to-cart-btn" style="background:#215ada; color:#fff; border:none; padding:10px; border-radius:6px; font-weight:600; width:100%; cursor:pointer;" onclick="window.RVNStore.addToCart({ id: ${prod.id}, title: '${prod.title.replace(/'/g, "\\'")}', price: ${prod.price}, image: '${prod.image}' })">
-                                        Add To Cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            productContainers.forEach(container => {
-                if (container.querySelector('.rbt-card, .col-xxl-3, .col-xl-3, .col-lg-4')) {
-                    if (searchQuery && displayProducts.length === 0) {
-                        container.innerHTML = `
-                            <div class="col-12 text-center py-5" style="padding: 60px 0;">
-                                <h3>No products found matching "${searchQuery}"</h3>
-                                <p class="text-muted">Try searching for headphones, cable, smartwatch, TV, speaker, or power bank.</p>
-                                <a href="index.html" class="rbt-btn btn-md mt--20" style="display:inline-block; margin-top:20px; background:#215ada; color:#fff; padding:10px 24px; border-radius:6px;">View All Products</a>
-                            </div>
-                        `;
-                    } else {
-                        container.innerHTML = displayProducts.map(productCardHTML).join('');
-                    }
-                }
-            });
-        } catch (err) {
-            console.error('Error rendering dynamic products:', err);
-        }
     }
 };
 
@@ -361,7 +237,6 @@ const initStore = () => {
     window.RVNStore.bindExistingUI();
     window.RVNStore.loadProductDetails();
     window.RVNStore.initSearchFeature();
-    window.RVNStore.renderDynamicProducts();
 };
 
 if (document.readyState === 'loading') {
